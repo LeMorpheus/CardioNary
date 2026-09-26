@@ -260,8 +260,17 @@ into both `main` and `develop`.
 
 ## 10. Repository settings checklist
 
-These are set once, in the GitHub web interface, when the team lanes open. The
-repository is public, so branch protection is available on the free plan.
+These are set once, in the GitHub web interface, when the team lanes open.
+
+**First, two consequences of the repository being private:**
+
+- **Branch protection needs GitHub Pro.** On GitHub Free, protection rules and rulesets
+  are enforced only on public repositories. On a private one, they can be written but
+  will not stop a direct push. The owner's account needs GitHub Pro, which students get
+  free through the GitHub Student Developer Pack (education.github.com). The alternative
+  is to make the repository public.
+- **Graders need access.** The proposal submits this repository's link. Before 2 Oct,
+  either make the repository public or add the instructor as a collaborator.
 
 **Settings → General → Pull Requests**
 - [ ] Allow merge commits — **on**
