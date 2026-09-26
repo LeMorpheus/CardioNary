@@ -1,11 +1,11 @@
 # cardio — heart-sound team (3 people)
 
-Lane branch: `cardio/dev`, opened once `core/contracts` has landed.
+Team branch: `cardio`. Your own branches: `cardio-<your name>-<topic>`.
 
-| Workstream | Folder | Branch pattern | Owner |
-|---|---|---|---|
-| Heart-sound model | `model/` | `cardio/model/<name>-<topic>` | to be assigned |
-| Fusion with patient metadata | `fusion/` | `cardio/fusion/<name>-<topic>` | to be assigned |
-| Test-time adaptation | `tta/` | `cardio/tta/<name>-<topic>` | to be assigned |
+| Work | Folder | Owner |
+|---|---|---|
+| Heart-sound model | `model/` | to be assigned |
+| Fusion with patient metadata | `fusion/` | to be assigned |
+| Test-time adaptation | `tta/` | to be assigned |
 
-Experiments run on `cardio/exp/<topic>`; their write-ups go in `experiments/`.
+Write up every experiment, including the ones that fail, in `experiments/`.

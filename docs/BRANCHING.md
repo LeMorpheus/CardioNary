@@ -1,276 +1,128 @@
-# How we work: branches, merges and releases
+# How we work with Git
 
-Seven people, two teams, one repository. This document is the whole agreement on how
-work moves from someone's laptop to `main`. Read it once before your first branch.
-
----
-
-## 1. The branch map
-
-```
-main ─────────────── protected · receives only release/* and hotfix/*
-  ▲                  tags: proposal-v1, checkin, final
-  │
-release/proposal · release/checkin · release/final
-  ▲                  the testing stage: frozen, fully evaluated, fixes only
-  │
-develop ──────────── protected · where both teams' work meets · CI on every PR
-  ▲          ▲          ▲            ▲              ▲              ▲ (later)
-infra/<t>  docs/<t>   core/<t>     cardio/dev     lung/dev       app/dev
-                                     ▲              ▲              ▲
-                     cardio/model/<name>-<topic>    │              app/feat/<name>-<topic>
-                     cardio/fusion/<name>-<topic>   │
-                     cardio/tta/<name>-<topic>      │
-                     cardio/exp/<topic>             │   ← experiments, never merged
-                                                    │
-                                   lung/model/<name>-<topic>
-                                   lung/fusion/<name>-<topic>
-                                   lung/tta/<name>-<topic>
-                                   lung/exp/<topic>
-
-hotfix/<topic> ← cut from main during demo week, merged back into main AND develop
-```
-
-Work always flows **upwards**: your branch → your team's lane → `develop` → a release
-→ `main`. Nothing skips a level.
+A short guide for the seven of us. If you only read one section, read
+**Everyday steps**.
 
 ---
 
-## 2. Every branch type
+## The branches
 
-| Branch | Cut from | Merges into | Lives for | Who |
-|---|---|---|---|---|
-| `main` | — | — | whole project | nobody pushes; releases only |
-| `develop` | `main` | `release/*` | whole project | nobody pushes; PRs only |
-| `release/<milestone>` | `develop` | `main` (and back into `develop`) | a few days | both team leads |
-| `hotfix/<topic>` | `main` | `main` and `develop` | hours | whoever fixes it |
-| `cardio/dev` | `develop` | `develop` | whole project | cardio team (3) |
-| `lung/dev` | `develop` | `develop` | whole project | lung team (4) |
-| `app/dev` | `develop`, **late** | `develop` | end of semester | everyone |
-| `cardio/<workstream>/<name>-<topic>` | `cardio/dev` | `cardio/dev` | days to a week | one person |
-| `lung/<workstream>/<name>-<topic>` | `lung/dev` | `lung/dev` | days to a week | one person |
-| `app/feat/<name>-<topic>` | `app/dev` | `app/dev` | days | one person |
-| `cardio/exp/<topic>`, `lung/exp/<topic>` | team lane | **never merged** | as long as useful | anyone |
-| `core/<topic>` | `develop` | `develop` | days | anyone; both leads review |
-| `docs/<topic>`, `infra/<topic>` | `develop` | `develop` | days | anyone |
+```
+main        ← finished, tested versions only (proposal, check-in, final)
+  ▲
+develop     ← everyone's work comes together here
+  ▲       ▲
+cardio    lung        ← one branch per team
+  ▲       ▲
+your own branches     ← e.g. cardio-meera-late-fusion, lung-rohan-tta
+```
 
-**Workstreams** are `model`, `fusion` and `tta`. Each person owns one, and it is the
-part they will be asked about in the viva.
+Work moves **up**: your branch → your team's branch → `develop` → `main`.
+
+Code that both teams share (`core/`, `tests/`, `docs/`) goes on a `shared-<topic>`
+branch made from `develop`.
 
 ---
 
-## 3. Naming
+## Naming your branch
 
 ```
-<lane>/<workstream>/<name>-<topic>
+<team>-<your name>-<what you are doing>
 ```
 
-- `<name>` is your first name, lowercase.
-- `<topic>` is 2–4 words, hyphenated, and says *what*, not *how long*.
+Examples: `cardio-meera-late-fusion`, `lung-rohan-tta`, `lung-aisha-mobilenet`.
+For shared code: `shared-<topic>`, e.g. `shared-metadata-schema`.
 
-Good:
-
-```
-cardio/fusion/meera-late-fusion-logreg
-lung/tta/rohan-batchnorm-stats-adapt
-lung/model/aisha-mobilenet-baseline
-core/metadata-schema
-cardio/exp/early-fusion-concat
-```
-
-Not good: `fix`, `aviral-branch`, `new-model-final-v2`, `cardio`.
-
-### The one naming rule git enforces for you
-
-**Never create a branch whose name is the prefix of another branch.** Git stores
-branches as paths, so if a branch called `cardio` exists, `cardio/dev` cannot — and
-vice versa. The same goes for `cardio/fusion` against `cardio/fusion/meera-…`. Every
-branch name ends in a leaf; the prefixes (`cardio/`, `cardio/fusion/`) are only ever
-folders.
+Lowercase, hyphens, no spaces.
 
 ---
 
-## 4. Day-to-day workflow
+## Everyday steps
 
-**Start a piece of work**
+**1. Start from your team's branch**
 
 ```bash
-git checkout cardio/dev
+git checkout cardio
 git pull
-git checkout -b cardio/fusion/meera-late-fusion-logreg
+git checkout -b cardio-meera-late-fusion
 ```
 
-**Commit little and often.** A week of small commits is worth more than one large one,
-to you and to the course's "Process & Accountability" criterion.
+**2. Save your work often**, small commits, in plain words:
 
 ```bash
 git add <files>
-git commit -m "cardio/fusion: add late-fusion logistic head over model probabilities"
+git commit -m "add late-fusion model over heart-sound probabilities"
+git push -u origin cardio-meera-late-fusion
 ```
 
-Message format: `<lane>/<workstream>: <what changed, imperative>`. If an AI assistant
-contributed to the commit, end the message with a trailer naming it, for example
-`Co-Authored-By: Claude <noreply@anthropic.com>`.
+**3. Open a pull request on GitHub** into your team's branch (`cardio` or `lung`).
+Fill in the template, and ask one teammate to approve it.
 
-**Keep your branch current with your lane**
-
-```bash
-git fetch
-git merge origin/cardio/dev
-```
-
-**Open a pull request** into your lane (`cardio/dev`, `lung/dev` or `app/dev`), fill in
-the template, and ask a teammate for review. CI must be green before merging.
-
-**After it merges,** delete the branch. GitHub can do this automatically (§8).
+**4. Merge it with "Create a merge commit"**, then press **Delete branch**.
 
 ---
 
-## 5. Merging
+## Three rules
 
-### Merge commits only — never squash
+1. **Never push straight to `main` or `develop`.** Always go through a pull request.
+2. **Always merge with "Create a merge commit", never "Squash".** Squashing hides who
+   did what, and the course grades each person's commit history.
+3. **Never commit datasets or trained model weights.** `.gitignore` already blocks them.
+   Data manifests and small results files *are* committed.
 
-A squash merge collapses all of your commits into one. That erases the week-by-week
-record of who did what, which is exactly what the course reads to grade process and to
-prepare viva questions. So:
+---
 
-- Pull requests merge with **Create a merge commit**.
-- Squash and rebase merging are disabled in the repository settings (§8).
+## Moving work up
 
-With history intact, anyone can see a person's contribution to an area:
+**Team branch → `develop`:** when your team has something that works and has results,
+the team lead opens a pull request into `develop`. The other team's lead approves it.
 
-```bash
-git shortlog -sn --no-merges -- cardio/fusion/
-```
-
-### Lanes keep up with `develop` every week
-
-Once a week, each team merges `develop` into its lane:
+**Every Monday:** each team brings the latest `develop` into its branch, so shared code
+reaches everyone early:
 
 ```bash
-git checkout cardio/dev && git pull
+git checkout cardio
+git pull
 git merge origin/develop
 git push
 ```
 
-Changes to `core/` then reach both teams within days rather than colliding with them at
-the end of the semester.
-
-### Lanes merge into `develop` when something works end to end
-
-A lane merges into `develop` through a pull request, reviewed by **both** team leads,
-when it has something that runs and has been evaluated — a trained model, a fusion
-experiment with results, an adaptation method with before/after numbers. Not on a
-timer, and not with half-finished work.
-
----
-
-## 6. `core/`: the shared pipeline
-
-`core/` holds everything both teams depend on:
-
-- the audio and image front-ends;
-- the spectrogram and the out-of-distribution gate;
-- the anti-leakage rules and the training and evaluation harness;
-- quantisation;
-- the derived measurements;
-- the **contracts** — the interface both models implement and the metadata schema both
-  fusion workstreams consume.
-
-Rules:
-
-- **One definition of the features.** Lanes import from `core`; they never copy a
-  front-end into their own folder, where the two copies would drift apart.
-- **Every `core/` change needs review from both team leads**, because it changes both
-  teams' results. CODEOWNERS enforces this.
-- **The contracts land before either lane opens.** Two teams can then build fusion and
-  adaptation independently, and the dashboard later consumes a single interface.
-
-### The order in which the baseline arrives
-
-The baseline pipeline is prior work, and it is imported one topic branch at a time, in
-dependency order. Each step stands on the ones before it and can be tested on its own:
-
-| # | Branch | Brings in | Why at this point |
-|---|---|---|---|
-| 1 | `infra/repo-foundation` | this document, the README, the folder skeleton, the PR template, CODEOWNERS | everyone needs to know where work goes before any code lands |
-| 2 | `core/data-and-leakage` | dataset manifests, the leakage assertions, their tests, and CI | nothing is trained until the split is provably clean |
-| 3 | `core/front-ends` | audio and image front-ends, spectrogram, out-of-distribution gate | features depend only on the data |
-| 4 | `core/training-and-baselines` | cross-validated training, hurdle baselines, quantisation, results records | training needs data and features |
-| 5 | `core/descriptors` | S1/S2 segmentation, murmur timing, occlusion maps | derived measurements sit on top of trained models |
-| 6 | `core/contracts` | model interface, metadata schema, shared evaluation | formalises the baseline's outputs; the team lanes open on top of it |
-
-Only the steps above are imported. Code that served the earlier project's hardware is
-left behind.
-
----
-
-## 7. Experiments, including the ones that fail
-
-Some work exists to find out whether an idea is any good. It goes on
-`cardio/exp/<topic>` or `lung/exp/<topic>`, and those branches are **never merged**.
-
-What *is* merged is the finding. Write a short entry in `cardio/experiments/` or
-`lung/experiments/` — what was tried, the numbers, the conclusion — and bring it in
-through an ordinary pull request. A negative result that is written down is evidence;
-one that is deleted is lost work nobody can defend in a viva.
-
----
-
-## 8. What goes into git, and what never does
-
-| Tracked | Never tracked |
-|---|---|
-| Source code, tests, configs | Raw datasets |
-| **Data manifests** (every fold assignment — the leakage audit trail) | Feature caches |
-| Small results files (`reports/*.json`, experiment logs) | Trained weights (`.keras`, `.h5`, `.tflite`, `.onnx`) |
-| Figures used in the report | Virtual environments, notebook checkpoints |
-
-Trained weights for a milestone are attached to that milestone's GitHub Release, next
-to the tag that produced them.
-
----
-
-## 9. Releases and milestones
-
-Each milestone is a short-lived `release/*` branch. This is the project's testing stage:
-the branch is frozen, fully evaluated and fixed up before it reaches `main`. Only fixes
-are allowed on it.
-
-| Milestone | Branch | Tag on `main` |
-|---|---|---|
-| Proposal (2 Oct 2026) | `release/proposal` | `proposal-v1` |
-| Mid-project check-in | `release/checkin` | `checkin` |
-| Final submission | `release/final` | `final` |
+**`develop` → `main`:** only at the three milestones. Run the tests, merge, and tag:
 
 ```bash
-git checkout develop && git pull
-git checkout -b release/checkin
-#   run the full evaluation; commit fixes only
-git checkout main && git merge --no-ff release/checkin
-git tag -a checkin -m "Mid-project check-in"
-git checkout develop && git merge --no-ff release/checkin
-git push origin main develop --tags
+git checkout develop && git pull && python -m pytest tests/
+git checkout main && git pull
+git merge --no-ff develop
+git tag -a proposal-v1 -m "Proposal"     # later: checkin, final
+git push origin main --tags
 ```
 
-During demo week, urgent fixes go on `hotfix/<topic>`, cut from `main` and merged back
-into both `main` and `develop`.
+| Milestone | Tag |
+|---|---|
+| Proposal, 2 Oct 2026 | `proposal-v1` |
+| Mid-project check-in | `checkin` |
+| Final submission | `final` |
 
 ---
 
-## 10. Repository settings checklist
+## When an experiment does not work
 
-These are set once, in the GitHub web interface, when the team lanes open.
+Do not merge the branch. Write a short note in `cardio/experiments/` or
+`lung/experiments/` saying what you tried, the numbers, and what you concluded, and
+merge that note instead. A failed experiment that is written down still counts as a
+result.
 
-**First, two consequences of the repository being private:**
+---
 
-- **Branch protection needs GitHub Pro.** On GitHub Free, protection rules and rulesets
-  are enforced only on public repositories. On a private one, they can be written but
-  will not stop a direct push. The owner's account needs GitHub Pro, which students get
-  free through the GitHub Student Developer Pack (education.github.com). The alternative
-  is to make the repository public.
-- **Graders need access.** The proposal submits this repository's link. Before 2 Oct,
-  either make the repository public or add the instructor as a collaborator.
+## Later in the semester: the dashboard
+
+When the models, fusion and test-time adaptation are done, create a `dashboard` branch
+from `develop`. Everyone then works on `dashboard-<name>-<topic>` branches, exactly as
+above.
+
+---
+
+## One-time GitHub settings (repository owner)
 
 **Settings → General → Pull Requests**
 - [ ] Allow merge commits — **on**
@@ -278,32 +130,27 @@ These are set once, in the GitHub web interface, when the team lanes open.
 - [ ] Allow rebase merging — **off**
 - [ ] Automatically delete head branches — **on**
 
-**Settings → Branches → Add branch protection rule** (or Settings → Rules → Rulesets)
+**Settings → Branches → Add branch protection rule**, once for `main` and once for
+`develop`:
+- [ ] Require a pull request before merging, with **1** approval
+- [ ] Require status checks to pass — select `tests` (it appears after the first
+  automated test run)
 
-| Pattern | Pull request required | Approvals | Code owner review | Status check `tests` must pass |
-|---|---|---|---|---|
-| `main` | yes | 2 (both leads) | yes | yes |
-| `develop` | yes | 2 (both leads) | yes | yes |
-| `release/*` | yes | 1 | — | yes |
-| `cardio/dev` | yes | 1 (a cardio teammate) | — | yes |
-| `lung/dev` | yes | 1 (a lung teammate) | — | yes |
-
-For every pattern, also enable **Require branches to be up to date before merging** and
-**Do not allow force pushes**. The `tests` status check can only be selected after the
-CI workflow has run at least once.
-
-**Settings → Collaborators** — add all seven members with *Write* access, then replace
-the placeholder handles in `.github/CODEOWNERS`.
+**Settings → Collaborators** — add all seven members with *Write* access.
 
 ---
 
-## 11. Quick reference
+## How the starting code arrives
 
-| I want to… | Do this |
-|---|---|
-| start work | branch from **your lane**, named `<lane>/<workstream>/<name>-<topic>` |
-| try something risky | `<lane>/exp/<topic>`; merge only the write-up |
-| change shared code | `core/<topic>` from `develop`; both leads review |
-| get the latest shared code | merge `origin/<your lane>` into your branch |
-| ship to the rest of the team | PR into your lane, then the lane PRs into `develop` |
-| mark a milestone | `release/<milestone>` → `main`, tag it |
+The baseline pipeline comes from our earlier project. It is added one step at a time,
+in the order it depends on itself:
+
+| Step | Branch | Adds |
+|---|---|---|
+| 1 | `infra/repo-foundation` (done) | this guide, the README, folders, the pull request template |
+| 2 | `shared-data-and-leakage` | dataset manifests, leakage checks, their tests, automatic testing |
+| 3 | `shared-front-ends` | audio and image processing, spectrogram, out-of-distribution check |
+| 4 | `shared-training` | training, baselines, quantisation, results files |
+| 5 | `shared-descriptors-and-contracts` | derived measurements, and what each model takes in and gives back |
+
+After step 5 the `cardio` and `lung` team branches are created, and team work begins.

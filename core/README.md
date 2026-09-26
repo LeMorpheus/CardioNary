@@ -1,15 +1,17 @@
 # core — the shared pipeline
 
-Everything both teams depend on, defined once. Lanes import from `core`; they never
-copy it. Every change here needs review from both team leads.
+Everything both teams use, defined once. Import from `core`; never copy it into your
+team's folder, or the two copies will drift apart.
 
-| Module | Responsibility |
+| Module | What it does |
 |---|---|
-| manifests + `preprocess` | dataset manifests, patient-disjoint folds, anti-leakage assertions |
-| `features`, `images` | audio front-end (causal band-pass, log-mel) and image front-end |
-| `spectrogram`, `ood` | display spectrogram; out-of-distribution gate |
-| `train`, `baselines`, `quantize` | cross-validated training, hurdle baselines, 8-bit quantisation |
-| `descriptors` | S1/S2 segmentation, murmur timing, occlusion maps |
-| `contracts`, `eval` | the interface both models implement; shared metrics |
+| manifests + `preprocess` | dataset lists, patient-disjoint folds, leakage checks |
+| `features`, `images` | audio processing (band-pass filter, log-mel) and image processing |
+| `spectrogram`, `ood` | spectrogram picture; check for recordings unlike the training data |
+| `train`, `baselines`, `quantize` | training, simple baselines to beat, 8-bit compression |
+| `descriptors` | heart-cycle timing, murmur timing, X-ray occlusion maps |
+| `contracts` | what each model takes in and gives back |
 
-The modules arrive in this order during the first week — see `docs/BRANCHING.md` §6.
+Both teams use this code, so changes go on a `shared-<topic>` branch and are reviewed
+by one person from each team. The modules arrive in the order shown at the end of
+`docs/BRANCHING.md`.

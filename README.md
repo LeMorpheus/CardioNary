@@ -71,11 +71,11 @@ The code for all of this arrives in `core/` over the first week of the repositor
 
 ## Teams
 
-| Team | People | Owns | Branch lane |
+| Team | People | Owns | Team branch |
 |---|---|---|---|
-| **Cardio** | 3 | Heart-sound model · its metadata fusion · its test-time adaptation | `cardio/dev` |
-| **Lung** | 4 | Chest X-ray model · interpretability · its metadata fusion · its test-time adaptation | `lung/dev` |
-| **Everyone** | 7 | Dashboard, built once the models, fusion and adaptation are complete | `app/dev` |
+| **Cardio** | 3 | Heart-sound model · its metadata fusion · its test-time adaptation | `cardio` |
+| **Lung** | 4 | Chest X-ray model · interpretability · its metadata fusion · its test-time adaptation | `lung` |
+| **Everyone** | 7 | Dashboard, built once the models, fusion and adaptation are complete | `dashboard` (later) |
 
 ## Repository layout
 
@@ -103,13 +103,12 @@ Python 3.10. Datasets and trained weights are never committed; see
 
 ## How we work
 
-Branching, naming, merge policy and releases are in
-[`docs/BRANCHING.md`](docs/BRANCHING.md). The short version:
+The full guide is [`docs/BRANCHING.md`](docs/BRANCHING.md). The short version:
 
-- Nobody commits to `main` or `develop` directly.
-- Work happens on `<lane>/<workstream>/<name>-<topic>` branches.
-- Changes land through pull requests with merge commits, so every person's history
-  is kept.
+- Make your own branch from your team's branch: `<team>-<your name>-<topic>`.
+- Open a pull request back into your team's branch; one teammate approves.
+- Merge with **Create a merge commit**, never squash, so everyone's history is kept.
+- Nobody pushes straight to `main` or `develop`.
 
 ## Use of AI tools
 
