@@ -1,0 +1,20 @@
+# Python 3.10. Pinned to the versions the baseline pipeline was validated with,
+# so a result reproduced by one team member is reproduced by all seven.
+
+# Core numerics and data
+numpy==2.1.3
+scipy==1.15.3
+pandas==2.3.3
+pyarrow==25.0.1
+
+# Learning
+scikit-learn==1.7.2
+tensorflow==2.19.1
+keras==3.12.4
+
+# Images and figures
+pillow==12.3.0
+matplotlib==3.10.9
+
+# Tests
+pytest==9.1.1

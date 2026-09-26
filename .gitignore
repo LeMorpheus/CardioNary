@@ -1,0 +1,39 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv*/
+venv/
+env/
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# --- Data: never committed ----------------------------------------------
+# Datasets are downloaded by scripts in core/. Manifests are the exception:
+# they record every fold assignment, which makes them the leakage audit trail.
+data/*
+!data/manifests/
+
+# --- Trained weights and exported models: published as release assets ----
+models/
+*.keras
+*.h5
+*.tflite
+*.onnx
+*.pt
+*.pth
+
+# --- Scratch output -------------------------------------------------------
+logs/
+runs/
+wandb/
+mlruns/
+scratch/
+
+# --- OS and editors -------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
