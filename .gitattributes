@@ -1,0 +1,14 @@
+# Seven people on three operating systems: store text with LF in the repository,
+# so diffs show real changes instead of line-ending churn.
+* text=auto eol=lf
+
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.wav  binary
+*.npy  binary
+*.npz  binary
