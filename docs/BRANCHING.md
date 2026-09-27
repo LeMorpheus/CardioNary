@@ -148,8 +148,8 @@ in the order it depends on itself:
 | Step | Branch | Adds |
 |---|---|---|
 | 1 | `infra/repo-foundation` (done) | this guide, the README, folders, the pull request template |
-| 2 | `shared-data-and-leakage` | dataset manifests, leakage checks, their tests, automatic testing |
-| 3 | `shared-front-ends` | audio and image processing, spectrogram, out-of-distribution check |
+| 2 | `shared-data-and-leakage` (done) | dataset downloads, manifests, leakage tests, automatic testing |
+| 3 | `shared-front-ends` | audio and image processing, feature cache, spectrogram, out-of-distribution check |
 | 4 | `shared-training` | training, baselines, quantisation, results files |
 | 5 | `shared-descriptors-and-contracts` | derived measurements, and what each model takes in and gives back |
 
