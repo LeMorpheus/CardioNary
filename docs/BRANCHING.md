@@ -151,6 +151,6 @@ in the order it depends on itself:
 | 2 | `shared-data-and-leakage` (done) | dataset downloads, manifests, leakage tests, automatic testing |
 | 3 | `shared-front-ends` (done) | audio and image processing, feature cache, spectrogram, out-of-distribution check |
 | 4 | `shared-training` (done) | training, simple baselines to beat, 8-bit quantisation, edge-case tests |
-| 5 | `shared-descriptors-and-contracts` | derived measurements, and what each model takes in and gives back |
+| 5 | `shared-descriptors-and-contracts` (done) | secondary characteristics, and what each model, late fusion and the visit decision take in and give back |
 
 After step 5 the `cardio` and `lung` team branches are created, and team work begins.
