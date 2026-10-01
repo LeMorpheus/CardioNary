@@ -1,4 +1,4 @@
-# app — clinical dashboard
+# app — offline screening tool
 
 Built by both teams once the models, fusion and adaptation are complete. A
 `dashboard` branch is created from `develop` at that point.
