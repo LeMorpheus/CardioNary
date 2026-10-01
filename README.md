@@ -1,90 +1,105 @@
 # CardioNary
 
-**Dual-modality cardiopulmonary screening with edge-deployable AI — heart sounds and
-chest X-rays, each read in the context of the patient.**
+**Ultra-compact dual-CNN late fusion for edge AI cardiopulmonary screening — heart
+sounds and chest X-rays, each read in the context of the patient, with one
+refer-or-not decision per visit.**
 
 CS F407 Artificial Intelligence · BITS Pilani, Hyderabad Campus · First Semester 2026–27
+· Track: Application
 
-> CardioNary is a screening aid for academic and educational use. It is not a
-> diagnostic device, and every output is meant for review by a clinician.
+> CardioNary is a screening aid for academic and educational use. It flags patients
+> for referral; it is not a diagnostic device, and every output is meant for review
+> by a clinician.
 
 ---
 
 ## The idea
 
 A doctor does not decide from one signal. They listen to the chest, look at the
-film, and then talk to the patient — age, symptoms, history — before arriving at a
-judgement. CardioNary is built to follow the same shape:
+film, and then weigh both against the patient's age, history and symptoms.
+CardioNary follows the same shape, small enough to run offline on an ordinary CPU:
 
-- **A heart-sound model** classifies a heart recording into five classes:
-  Normal, Aortic Stenosis, Mitral Stenosis, Mitral Regurgitation, Mitral Valve Prolapse.
-- **A chest X-ray model** separates radiographs with no pneumonia pattern from those
-  with a pattern consistent with pneumonia.
-- **Each model is then combined with patient metadata and symptoms**, so the final
-  decision reflects the clinical signal *and* the patient in front of you.
-- **Each model adapts at test time** to the instruments and recording conditions of the
-  site it is deployed at, so a model trained on one set of stethoscopes or scanners
-  keeps working on another.
+- **A heart-sound model** — a compact CNN built from depthwise-separable
+  convolutions — classifies 3 seconds of heart audio (a 40 × 192 spectrogram) into
+  Normal, Aortic Stenosis, Mitral Stenosis, Mitral Regurgitation or Mitral Valve
+  Prolapse.
+- **A chest X-ray model** — MobileNetV2 fine-tuned by transfer learning — reads a
+  96 × 96 greyscale X-ray as normal or pneumonia.
+- **Secondary characteristics.** Each input is also measured with classical signal
+  and image processing (heart-cycle and murmur timing; X-ray density, texture and
+  the region the CNN relied on), and the measurements are shown next to the answer.
+- **Late fusion of three votes.** In each branch the CNN, a classifier on the
+  secondary characteristics and a classifier on **patient metadata and symptoms**
+  vote:
+  `p = w1·p_CNN + w2·p_features + w3·p_metadata`, with the weights chosen by
+  cross-validation and the metadata weight capped at 0.3.
+- **Adapting to a new clinic.** Test-time adaptation re-estimates the batch
+  normalisation statistics from the clinic's first few unlabelled cases, in seconds
+  and without retraining, so the models stay **dataset-agnostic**.
+- **One decision per visit.** The two branches combine as
+  `p = 1 − (1 − p_heart)(1 − p_xray)`, and the patient is referred when
+  `p · C_miss > C_refer` — the maximum-expected-utility choice for the clinic's
+  costs of a miss and of a referral.
+- **Edge-first.** Both models are compressed to 8 bits by post-training
+  quantisation, and everything runs locally: patient data never leave the clinic.
 
-Everything is designed to stay small enough to run at the edge — on modest hardware,
-without a cloud service in the loop.
+### Why late fusion
 
-### Why fusion, and not one big model
-
-Feeding metadata straight into a single network invites it to lean on whatever is
-easiest — age or sex, say — and to stop listening to the signal. Keeping the
-clinical model and the patient context as separate modalities, and combining them
-deliberately, lets us measure what each contributes and stop either one from
-drowning out the other. Comparing **late fusion** with **early fusion** is one of the
-central experiments of this project.
+Feeding metadata straight into the network invites it to lean on whatever is
+easiest — age or sex, say — and stop listening to the signal. Keeping the CNN, the
+secondary characteristics and the patient metadata as separate votes keeps each one
+measurable and interpretable, lets the CNN be trained, compressed and tested once,
+and lets a missing input simply drop out while the remaining weights are
+renormalised. The metadata vote can shift a borderline case but never outweigh the
+recording.
 
 ---
 
 ## Starting point: prior work
 
-The baseline pipeline was developed by members of this team in an earlier project,
-**Project Chiron**. It is imported here as prior work and extended; it is not
-presented as new. Retained unchanged:
+The audio and image front-ends, leakage rules, training, quantisation and
+secondary-characteristic code were developed by members of this team in an earlier
+project, **Project Chiron**. They are imported into `core/` as prior work and are not
+presented as new. What this project adds:
 
-| Retained | What it does |
-|---|---|
-| Audio front-end | 8 kHz, 3 s windows, causal 20–800 Hz Butterworth band-pass, log-mel spectrogram (40 bands × 192 frames) |
-| Image front-end | Greyscale, centre-crop to square, 96 × 96 |
-| Spectrogram rendering | Display spectrogram for every heart-sound input |
-| Derived measurements | S1/S2 segmentation, murmur timing (systolic vs diastolic), occlusion maps on X-rays |
-| Anti-leakage rules | Patient-disjoint folds and leakage checks enforced as assertions and tests |
-| Out-of-distribution gate | Flags recordings that do not resemble the training data |
-| Compression | 8-bit post-training quantisation, judged by prediction agreement |
+1. **Late fusion** of the CNN with secondary characteristics and patient metadata.
+2. **Test-time adaptation** to a new clinic from unlabelled cases.
+3. **One cost-aware decision per visit** across both tests.
+4. **Dataset-agnostic evaluation** on datasets the models were never trained on,
+   including about 100 heart-sound clips we record ourselves with a stethoscope and
+   a MEMS microphone.
+5. **An offline, multi-language screening tool** for health workers.
 
-The code for all of this arrives in `core/` over the first week of the repository.
-[`docs/BRANCHING.md`](docs/BRANCHING.md) shows the order.
+## Datasets
 
-## What this project adds
+Datasets are downloaded by scripts and never committed.
 
-1. **Fusion with patient metadata** — late fusion and early fusion, compared on the
-   same evaluation protocol, with metadata kept from dominating the decision.
-2. **Test-time adaptation** — the model adjusts to a new site's data and measuring
-   conditions without new labels, so it becomes instrument-agnostic.
-3. **A clinical dashboard** — multi-language, suited to use at the edge.
+| Use | Heart sounds | Chest X-rays |
+|---|---|---|
+| Training and 5-fold testing | Yaseen | Kermany (paediatric) |
+| Unseen datasets | BUET heart-sound dataset; PhysioNet 2022 challenge data | RSNA Pneumonia; VinDr-CXR if time allows |
+| Patient metadata | PhysioNet 2022: age group, sex, height, weight | RSNA: age, sex |
+| New-device test | Our own ~100 recordings, with a symptom checklist | — |
 
----
+Every split is patient-disjoint, and automated tests reject any split that places
+one patient in both training and testing.
 
 ## Teams
 
-| Team | People | Owns | Team branch |
+| Primary focus | People | Owns | Team branch |
 |---|---|---|---|
-| **Cardio** | 3 | Heart-sound model · its metadata fusion · its test-time adaptation | `cardio` |
-| **Lung** | 4 | Chest X-ray model · interpretability · its metadata fusion · its test-time adaptation | `lung` |
-| **Everyone** | 7 | Dashboard, built once the models, fusion and adaptation are complete | `dashboard` (later) |
+| **Heart-sound model** | 3 | Heart CNN · secondary characteristics · feature and metadata classifiers · test-time adaptation · our own recordings | `cardio` |
+| **Chest X-ray model** | 4 | X-ray CNN · secondary characteristics · feature and metadata classifiers · test-time adaptation · calibration | `lung` |
+| **Both** | 7 | Visit decision, shared evaluation code, the offline tool | `dashboard` (later) |
 
 ## Repository layout
 
 ```
 core/       shared pipeline both teams import — front-ends, leakage rules, training,
-            evaluation, and the contracts both models implement
+            quantisation, secondary characteristics, and the shared contracts
 cardio/     heart-sound team:  model/  fusion/  tta/  experiments/
 lung/       chest X-ray team:  model/  fusion/  tta/  experiments/
-app/        dashboard (later in the semester)
+app/        offline screening tool (later in the semester)
 tests/      evaluation gates, including the anti-leakage tests
 docs/       how we work, and the report
 ```
