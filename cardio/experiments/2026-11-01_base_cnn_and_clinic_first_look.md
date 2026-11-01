@@ -21,6 +21,12 @@ Yaseen has no patient IDs, so clips from one person may sit in different folds. 
 
 **8-bit model (proposal 4.5).** 27.7 kB. On fold 0, which it never trained on, it agrees with the float model on 100% of windows and clips, and both reach 98.48% clip accuracy.
 
+On PhysioNet 2022 (all 3,163 public recordings, 46,654 windows; run on 2 Nov with `--wav-dir data/raw/circor/training_data --name physionet_2022`), agreement drops to 96.49% of recordings and 96.92% of windows, below the proposal's 98%.
+
+The likely cause is the model's 8-bit input range (scale 0.0152, zero point −38). It was fitted to Yaseen windows and covers about −1.4 to +2.5 in normalised units, so inputs from a new device that fall outside it are clipped. Re-quantising after adaptation (S4), with the new site's own windows as the representative set, is the planned fix. Measure agreement again after it.
+
+The downloaded copy matches PhysioNet's checksums for every recording, header, segmentation file and `training_data.csv`. The 942 patient `.txt` files do not match, although their content is well-formed. No result here uses them.
+
 **Clinic recordings (50 recordings, 10 patients, no labels).**
 
 | Measure | Value |
