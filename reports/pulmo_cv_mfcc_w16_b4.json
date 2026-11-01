@@ -1,0 +1,46 @@
+{
+  "tag": "mfcc_w16_b4",
+  "feature": "mfcc",
+  "augment": true,
+  "params": 13380,
+  "seeds": 1,
+  "folds": 5,
+  "window_acc_mean": 0.39272949687121705,
+  "window_acc_std": 0.050911548984126295,
+  "window_f1_mean": 0.32168726942526404,
+  "patient_acc_mean": 0.45847953216374276,
+  "patient_acc_std": 0.1260942664436331,
+  "patient_f1_mean": 0.33431010166304287,
+  "confusion_matrix_patient": [
+    [
+      20,
+      11,
+      2,
+      1
+    ],
+    [
+      12,
+      14,
+      4,
+      1
+    ],
+    [
+      3,
+      6,
+      8,
+      1
+    ],
+    [
+      2,
+      6,
+      1,
+      0
+    ]
+  ],
+  "classes": [
+    "Normal",
+    "Asthma",
+    "Heart Failure",
+    "COPD"
+  ]
+}

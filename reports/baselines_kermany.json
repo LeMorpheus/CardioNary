@@ -1,0 +1,16 @@
+{
+  "dataset": "kermany",
+  "n_units": 2790,
+  "n_classes": 2,
+  "baselines": {
+    "majority_class": {
+      "accuracy": 0.6,
+      "macro_f1": 0.375
+    },
+    "stratified_random": {
+      "accuracy": 0.5206989247311827,
+      "macro_f1": 0.5006363035390413
+    }
+  },
+  "hurdle_accuracy": 0.6
+}

@@ -1,0 +1,116 @@
+{
+  "dataset": "yaseen",
+  "protocol": "5-fold cross-validation over the committed folds; clip-level scores are the mean softmax over each clip's 3-second windows",
+  "settings": {
+    "width": 16,
+    "blocks": 4,
+    "dropout": 0.3,
+    "arch": "dwsep",
+    "lr": 0.002,
+    "batch": 32,
+    "epochs": 120,
+    "augment": false
+  },
+  "clips": 990,
+  "windows": 1044,
+  "accuracy_mean": 0.9929342142182996,
+  "accuracy_std": 0.005783373851043132,
+  "macro_f1_mean": 0.9929550016318174,
+  "macro_f1_std": 0.005723637251806303,
+  "window_accuracy_mean": 0.9903645753093592,
+  "pooled_accuracy": 0.9929292929292929,
+  "pooled_macro_f1": 0.9929313376994037,
+  "per_class_recall": {
+    "Normal": 1.0,
+    "AS": 0.99,
+    "MS": 0.9947368421052631,
+    "MR": 0.99,
+    "MVP": 0.99
+  },
+  "refer_or_not_auroc": 1.0,
+  "confusion_matrix": {
+    "classes": [
+      "Normal",
+      "AS",
+      "MS",
+      "MR",
+      "MVP"
+    ],
+    "rows_true_cols_pred": [
+      [
+        200,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        198,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        189,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        198,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        198
+      ]
+    ]
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "clips": 197,
+      "accuracy": 0.9847715736040609,
+      "macro_f1": 0.9849680671707116,
+      "window_accuracy": 0.9805825242718447
+    },
+    {
+      "fold": 1,
+      "clips": 199,
+      "accuracy": 0.9949748743718593,
+      "macro_f1": 0.9949992186279106,
+      "window_accuracy": 0.995260663507109
+    },
+    {
+      "fold": 2,
+      "clips": 199,
+      "accuracy": 0.9949748743718593,
+      "macro_f1": 0.9949367088607595,
+      "window_accuracy": 0.9953051643192489
+    },
+    {
+      "fold": 3,
+      "clips": 199,
+      "accuracy": 0.9899497487437185,
+      "macro_f1": 0.9898710134997055,
+      "window_accuracy": 0.9902439024390244
+    },
+    {
+      "fold": 4,
+      "clips": 196,
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "window_accuracy": 0.9904306220095693
+    }
+  ],
+  "target": "accuracy_mean >= 0.95 (proposal 4.1)",
+  "meets_target": true
+}

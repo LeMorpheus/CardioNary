@@ -1,0 +1,16 @@
+{
+  "dataset": "kauh",
+  "n_units": 92,
+  "n_classes": 4,
+  "baselines": {
+    "majority_class": {
+      "accuracy": 0.3695652173913043,
+      "macro_f1": 0.1349206349206349
+    },
+    "stratified_random": {
+      "accuracy": 0.2970652173913043,
+      "macro_f1": 0.24597355067438165
+    }
+  },
+  "hurdle_accuracy": 0.3695652173913043
+}

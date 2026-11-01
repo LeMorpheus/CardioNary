@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CardioNary — Cardiopulmonary Screening Station</title>
+<link rel="stylesheet" href="/static/style.css?v=20260826022059">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <!-- The product name is a proper noun and stays in Latin script in every
+         language; only the descriptor beside it is translated. -->
+    <h1><span class="product">CardioNary</span><span class="product-desc"
+        data-i18n="ui.title">Cardiopulmonary Screening Station</span></h1>
+    <p class="sub" data-i18n="ui.subtitle">On-device analysis · results to be reviewed by clinical staff</p>
+  </div>
+  <div class="header-right">
+    <label class="lang-wrap">
+      <span data-i18n="ui.language">Language</span>
+      <select id="lang-select"></select>
+    </label>
+    <div id="node-pills" class="pills"></div>
+    <button id="btn-selftest" class="primary" data-i18n="ui.run_selftest">Run screening batch</button>
+    <button id="btn-live-image" class="btn live" data-i18n="ui.live_image">Upload chest X-ray</button>
+    <button id="btn-upload-audio" class="btn live" data-i18n="ui.upload_audio">Upload heart sound</button>
+    <button id="btn-live-audio" class="btn live" data-i18n="ui.live_audio">Record heart sound</button>
+    <input id="live-image-file" type="file" accept="image/*" hidden>
+    <input id="live-audio-file" type="file" accept="audio/*,.wav" hidden>
+  </div>
+</header>
+
+<div id="live-bar" class="live-bar hidden">
+  <span id="live-msg"></span>
+</div>
+
+<div id="sim-bar" class="sim-bar hidden">
+  <span id="sim-badge">SIMULATION — replaying exported reference cases</span>
+</div>
+
+<main>
+  <section class="nodes" id="nodes"></section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 data-i18n="ui.accuracy_title">Screening batch results</h2>
+      <span class="hint" data-i18n="ui.accuracy_note">held-out samples, never used in training</span>
+    </div>
+    <div id="accuracy" class="accuracy"></div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 data-i18n="ui.history_title">Confidence history</h2>
+      <span class="hint" data-i18n="ui.history_note">last 60 analyses</span>
+    </div>
+    <canvas id="chart" height="180"></canvas>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2 data-i18n="ui.log_title">Case log</h2>
+      <div class="actions">
+        <a class="btn" href="/api/export.csv" download data-i18n="ui.export">Export CSV</a>
+        <button id="btn-purge" class="btn danger" data-i18n="ui.purge">Clear records</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table id="log">
+        <thead>
+          <tr>
+            <th data-i18n="ui.th_time">Time</th>
+            <th data-i18n="ui.th_node">Type</th>
+            <th data-i18n="ui.th_predicted">Finding</th>
+            <th data-i18n="ui.th_conf">Conf.</th>
+            <th data-i18n="ui.th_expected">Expected</th>
+            <th></th>
+            <th data-i18n="ui.th_case">Case</th>
+            <th data-i18n="ui.th_front">Signal</th>
+            <th data-i18n="ui.th_infer">Analysis</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- Case detail overlay. Populated from /api/case/<node>/<vector> plus the
+     clinical reference in i18n.js; the two are visually separated because one
+     is measured from the recording and the other is generic reference text. -->
+<div id="case-overlay" class="overlay hidden">
+  <div class="case-panel" role="dialog" aria-modal="true" aria-labelledby="case-title">
+    <div class="case-head">
+      <div>
+        <h2 id="case-title" data-i18n="ui.case_title">Case details</h2>
+        <p id="case-sub" class="case-sub"></p>
+      </div>
+      <button id="case-close" class="btn" data-i18n="ui.close">Close</button>
+    </div>
+    <div id="case-body" class="case-body"></div>
+  </div>
+</div>
+
+<footer>
+  <span id="conn-state">…</span>
+  <span class="spacer"></span>
+  <span id="retention"></span>
+</footer>
+
+<script src="/static/i18n.js?v=20260826022059"></script>
+<script src="/static/app.js?v=20260826022059"></script>
+</body>
+</html>

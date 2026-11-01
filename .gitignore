@@ -14,14 +14,26 @@ env/
 data/*
 !data/manifests/
 
-# --- Trained weights and exported models: published as release assets ----
-models/
+# --- Trained weights --------------------------------------------------------
+# The four v1 reference models (heart and chest X-ray, float and 8-bit) are kept
+# in Git so the dashboard and the edge-case tests run on a fresh clone. Every
+# other trained weight stays out and is shared through the team drive.
+models/*
 *.keras
 *.h5
 *.tflite
 *.onnx
 *.pt
 *.pth
+!models/chiron_cardio_v1_float.keras
+!models/chiron_cardio_v1_int8.tflite
+!models/chiron_pulmo_v1_float.keras
+!models/chiron_pulmo_v1_int8.tflite
+
+# --- Backend runtime files, created when the dashboard runs -----------------
+gateway/events.db*
+gateway/*.log
+gateway/media/
 
 # --- Scratch output -------------------------------------------------------
 logs/

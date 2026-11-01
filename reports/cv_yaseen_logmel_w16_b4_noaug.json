@@ -1,0 +1,58 @@
+{
+  "tag": "yaseen_logmel_w16_b4_noaug",
+  "feature": "logmel",
+  "augment": false,
+  "params": 13509,
+  "seeds": 1,
+  "folds": 5,
+  "window_acc_mean": 0.9866514271798777,
+  "window_acc_std": 0.010295319802373084,
+  "window_f1_mean": 0.9866847061988757,
+  "patient_acc_mean": 0.9889089339789177,
+  "patient_acc_std": 0.011446795097226205,
+  "patient_f1_mean": 0.9889790112565245,
+  "confusion_matrix_patient": [
+    [
+      200,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      198,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      186,
+      3,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      200,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      4,
+      195
+    ]
+  ],
+  "classes": [
+    "Normal",
+    "AS",
+    "MS",
+    "MR",
+    "MVP"
+  ]
+}
