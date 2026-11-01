@@ -1,0 +1,117 @@
+path,filename,patient_id,recording_index,chest_location,chest_location_name,acquisition_mode,device,diagnosis,sample_rate,n_samples,duration_s,pcm_md5,label,fold
+data/raw/icbhi/audio/101_1b1_Al_sc_Meditron.wav,101_1b1_Al_sc_Meditron.wav,P101,1b1,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,acb9a230b1d76408f5bc5cf68ec57a71,4,1
+data/raw/icbhi/audio/101_1b1_Pr_sc_Meditron.wav,101_1b1_Pr_sc_Meditron.wav,P101,1b1,Pr,Posterior right,sc,Meditron,URTI,44100,882000,20.0,8cd401e8aebcf21a463887fa8cd1ab1f,4,1
+data/raw/icbhi/audio/102_1b1_Ar_sc_Meditron.wav,102_1b1_Ar_sc_Meditron.wav,P102,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,882000,20.0,556178edd46e4fbdb4aa64dfe04f616b,3,2
+data/raw/icbhi/audio/105_1b1_Tc_sc_Meditron.wav,105_1b1_Tc_sc_Meditron.wav,P105,1b1,Tc,Trachea,sc,Meditron,URTI,44100,882000,20.0,318de622751482ca1507b4979de6a554,4,1
+data/raw/icbhi/audio/110_1b1_Pr_sc_Meditron.wav,110_1b1_Pr_sc_Meditron.wav,P110,1b1,Pr,Posterior right,sc,Meditron,COPD,4000,285800,71.45,560c17074ee966b1f8569c1d902eea71,2,4
+data/raw/icbhi/audio/110_1p1_Al_sc_Meditron.wav,110_1p1_Al_sc_Meditron.wav,P110,1p1,Al,Anterior left,sc,Meditron,COPD,4000,129200,32.3,a9daef8aed6632ce2b9b73f1050607c0,2,4
+data/raw/icbhi/audio/110_1p1_Ll_sc_Meditron.wav,110_1p1_Ll_sc_Meditron.wav,P110,1p1,Ll,Lateral left,sc,Meditron,COPD,4000,129600,32.4,e98b2d04d644907266dcf20ad9b0975d,2,4
+data/raw/icbhi/audio/110_1p1_Lr_sc_Meditron.wav,110_1p1_Lr_sc_Meditron.wav,P110,1p1,Lr,Lateral right,sc,Meditron,COPD,4000,129600,32.4,384bba366c2d373907f4a47d3ed44fe0,2,4
+data/raw/icbhi/audio/110_1p1_Pr_sc_Meditron.wav,110_1p1_Pr_sc_Meditron.wav,P110,1p1,Pr,Posterior right,sc,Meditron,COPD,4000,301000,75.25,e3794232e0afb4daa643828ce37f7de9,2,4
+data/raw/icbhi/audio/111_1b2_Tc_sc_Meditron.wav,111_1b2_Tc_sc_Meditron.wav,P111,1b2,Tc,Trachea,sc,Meditron,Bronchiectasis,44100,882001,20.0,577b7165d6374ea37ee2e64f7546427c,0,0
+data/raw/icbhi/audio/111_1b3_Tc_sc_Meditron.wav,111_1b3_Tc_sc_Meditron.wav,P111,1b3,Tc,Trachea,sc,Meditron,Bronchiectasis,44100,882001,20.0,ed9ad6bb95f830467abcf3424c4601ff,0,0
+data/raw/icbhi/audio/116_1b2_Pl_sc_Meditron.wav,116_1b2_Pl_sc_Meditron.wav,P116,1b2,Pl,Posterior left,sc,Meditron,Bronchiectasis,44100,882001,20.0,d9c3b27c54e0655e18949df355034280,0,1
+data/raw/icbhi/audio/116_1b2_Tc_sc_Meditron.wav,116_1b2_Tc_sc_Meditron.wav,P116,1b2,Tc,Trachea,sc,Meditron,Bronchiectasis,44100,882001,20.0,aa4804eb0acb0510c8a68dab01dcbf11,0,1
+data/raw/icbhi/audio/119_1b1_Ar_sc_Meditron.wav,119_1b1_Ar_sc_Meditron.wav,P119,1b1,Ar,Anterior right,sc,Meditron,URTI,44100,882000,20.0,23783b4ee109a7848cba1b8dd523b0d7,4,0
+data/raw/icbhi/audio/120_1b1_Al_sc_Meditron.wav,120_1b1_Al_sc_Meditron.wav,P120,1b1,Al,Anterior left,sc,Meditron,COPD,4000,267000,66.75,9b92e6d298ad715e7a8e09d0b6c8382c,2,2
+data/raw/icbhi/audio/120_1b1_Ar_sc_Meditron.wav,120_1b1_Ar_sc_Meditron.wav,P120,1b1,Ar,Anterior right,sc,Meditron,COPD,4000,267000,66.75,2c54ae85ea1b80548205f497ded1a61b,2,2
+data/raw/icbhi/audio/120_1b1_Lr_sc_Meditron.wav,120_1b1_Lr_sc_Meditron.wav,P120,1b1,Lr,Lateral right,sc,Meditron,COPD,4000,344800,86.2,17b2d0edb3b9804032b2a111251c2d19,2,2
+data/raw/icbhi/audio/120_1b1_Pl_sc_Meditron.wav,120_1b1_Pl_sc_Meditron.wav,P120,1b1,Pl,Posterior left,sc,Meditron,COPD,4000,269600,67.4,ca460b459abe65b9ffaa47ad1baf98f3,2,2
+data/raw/icbhi/audio/120_1b1_Pr_sc_Meditron.wav,120_1b1_Pr_sc_Meditron.wav,P120,1b1,Pr,Posterior right,sc,Meditron,COPD,4000,269600,67.4,b73d1e1f433536eedcca818eb9da5e3a,2,2
+data/raw/icbhi/audio/121_1b1_Tc_sc_Meditron.wav,121_1b1_Tc_sc_Meditron.wav,P121,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,618f9d3a6b20caf6d2d591cdd6c59072,3,1
+data/raw/icbhi/audio/121_1p1_Tc_sc_Meditron.wav,121_1p1_Tc_sc_Meditron.wav,P121,1p1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,28bf9868c17e5ea298ad4154bf754b2b,3,1
+data/raw/icbhi/audio/123_1b1_Al_sc_Meditron.wav,123_1b1_Al_sc_Meditron.wav,P123,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,075f047d056027e63e89360a9ece8fb9,3,3
+data/raw/icbhi/audio/125_1b1_Tc_sc_Meditron.wav,125_1b1_Tc_sc_Meditron.wav,P125,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,46a764d96488e2a901bb629a0593f4d8,3,4
+data/raw/icbhi/audio/126_1b1_Al_sc_Meditron.wav,126_1b1_Al_sc_Meditron.wav,P126,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,1c826e1997844c319d84c78bbcbc9486,3,4
+data/raw/icbhi/audio/127_1b1_Ar_sc_Meditron.wav,127_1b1_Ar_sc_Meditron.wav,P127,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,880677,19.97,6099a3b2f553c5e06036b1579eab6fbe,3,4
+data/raw/icbhi/audio/129_1b1_Ar_sc_Meditron.wav,129_1b1_Ar_sc_Meditron.wav,P129,1b1,Ar,Anterior right,sc,Meditron,URTI,44100,882000,20.0,c9316ad5440822bcff51f664c78547ee,4,0
+data/raw/icbhi/audio/131_1b1_Al_sc_Meditron.wav,131_1b1_Al_sc_Meditron.wav,P131,1b1,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,41259a23e4f9d4f40eb1bf4c33506466,4,1
+data/raw/icbhi/audio/136_1b1_Ar_sc_Meditron.wav,136_1b1_Ar_sc_Meditron.wav,P136,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,882000,20.0,f6ac17098fcd2389f7d3048f4f39a8ad,3,0
+data/raw/icbhi/audio/137_1b1_Ar_sc_Meditron.wav,137_1b1_Ar_sc_Meditron.wav,P137,1b1,Ar,Anterior right,sc,Meditron,URTI,44100,882000,20.0,01f10db1b3dace251b8c10f534355540,4,2
+data/raw/icbhi/audio/137_1b1_Ll_sc_Meditron.wav,137_1b1_Ll_sc_Meditron.wav,P137,1b1,Ll,Lateral left,sc,Meditron,URTI,44100,882000,20.0,2fd1ec6b205b533a8ff5e51684252c38,4,2
+data/raw/icbhi/audio/143_1b1_Al_sc_Meditron.wav,143_1b1_Al_sc_Meditron.wav,P143,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,99fd1a0ee59f0ae30aced31e334a60b0,3,0
+data/raw/icbhi/audio/144_1b1_Al_sc_Meditron.wav,144_1b1_Al_sc_Meditron.wav,P144,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,881118,19.98,761a067f0c7350d78fe5c3a57f6db3f4,3,2
+data/raw/icbhi/audio/144_1b1_Tc_sc_Meditron.wav,144_1b1_Tc_sc_Meditron.wav,P144,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,34be98cd3c8033b0677e3ca36365e5d1,3,2
+data/raw/icbhi/audio/148_1b1_Al_sc_Meditron.wav,148_1b1_Al_sc_Meditron.wav,P148,1b1,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,4359e3ce8457f28085538fe7219c0af5,4,3
+data/raw/icbhi/audio/149_1b1_Al_sc_Meditron.wav,149_1b1_Al_sc_Meditron.wav,P149,1b1,Al,Anterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,82f0cde210a558d7577dd850c5dea912,1,3
+data/raw/icbhi/audio/149_1b1_Lr_sc_Meditron.wav,149_1b1_Lr_sc_Meditron.wav,P149,1b1,Lr,Lateral right,sc,Meditron,Bronchiolitis,44100,882000,20.0,49c87dd3c48dbe896795f61a36a14022,1,3
+data/raw/icbhi/audio/149_1b1_Pl_sc_Meditron.wav,149_1b1_Pl_sc_Meditron.wav,P149,1b1,Pl,Posterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,607a93f1601f29d9e6bb0e0da867b546,1,3
+data/raw/icbhi/audio/150_1b2_Al_sc_Meditron.wav,150_1b2_Al_sc_Meditron.wav,P150,1b2,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,4eb80e12ae897d5e88252d0d2b8e090b,4,0
+data/raw/icbhi/audio/152_1b1_Al_sc_Meditron.wav,152_1b1_Al_sc_Meditron.wav,P152,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,ebb0985dc072c39cdc1d5686a2b2a07c,3,3
+data/raw/icbhi/audio/153_1b1_Al_sc_Meditron.wav,153_1b1_Al_sc_Meditron.wav,P153,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,5734d626243aa58734bd9d3430d6824c,3,2
+data/raw/icbhi/audio/157_1b1_Al_sc_Meditron.wav,157_1b1_Al_sc_Meditron.wav,P157,1b1,Al,Anterior left,sc,Meditron,COPD,4000,260200,65.05,a41237297dd4b2114582f2f0a49b5d80,2,0
+data/raw/icbhi/audio/157_1b1_Ar_sc_Meditron.wav,157_1b1_Ar_sc_Meditron.wav,P157,1b1,Ar,Anterior right,sc,Meditron,COPD,4000,260200,65.05,8541abea26bd5b6e72a10319d5776f8c,2,0
+data/raw/icbhi/audio/157_1b1_Lr_sc_Meditron.wav,157_1b1_Lr_sc_Meditron.wav,P157,1b1,Lr,Lateral right,sc,Meditron,COPD,4000,266000,66.5,2da11652146e96f2cf76471cc47c6deb,2,0
+data/raw/icbhi/audio/157_1b1_Pl_sc_Meditron.wav,157_1b1_Pl_sc_Meditron.wav,P157,1b1,Pl,Posterior left,sc,Meditron,COPD,4000,252400,63.1,3a9dd0b159694a9592d2ac29d3426b0e,2,0
+data/raw/icbhi/audio/157_1b1_Pr_sc_Meditron.wav,157_1b1_Pr_sc_Meditron.wav,P157,1b1,Pr,Posterior right,sc,Meditron,COPD,4000,252400,63.1,e8d3ba41fac24aa30bf7b7ad85af4d25,2,0
+data/raw/icbhi/audio/159_1b1_Al_sc_Meditron.wav,159_1b1_Al_sc_Meditron.wav,P159,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,2a750e467e5f7e3cea51aa4e6773a8b6,3,3
+data/raw/icbhi/audio/159_1b1_Ar_sc_Meditron.wav,159_1b1_Ar_sc_Meditron.wav,P159,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,882000,20.0,307000908e33017428a0ab5c61ff3f26,3,3
+data/raw/icbhi/audio/159_1b1_Ll_sc_Meditron.wav,159_1b1_Ll_sc_Meditron.wav,P159,1b1,Ll,Lateral left,sc,Meditron,Healthy,44100,882000,20.0,39daa18c6ed72fd11b970f810dc2d18e,3,3
+data/raw/icbhi/audio/159_1b1_Pr_sc_Meditron.wav,159_1b1_Pr_sc_Meditron.wav,P159,1b1,Pr,Posterior right,sc,Meditron,Healthy,44100,882000,20.0,6d3e872a201f1073d8fff784102f213d,3,3
+data/raw/icbhi/audio/161_1b1_Al_sc_Meditron.wav,161_1b1_Al_sc_Meditron.wav,P161,1b1,Al,Anterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,9d1c16ea089e7c3d779504bff7cd2e99,1,4
+data/raw/icbhi/audio/161_1b1_Pl_sc_Meditron.wav,161_1b1_Pl_sc_Meditron.wav,P161,1b1,Pl,Posterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,bd6ce3a5e5f6ad5a62012444a887ca14,1,4
+data/raw/icbhi/audio/164_1b1_Ll_sc_Meditron.wav,164_1b1_Ll_sc_Meditron.wav,P164,1b1,Ll,Lateral left,sc,Meditron,URTI,44100,882000,20.0,d5d0cd04222fb1e5d6e2d99a0978bee5,4,3
+data/raw/icbhi/audio/165_1b1_Ar_sc_Meditron.wav,165_1b1_Ar_sc_Meditron.wav,P165,1b1,Ar,Anterior right,sc,Meditron,URTI,44100,874503,19.83,0b90f856f592aff5a351ab32a410c33d,4,3
+data/raw/icbhi/audio/165_1b1_Pl_sc_Meditron.wav,165_1b1_Pl_sc_Meditron.wav,P165,1b1,Pl,Posterior left,sc,Meditron,URTI,44100,882000,20.0,bff23f2d46772e1172e92e78443863e0,4,3
+data/raw/icbhi/audio/165_1b1_Pr_sc_Meditron.wav,165_1b1_Pr_sc_Meditron.wav,P165,1b1,Pr,Posterior right,sc,Meditron,URTI,44100,882000,20.0,fbd39bf3aafca84e0a837f458dc87ec1,4,3
+data/raw/icbhi/audio/166_1p1_Al_sc_Meditron.wav,166_1p1_Al_sc_Meditron.wav,P166,1p1,Al,Anterior left,sc,Meditron,COPD,4000,248200,62.05,b94d82ea63cf405420655431ae27e8ca,2,1
+data/raw/icbhi/audio/166_1p1_Ar_sc_Meditron.wav,166_1p1_Ar_sc_Meditron.wav,P166,1p1,Ar,Anterior right,sc,Meditron,COPD,4000,248200,62.05,2ad83a3044ebb775e4fd38471c98e39b,2,1
+data/raw/icbhi/audio/166_1p1_Ll_sc_Meditron.wav,166_1p1_Ll_sc_Meditron.wav,P166,1p1,Ll,Lateral left,sc,Meditron,COPD,4000,231200,57.8,8f2f77ff44672a80e1bd7e51b24b9134,2,1
+data/raw/icbhi/audio/166_1p1_Pl_sc_Meditron.wav,166_1p1_Pl_sc_Meditron.wav,P166,1p1,Pl,Posterior left,sc,Meditron,COPD,4000,250000,62.5,a1ae06fcb79e459c83868779fcf00dcd,2,1
+data/raw/icbhi/audio/166_1p1_Pr_sc_Meditron.wav,166_1p1_Pr_sc_Meditron.wav,P166,1p1,Pr,Posterior right,sc,Meditron,COPD,4000,250000,62.5,f13d8532e888925b942aaa1c50e9b7ce,2,1
+data/raw/icbhi/audio/167_1b1_Al_sc_Meditron.wav,167_1b1_Al_sc_Meditron.wav,P167,1b1,Al,Anterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,17abdaa13aeb6ed4bdbbce26e4c5240c,1,0
+data/raw/icbhi/audio/167_1b1_Pr_sc_Meditron.wav,167_1b1_Pr_sc_Meditron.wav,P167,1b1,Pr,Posterior right,sc,Meditron,Bronchiolitis,44100,882000,20.0,740f68334b18f3c9b97efceff82bb9fd,1,0
+data/raw/icbhi/audio/168_1b1_Al_sc_Meditron.wav,168_1b1_Al_sc_Meditron.wav,P168,1b1,Al,Anterior left,sc,Meditron,Bronchiectasis,44100,882001,20.0,569f3211829ff8c5ab73d13c6c37011f,0,2
+data/raw/icbhi/audio/169_1b1_Lr_sc_Meditron.wav,169_1b1_Lr_sc_Meditron.wav,P169,1b1,Lr,Lateral right,sc,Meditron,Bronchiectasis,44100,882001,20.0,aae2c2426d76bb7d14605bb1c001669d,0,4
+data/raw/icbhi/audio/169_1b2_Ll_sc_Meditron.wav,169_1b2_Ll_sc_Meditron.wav,P169,1b2,Ll,Lateral left,sc,Meditron,Bronchiectasis,44100,882001,20.0,8c2bcfe51452500eee93d3ee9cc34ac1,0,4
+data/raw/icbhi/audio/171_1b1_Al_sc_Meditron.wav,171_1b1_Al_sc_Meditron.wav,P171,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,726feed5610f0155b0671e49d40ae788,3,3
+data/raw/icbhi/audio/173_1b1_Al_sc_Meditron.wav,173_1b1_Al_sc_Meditron.wav,P173,1b1,Al,Anterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,ac14f9e8247f5b15d1b1294055c6fbf0,1,3
+data/raw/icbhi/audio/179_1b1_Al_sc_Meditron.wav,179_1b1_Al_sc_Meditron.wav,P179,1b1,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,53f2de21f759d575978dc0171ab34c43,3,0
+data/raw/icbhi/audio/179_1b1_Tc_sc_Meditron.wav,179_1b1_Tc_sc_Meditron.wav,P179,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,edcd49cb7b6c73eb162be0218bcc6f47,3,0
+data/raw/icbhi/audio/182_1b1_Tc_sc_Meditron.wav,182_1b1_Tc_sc_Meditron.wav,P182,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,1e97983bcd521e3240072070683484f8,3,1
+data/raw/icbhi/audio/183_1b1_Pl_sc_Meditron.wav,183_1b1_Pl_sc_Meditron.wav,P183,1b1,Pl,Posterior left,sc,Meditron,Healthy,44100,882000,20.0,2ecae9ed3024aad15cb9277a4e9fcbbd,3,2
+data/raw/icbhi/audio/183_1b1_Tc_sc_Meditron.wav,183_1b1_Tc_sc_Meditron.wav,P183,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,7b7ea917722984f28f93b7984504385d,3,2
+data/raw/icbhi/audio/184_1b1_Ar_sc_Meditron.wav,184_1b1_Ar_sc_Meditron.wav,P184,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,882000,20.0,0a40887250a0d2c0e5e91e4a9707d6f0,3,4
+data/raw/icbhi/audio/187_1b1_Ll_sc_Meditron.wav,187_1b1_Ll_sc_Meditron.wav,P187,1b1,Ll,Lateral left,sc,Meditron,Healthy,44100,882000,20.0,22a08c39c2b2d71cebedde0a633270fa,3,2
+data/raw/icbhi/audio/188_1b1_Al_sc_Meditron.wav,188_1b1_Al_sc_Meditron.wav,P188,1b1,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,032f5926b5fafc30642a54efcd312911,4,4
+data/raw/icbhi/audio/188_1b1_Ar_sc_Meditron.wav,188_1b1_Ar_sc_Meditron.wav,P188,1b1,Ar,Anterior right,sc,Meditron,URTI,44100,882000,20.0,c69ebb0214b8075e1eb805564123924e,4,4
+data/raw/icbhi/audio/188_1b1_Pl_sc_Meditron.wav,188_1b1_Pl_sc_Meditron.wav,P188,1b1,Pl,Posterior left,sc,Meditron,URTI,44100,882000,20.0,71f4278166b223b13c866d41c3cc73f7,4,4
+data/raw/icbhi/audio/188_1b1_Tc_sc_Meditron.wav,188_1b1_Tc_sc_Meditron.wav,P188,1b1,Tc,Trachea,sc,Meditron,URTI,44100,882000,20.0,410f3239d99a2faa4b5659e1fb7517ef,4,4
+data/raw/icbhi/audio/190_1b1_Tc_sc_Meditron.wav,190_1b1_Tc_sc_Meditron.wav,P190,1b1,Tc,Trachea,sc,Meditron,URTI,44100,882000,20.0,e36c54e64db34f549bcc791b2c90c1eb,4,2
+data/raw/icbhi/audio/194_1b1_Lr_sc_Meditron.wav,194_1b1_Lr_sc_Meditron.wav,P194,1b1,Lr,Lateral right,sc,Meditron,Healthy,44100,882000,20.0,053bd502a66519929180d0c0d9f67e74,3,1
+data/raw/icbhi/audio/194_1b1_Pr_sc_Meditron.wav,194_1b1_Pr_sc_Meditron.wav,P194,1b1,Pr,Posterior right,sc,Meditron,Healthy,44100,882000,20.0,50153129a4c241bd9869c88e0c0d4b6f,3,1
+data/raw/icbhi/audio/196_1b1_Pr_sc_Meditron.wav,196_1b1_Pr_sc_Meditron.wav,P196,1b1,Pr,Posterior right,sc,Meditron,Bronchiectasis,44100,882001,20.0,7b1cee15eed1908c5d6e79230e876f19,0,2
+data/raw/icbhi/audio/197_1b1_Al_sc_Meditron.wav,197_1b1_Al_sc_Meditron.wav,P197,1b1,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,9abb9bdf46d36233f3fb138952afc4de,4,4
+data/raw/icbhi/audio/197_1b1_Tc_sc_Meditron.wav,197_1b1_Tc_sc_Meditron.wav,P197,1b1,Tc,Trachea,sc,Meditron,URTI,44100,882000,20.0,34ccd9ac1702b79b49ec53e8f6193c7d,4,4
+data/raw/icbhi/audio/201_1b1_Al_sc_Meditron.wav,201_1b1_Al_sc_Meditron.wav,P201,1b1,Al,Anterior left,sc,Meditron,Bronchiectasis,44100,882001,20.0,f526a8e42df20b0d069dfe755502f25f,0,3
+data/raw/icbhi/audio/201_1b1_Ar_sc_Meditron.wav,201_1b1_Ar_sc_Meditron.wav,P201,1b1,Ar,Anterior right,sc,Meditron,Bronchiectasis,44100,882001,20.0,3ab12501fd086f1a758ece6f7e30bba1,0,3
+data/raw/icbhi/audio/201_1b2_Al_sc_Meditron.wav,201_1b2_Al_sc_Meditron.wav,P201,1b2,Al,Anterior left,sc,Meditron,Bronchiectasis,44100,882001,20.0,4fd50a5fdb9b8399c6b943fa8a7d663c,0,3
+data/raw/icbhi/audio/201_1b2_Ar_sc_Meditron.wav,201_1b2_Ar_sc_Meditron.wav,P201,1b2,Ar,Anterior right,sc,Meditron,Bronchiectasis,44100,882001,20.0,3d6b24f51df5ecbe844a16086323734c,0,3
+data/raw/icbhi/audio/201_1b3_Al_sc_Meditron.wav,201_1b3_Al_sc_Meditron.wav,P201,1b3,Al,Anterior left,sc,Meditron,Bronchiectasis,44100,882001,20.0,99ebbf3e511177ed45f237601ac561c2,0,3
+data/raw/icbhi/audio/201_1b3_Ar_sc_Meditron.wav,201_1b3_Ar_sc_Meditron.wav,P201,1b3,Ar,Anterior right,sc,Meditron,Bronchiectasis,44100,882001,20.0,b9cbbdf7aa3abe1a2e3fee19e1d6797a,0,3
+data/raw/icbhi/audio/202_1b1_Ar_sc_Meditron.wav,202_1b1_Ar_sc_Meditron.wav,P202,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,873180,19.8,6f4184aee6a7c5ac7a3953e1738aade9,3,1
+data/raw/icbhi/audio/206_1b1_Ar_sc_Meditron.wav,206_1b1_Ar_sc_Meditron.wav,P206,1b1,Ar,Anterior right,sc,Meditron,Bronchiolitis,44100,882000,20.0,97356ae42263516cd40d9d8cfac9b265,1,2
+data/raw/icbhi/audio/206_1b1_Lr_sc_Meditron.wav,206_1b1_Lr_sc_Meditron.wav,P206,1b1,Lr,Lateral right,sc,Meditron,Bronchiolitis,44100,882000,20.0,db4363b3245fc6b9076930f4ce84f7ea,1,2
+data/raw/icbhi/audio/206_1b1_Pl_sc_Meditron.wav,206_1b1_Pl_sc_Meditron.wav,P206,1b1,Pl,Posterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,573937e1bcbe1fa93482d9f220539897,1,2
+data/raw/icbhi/audio/208_1b1_Ll_sc_Meditron.wav,208_1b1_Ll_sc_Meditron.wav,P208,1b1,Ll,Lateral left,sc,Meditron,Healthy,44100,879795,19.95,7f651ee612f04b535582ec1fec9c28c3,3,0
+data/raw/icbhi/audio/209_1b1_Tc_sc_Meditron.wav,209_1b1_Tc_sc_Meditron.wav,P209,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,3c21729e61be46b8ba676b6b383e66fe,3,3
+data/raw/icbhi/audio/210_1b1_Al_sc_Meditron.wav,210_1b1_Al_sc_Meditron.wav,P210,1b1,Al,Anterior left,sc,Meditron,URTI,44100,882000,20.0,dd548672afb5c2545c8f1082c0b66d9d,4,2
+data/raw/icbhi/audio/210_1b1_Ar_sc_Meditron.wav,210_1b1_Ar_sc_Meditron.wav,P210,1b1,Ar,Anterior right,sc,Meditron,URTI,44100,874062,19.82,de728374d4c607923cfb22d34228515b,4,2
+data/raw/icbhi/audio/214_1b1_Ar_sc_Meditron.wav,214_1b1_Ar_sc_Meditron.wav,P214,1b1,Ar,Anterior right,sc,Meditron,Healthy,44100,874944,19.84,604a562ad3dcf570eb1a9bf0037e44bf,3,1
+data/raw/icbhi/audio/215_1b2_Ar_sc_Meditron.wav,215_1b2_Ar_sc_Meditron.wav,P215,1b2,Ar,Anterior right,sc,Meditron,Bronchiectasis,44100,882001,20.0,a6892356e1ac820dabaf3edd3e158f4c,0,1
+data/raw/icbhi/audio/215_1b3_Tc_sc_Meditron.wav,215_1b3_Tc_sc_Meditron.wav,P215,1b3,Tc,Trachea,sc,Meditron,Bronchiectasis,44100,882001,20.0,36b2d51e683e29ebce3da9235c891338,0,1
+data/raw/icbhi/audio/216_1b1_Al_sc_Meditron.wav,216_1b1_Al_sc_Meditron.wav,P216,1b1,Al,Anterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,f67a913bbf4ed5ce50f5be28c1e34b37,1,1
+data/raw/icbhi/audio/216_1b1_Pl_sc_Meditron.wav,216_1b1_Pl_sc_Meditron.wav,P216,1b1,Pl,Posterior left,sc,Meditron,Bronchiolitis,44100,882000,20.0,12a99d043e7a641924d66ec85c5e2bd0,1,1
+data/raw/icbhi/audio/217_1b1_Tc_sc_Meditron.wav,217_1b1_Tc_sc_Meditron.wav,P217,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,ddfbf6bd8c35483c2badca5d16b44806,3,0
+data/raw/icbhi/audio/222_1b1_Ar_sc_Meditron.wav,222_1b1_Ar_sc_Meditron.wav,P222,1b1,Ar,Anterior right,sc,Meditron,COPD,4000,297800,74.45,a930c90a87a91c53894678febe227282,2,3
+data/raw/icbhi/audio/222_1b1_Lr_sc_Meditron.wav,222_1b1_Lr_sc_Meditron.wav,P222,1b1,Lr,Lateral right,sc,Meditron,COPD,4000,277800,69.45,2ab1dea47b03142d6ef323f30f05b1af,2,3
+data/raw/icbhi/audio/222_1b1_Pr_sc_Meditron.wav,222_1b1_Pr_sc_Meditron.wav,P222,1b1,Pr,Posterior right,sc,Meditron,COPD,4000,293400,73.35,87e539b15f6f5618f475c0ade6ffa395,2,3
+data/raw/icbhi/audio/223_1b1_Al_sc_Meditron.wav,223_1b1_Al_sc_Meditron.wav,P223,1b1,Al,Anterior left,sc,Meditron,COPD,10000,339000,33.9,124c90054fe0304e62c5978135e707d6,2,0
+data/raw/icbhi/audio/223_1b1_Ar_sc_Meditron.wav,223_1b1_Ar_sc_Meditron.wav,P223,1b1,Ar,Anterior right,sc,Meditron,COPD,10000,339000,33.9,9e90535b5ebd9f50f462dc7c7e373d17,2,0
+data/raw/icbhi/audio/223_1b1_Ll_sc_Meditron.wav,223_1b1_Ll_sc_Meditron.wav,P223,1b1,Ll,Lateral left,sc,Meditron,COPD,10000,332000,33.2,464e576ac9e30f888212f890c9e5300b,2,0
+data/raw/icbhi/audio/223_1b1_Lr_sc_Meditron.wav,223_1b1_Lr_sc_Meditron.wav,P223,1b1,Lr,Lateral right,sc,Meditron,COPD,10000,332000,33.2,9e1911ba42c0cb86b473b9443a605789,2,0
+data/raw/icbhi/audio/223_1b1_Pl_sc_Meditron.wav,223_1b1_Pl_sc_Meditron.wav,P223,1b1,Pl,Posterior left,sc,Meditron,COPD,10000,329000,32.9,9d3500f54ba5d884b2ac8917fd722bd0,2,0
+data/raw/icbhi/audio/223_1b1_Pr_sc_Meditron.wav,223_1b1_Pr_sc_Meditron.wav,P223,1b1,Pr,Posterior right,sc,Meditron,COPD,10000,329000,32.9,50ab3343ef43f0696fbe79313b9a9e4e,2,0
+data/raw/icbhi/audio/224_1b1_Tc_sc_Meditron.wav,224_1b1_Tc_sc_Meditron.wav,P224,1b1,Tc,Trachea,sc,Meditron,Healthy,44100,882000,20.0,812ba05e62c98443125fc564c6da73c8,3,4
+data/raw/icbhi/audio/224_1b2_Al_sc_Meditron.wav,224_1b2_Al_sc_Meditron.wav,P224,1b2,Al,Anterior left,sc,Meditron,Healthy,44100,882000,20.0,534a8be37a38c42751ccfd0823679d90,3,4
+data/raw/icbhi/audio/225_1b1_Pl_sc_Meditron.wav,225_1b1_Pl_sc_Meditron.wav,P225,1b1,Pl,Posterior left,sc,Meditron,Healthy,44100,882000,20.0,a4341a21ab2cffb6164f0282c891c92d,3,4
