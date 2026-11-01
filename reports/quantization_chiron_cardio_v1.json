@@ -1,0 +1,35 @@
+{
+  "dataset": "yaseen",
+  "feature": "logmel",
+  "holdout_fold": 0,
+  "params": 13509,
+  "tflite_bytes": 28336,
+  "float_acc": 0.9805825242718447,
+  "int8_acc": 0.9805825242718447,
+  "float_patient_acc": 0.9847715736040609,
+  "int8_patient_acc": 0.9847715736040609,
+  "delta_pp": 0.0,
+  "delta_patient_pp": 0.0,
+  "prediction_agreement": 1.0,
+  "representative_windows": 300,
+  "norm_mean": -8.65829086303711,
+  "norm_std": 3.764009952545166,
+  "input_scale": 0.01522025465965271,
+  "input_zero_point": -38,
+  "output_scale": 0.00390625,
+  "output_zero_point": -128,
+  "operators": [
+    "AVERAGE_POOL_2D",
+    "CONV_2D",
+    "DELEGATE",
+    "DEPTHWISE_CONV_2D",
+    "SOFTMAX"
+  ],
+  "classes": [
+    "Normal",
+    "AS",
+    "MS",
+    "MR",
+    "MVP"
+  ]
+}
