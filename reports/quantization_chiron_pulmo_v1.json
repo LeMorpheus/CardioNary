@@ -1,0 +1,33 @@
+{
+  "dataset": "kermany",
+  "feature": "logmel",
+  "holdout_fold": 0,
+  "params": 412773,
+  "tflite_bytes": 625080,
+  "float_acc": 0.9661016949152542,
+  "int8_acc": 0.9636803874092009,
+  "float_patient_acc": 0.9802867383512545,
+  "int8_patient_acc": 0.978494623655914,
+  "delta_pp": -0.2421307506053294,
+  "delta_patient_pp": -0.17921146953404632,
+  "prediction_agreement": 0.9927360774818402,
+  "representative_windows": 120,
+  "norm_mean": 0.5718213319778442,
+  "norm_std": 0.1751154214143753,
+  "input_scale": 0.022394193336367607,
+  "input_zero_point": 18,
+  "output_scale": 0.00390625,
+  "output_zero_point": -128,
+  "operators": [
+    "ADD",
+    "AVERAGE_POOL_2D",
+    "CONV_2D",
+    "DELEGATE",
+    "DEPTHWISE_CONV_2D",
+    "SOFTMAX"
+  ],
+  "classes": [
+    "Normal",
+    "Pneumonia"
+  ]
+}

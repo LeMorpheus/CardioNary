@@ -1,0 +1,22 @@
+# Chiron gateway (Raspberry Pi 4 or any machine with a BLE radio).
+# Everything is pure-Python or wheels; no build step on the Pi.
+bleak>=0.22          # BLE central via BlueZ D-Bus
+fastapi>=0.110       # REST + WebSocket
+# MUST be the [standard] extra, not bare uvicorn. Plain uvicorn has NO WebSocket
+# implementation: /ws returns "Unsupported upgrade request", the dashboard sits
+# on "disconnected - reconnecting", and Self-Test appears to do nothing even
+# though the boards run and the results reach the database. The REST API keeps
+# working throughout, which makes this easy to miss.
+uvicorn[standard]>=0.27   # ASGI server + websockets + httptools
+websockets>=12       # explicit, so the dependency is obvious on the Pi
+
+# AES-CTR + CMAC for the telemetry seal (gateway side of
+# firmware/chiron_*/src/chiron_crypto.c).
+cryptography>=42
+
+# Needed by the upload endpoints and live-input code. These were installed by hand
+# on the original Pi and never listed; without python-multipart the server does
+# not start at all, and without numpy/Pillow uploads and spectrograms fail.
+python-multipart>=0.0.9   # FastAPI Form/File uploads
+numpy>=1.26               # spectrogram, out-of-distribution check, audio resampling
+pillow>=10                # image uploads, spectrogram rendering

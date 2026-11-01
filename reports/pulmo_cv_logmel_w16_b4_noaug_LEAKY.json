@@ -1,0 +1,46 @@
+{
+  "tag": "logmel_w16_b4_noaug_LEAKY",
+  "feature": "logmel",
+  "augment": false,
+  "params": 13380,
+  "seeds": 1,
+  "folds": 5,
+  "window_acc_mean": 0.5577590740886985,
+  "window_acc_std": 0.03699334142779363,
+  "window_f1_mean": 0.4706472873735529,
+  "patient_acc_mean": 0.592181411056712,
+  "patient_acc_std": 0.037832161659659594,
+  "patient_f1_mean": 0.4932911249239714,
+  "confusion_matrix_patient": [
+    [
+      102,
+      10,
+      5,
+      9
+    ],
+    [
+      35,
+      62,
+      8,
+      4
+    ],
+    [
+      14,
+      22,
+      25,
+      3
+    ],
+    [
+      13,
+      8,
+      5,
+      8
+    ]
+  ],
+  "classes": [
+    "Normal",
+    "Asthma",
+    "Heart Failure",
+    "COPD"
+  ]
+}

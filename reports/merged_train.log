@@ -1,0 +1,41 @@
+=== merged_logmel_w16_b4_noaug ===
+X (8238, 64, 160)  201 patients  5 folds  augment=False  seeds=1
+model params: 13,638
+
+  seed 0 fold 0: window acc 0.837 F1 0.394 | patient acc 0.585 F1 0.337
+  seed 0 fold 1: window acc 0.887 F1 0.514 | patient acc 0.700 F1 0.416
+  seed 0 fold 2: window acc 0.872 F1 0.399 | patient acc 0.600 F1 0.336
+  seed 0 fold 3: window acc 0.752 F1 0.450 | patient acc 0.500 F1 0.361
+  seed 0 fold 4: window acc 0.871 F1 0.385 | patient acc 0.575 F1 0.376
+
+================================================================
+RESULT  merged_logmel_w16_b4_noaug   (1 seeds x 5 folds)
+================================================================
+WINDOW  accuracy  0.8437 +/- 0.0544   macro-F1 0.4285 +/- 0.0540
+PATIENT accuracy  0.5921 +/- 0.0716   macro-F1 0.3652 +/- 0.0332
+
+--- patient-level, pooled over all folds and seeds ---
+               precision    recall  f1-score   support
+
+       Normal      0.534     0.650     0.586        60
+       Asthma      0.533     0.258     0.348        31
+         COPD      0.727     0.877     0.795        73
+    Pneumonia      0.000     0.000     0.000         6
+         BRON      0.000     0.000     0.000        13
+Heart Failure      0.533     0.444     0.485        18
+
+     accuracy                          0.592       201
+    macro avg      0.388     0.372     0.369       201
+ weighted avg      0.554     0.592     0.561       201
+
+confusion matrix (rows=true, cols=pred):
+               Normal  Asthma  COPD  Pneumonia  BRON  Heart Failure
+Normal             39       2    10          1     6              2
+Asthma             19       8     0          0     0              4
+COPD                5       2    64          1     0              1
+Pneumonia           0       0     5          0     1              0
+BRON                3       0     9          1     0              0
+Heart Failure       7       3     0          0     0              8
+
+wrote reports/cv_merged_logmel_w16_b4_noaug.json
+rts/cv_merged_logmel_w16_b4_noaug.json

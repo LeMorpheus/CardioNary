@@ -1,0 +1,8 @@
+=== kermany_logmel_mobilenet_w16_b4 ===
+X (5856, 96, 96)  2790 patients  5 folds  augment=True  seeds=1
+model params: 412,773
+
+  seed 0 fold 0: window acc 0.966 F1 0.957 | patient acc 0.980 F1 0.980
+  seed 0 fold 1: window acc 0.967 F1 0.956 | patient acc 0.966 F1 0.964
+  seed 0 fold 2: window acc 0.944 F1 0.935 | patient acc 0.970 F1 0.968
+  seed 0 fold 3: window acc 0.955 F1 0.945 | patient acc 0.964 F1 0.963

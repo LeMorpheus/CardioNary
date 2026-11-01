@@ -1,0 +1,404 @@
+/* Project Chiron dashboard.
+   Designed to be legible from ~2 m on a projector: large type, high contrast,
+   no reliance on colour alone to convey correct/incorrect. */
+
+:root {
+  --bg:        #0d1117;
+  --panel:     #161b22;
+  --panel-2:   #1c232c;
+  --line:      #2a3038;
+  --text:      #e6edf3;
+  --muted:     #8b949e;
+  --accent:    #d5232f;   /* Silicon Labs red */
+  --ok:        #2ea043;
+  --bad:       #f85149;
+  --warn:      #d29922;
+  --cardio:    #ff7b72;
+  --pulmo:     #58a6ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px; padding: 18px 26px;
+  background: linear-gradient(90deg, #12171e 0%, #171d26 100%);
+  border-bottom: 2px solid var(--accent);
+  flex-wrap: wrap;
+}
+.brand h1 { margin: 0; font-size: 26px; letter-spacing: 3px; font-weight: 700; }
+.brand .sub { margin: 3px 0 0; color: var(--muted); font-size: 13px; }
+.header-right { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.pills { display: flex; gap: 10px; }
+.pill {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 13px; border-radius: 999px;
+  background: var(--panel-2); border: 1px solid var(--line); font-size: 13px;
+}
+.dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+.dot.on { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+.dot.off { background: var(--bad); }
+
+button, .btn {
+  font: inherit; cursor: pointer; border-radius: 7px;
+  padding: 9px 16px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--text); text-decoration: none;
+}
+button:hover, .btn:hover { background: #263039; }
+button.primary { background: var(--accent); border-color: var(--accent); font-weight: 600; }
+button.primary:hover { background: #ef2b38; }
+button.primary:disabled { opacity: .5; cursor: not-allowed; }
+.btn.danger { border-color: #5c2b2b; color: #ff9d97; }
+
+.disclaimer {
+  padding: 9px 26px; background: #2b1d1d;
+  border-bottom: 1px solid #45292b; font-size: 13px; color: #ffbdb7;
+}
+.sim {
+  margin-left: 12px; padding: 2px 9px; border-radius: 4px;
+  background: var(--warn); color: #1b1300; font-weight: 700; font-size: 12px;
+}
+/* Utility class, so it must beat any component rule regardless of source order.
+   Without !important this lost to `.overlay { display: flex }` further down the
+   file -- equal specificity, later wins -- leaving the case-detail overlay
+   permanently on screen, covering the page and ignoring its own Close button. */
+.hidden { display: none !important; }
+
+main { padding: 20px 26px 40px; max-width: 1500px; margin: 0 auto; }
+
+.nodes { display: grid; grid-template-columns: repeat(auto-fit, minmax(430px, 1fr)); gap: 18px; }
+
+.node {
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 12px; padding: 18px 20px; border-top: 3px solid var(--muted);
+}
+.node.cardio { border-top-color: var(--cardio); }
+.node.pulmo  { border-top-color: var(--pulmo); }
+.node.offline { opacity: .55; }
+
+.node-head { display: flex; justify-content: space-between; align-items: baseline; }
+.node-head h3 { margin: 0; font-size: 17px; letter-spacing: .5px; }
+.node-head .board { color: var(--muted); font-size: 12px; }
+
+.verdict { margin: 14px 0 6px; font-size: 30px; font-weight: 700; line-height: 1.15; }
+.verdict.uncertain { color: var(--warn); }
+.verdict.none { color: var(--muted); font-size: 20px; font-weight: 400; }
+.conf { color: var(--muted); font-size: 14px; margin-bottom: 4px; }
+
+.match { font-weight: 700; font-size: 14px; }
+.match.ok  { color: var(--ok); }
+.match.bad { color: var(--bad); }
+
+.bars { margin: 14px 0 10px; }
+.bar-row { display: grid; grid-template-columns: 120px 1fr 52px; gap: 9px; align-items: center; margin: 5px 0; font-size: 13px; }
+.bar-track { background: #0b0f14; border-radius: 4px; height: 15px; overflow: hidden; }
+/* Green fill proportional to the class probability. The winning class is a
+   brighter green than the rest; the numeric value is always shown alongside, so
+   the reading never depends on colour perception alone. */
+.bar-fill {
+  /* MUST be block: this is a <span>, and an inline element ignores width and
+     height, so the fill was painted with zero box and never appeared however
+     the width was set. The track only rendered because it is a grid item and
+     grid items are blockified automatically. */
+  display: block;
+  height: 100%;
+  background: #1f6f33;
+  border-radius: 4px;
+  transition: width .25s ease;
+}
+.bar-row.top .bar-fill { background: var(--ok); }
+.bar-val { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--muted); font-size: 12px;
+        border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; }
+.meta code { color: #b9c4d0; }
+
+.vec-nav { display: flex; align-items: center; gap: 9px; margin-top: 12px; }
+.vec-nav span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+         padding: 16px 20px; margin-top: 18px; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.panel-head h2 { margin: 0; font-size: 15px; text-transform: uppercase; letter-spacing: 1.4px; color: #c9d4e0; }
+.panel-head .hint { color: var(--muted); font-size: 12px; }
+.actions { display: flex; gap: 9px; }
+
+.accuracy { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.acc-card { background: var(--panel-2); border-radius: 9px; padding: 14px 16px; }
+.acc-card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.acc-card .value { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.acc-card .detail { color: var(--muted); font-size: 13px; }
+
+.table-wrap { overflow-x: auto; max-height: 340px; overflow-y: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { position: sticky; top: 0; background: var(--panel);
+     text-align: left; padding: 7px 9px; color: var(--muted);
+     font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: .8px;
+     border-bottom: 1px solid var(--line); }
+td { padding: 6px 9px; border-bottom: 1px solid #1e242c; font-variant-numeric: tabular-nums; }
+tr.new td { animation: flash 1s ease; }
+@keyframes flash { from { background: #23303d; } to { background: transparent; } }
+td.tick { color: var(--ok); font-weight: 700; }
+td.cross { color: var(--bad); font-weight: 700; }
+.tag { padding: 1px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.tag.cardio { background: #3d1f1d; color: var(--cardio); }
+.tag.pulmo  { background: #16283f; color: var(--pulmo); }
+
+footer { display: flex; align-items: center; padding: 10px 26px;
+         border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.spacer { flex: 1; }
+
+/* language selector --------------------------------------------------------
+   Indic scripts need more line height than Latin; without it Devanagari and
+   Tamil matras clip against the line above. */
+body { line-height: 1.6; }
+.lang-wrap { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.lang-wrap select {
+  font: inherit; padding: 6px 10px; border-radius: 7px;
+  background: var(--panel-2); color: var(--text); border: 1px solid var(--line);
+}
+
+.sim-bar { padding: 8px 26px; background: var(--warn); color: #1b1300; font-weight: 600; font-size: 13px; }
+
+/* The chart canvas MUST have an explicit CSS width.
+   Without one, a canvas lays out at its `width` ATTRIBUTE. renderChart() reads
+   clientWidth and writes back clientWidth * devicePixelRatio, so on any display
+   with dpr > 1 each call multiplies the canvas width by dpr. renderChart() runs
+   on every inference, so a 120-case sweep grew it past Chrome's maximum canvas
+   size, at which point the canvas turns invalid and paints as a white box with
+   a broken-image icon. Pinning the CSS width breaks that feedback loop -- the
+   backing store still scales with dpr for sharpness, but the layout size no
+   longer depends on it. */
+#chart { display: block; width: 100%; height: 180px; }
+
+/* case detail overlay ------------------------------------------------------ */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.72);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 40px 20px; overflow-y: auto; z-index: 50;
+}
+.case-panel {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+  width: 100%; max-width: 820px; padding: 22px 26px 28px;
+}
+.case-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+             border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 6px; }
+.case-head h2 { margin: 0; font-size: 19px; }
+.case-sub { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.case-body { display: flex; flex-direction: column; gap: 4px; }
+
+.case-sec { padding: 16px 0; border-bottom: 1px solid #1e242c; }
+.case-sec:last-child { border-bottom: none; }
+.case-sec h3 {
+  margin: 0 0 10px; font-size: 12px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: #c9d4e0;
+}
+/* Guidance is generic reference text and limits are caveats: both are marked
+   with a left rule so they never read as measurements of this patient. */
+.case-sec.guidance { border-left: 3px solid var(--accent); padding-left: 14px; }
+.case-sec.limits   { border-left: 3px solid var(--warn);   padding-left: 14px; }
+
+.kv { display: grid; grid-template-columns: 210px 1fr; gap: 10px; padding: 5px 0;
+      align-items: start; font-size: 14px; }
+.kv .k { color: var(--muted); }
+.kv .v { color: var(--text); }
+ol.actions { margin: 0; padding-left: 20px; }
+ol.actions li { margin: 3px 0; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.acc-card .detail.cv { margin-top: 4px; color: #7d8894; }
+
+@media (max-width: 620px) {
+  .kv { grid-template-columns: 1fr; gap: 2px; }
+  .case-panel { padding: 16px; }
+}
+
+/* confidence-floor control -------------------------------------------------
+   Exposed in the UI rather than buried in firmware so the accuracy/safety
+   trade-off can be demonstrated live. */
+.thresh { margin-top: 12px; border-top: 1px solid var(--line); padding-top: 10px; }
+.thresh label { display: flex; align-items: center; gap: 10px;
+                font-size: 12px; color: var(--muted); text-transform: uppercase;
+                letter-spacing: .8px; }
+.thresh input[type=range] { flex: 1; accent-color: var(--accent); }
+.thresh output { font-size: 15px; color: var(--text); font-weight: 700;
+                 font-variant-numeric: tabular-nums; min-width: 42px; text-align: right; }
+.thresh-note { display: block; margin-top: 5px; font-size: 11px; color: #6e7681; }
+
+/* Descriptive indicators: derived by post-processing, not a second opinion.
+   Blue rule distinguishes them from the red generic-guidance block and the
+   amber limitations block. */
+.case-sec.phenotype { border-left: 3px solid var(--pulmo); padding-left: 14px; }
+
+/* case navigation feedback ---------------------------------------------------
+   Stepping to a new case now analyses it automatically, so the card must make
+   two things obvious: that a change happened at all, and that the number on
+   screen belongs to the NEW case rather than the previous one. */
+
+/* Prominent case number: the counter is the thing that changed, so it should be
+   the thing the eye lands on. */
+.case-counter {
+  display: inline-flex; align-items: baseline; gap: 5px;
+  padding: 3px 10px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--panel-2);
+}
+.case-counter b { font-size: 16px; font-variant-numeric: tabular-nums; color: var(--text); }
+.case-counter small { font-size: 11px; color: var(--muted); }
+
+/* While analysing: the verdict is replaced, never dimmed-but-left-readable. */
+.verdict.analysing { color: var(--muted); font-size: 20px; font-weight: 400; }
+
+.scan-bar {
+  height: 3px; border-radius: 2px; background: #0b0f14;
+  overflow: hidden; margin: 10px 0 4px;
+}
+.scan-bar span {
+  display: block; height: 100%; width: 38%; border-radius: 2px;
+  background: var(--accent);
+  animation: scan 1.05s ease-in-out infinite;
+}
+@keyframes scan {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+/* Result arriving: a short rise-and-fade. Long enough to register at a glance,
+   short enough not to slow down someone stepping through 50 cases. */
+@keyframes resultIn {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: none; }
+}
+.node.pulse .verdict,
+.node.pulse .match,
+.node.pulse .bars { animation: resultIn .34s ease-out both; }
+.node.pulse .bars { animation-delay: .05s; }
+
+/* The counter flashes so the case change is unmistakable even when two
+   consecutive cases happen to share the same finding -- which is common, and
+   was exactly what made navigation feel like nothing had happened. */
+@keyframes counterPop {
+  0%   { background: var(--accent); border-color: var(--accent); }
+  100% { background: var(--panel-2); border-color: var(--line); }
+}
+.node.pulse .case-counter { animation: counterPop .75s ease-out; }
+.node.pulse .case-counter b { animation: resultIn .34s ease-out both; }
+
+/* Honour a reduced-motion preference: keep the state change, drop the movement. */
+@media (prefers-reduced-motion: reduce) {
+  .node.pulse .verdict, .node.pulse .match, .node.pulse .bars,
+  .node.pulse .case-counter, .node.pulse .case-counter b { animation: none; }
+  .scan-bar span { animation-duration: 2.5s; }
+}
+
+/* balancing the two node cards ----------------------------------------------
+   The cardiac node has 5 classes, the pulmonary node 2. Both cards sit in the
+   same grid row and stretch to the same height, so the sparse card ends up with
+   a block of dead space above its navigation row.
+
+   Fix in two parts: make the card a column flexbox so the bar block absorbs the
+   slack, and scale the sparse card's type up so it fills that slack with
+   something readable rather than air. Buttons are deliberately left alone --
+   controls should stay the same size across both cards. */
+.node { display: flex; flex-direction: column; }
+.node .bars { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center; }
+.node .meta { margin-top: auto; }
+
+.node.few-classes .meta { font-size: 13px; }
+.node.few-classes .thresh label { font-size: 13px; }
+
+/* The cardiac card now carries a full-width spectrogram, which makes the
+   pulmonary card look sparse beside it. Scale the radiograph and its remaining
+   type up so the two read as a matched pair rather than two different designs. */
+.node.few-classes .case-media img { width: 300px; height: 300px; }
+.node.few-classes .media-cap { font-size: 13px; }
+.node.few-classes .verdict { font-size: 38px; }
+.node.few-classes .conf { font-size: 17px; }
+.node.few-classes .match { font-size: 17px; }
+.node.few-classes .bar-row { font-size: 17px; grid-template-columns: 210px 1fr 66px; margin: 12px 0; }
+.node.few-classes .bar-track { height: 26px; }
+
+@media (max-width: 900px) {
+  /* Single column: the cards no longer share a row, so the compensation is
+     unnecessary and would just make one card oversized. */
+  .node.few-classes .verdict { font-size: 30px; }
+  .node.few-classes .bar-row { font-size: 13px; grid-template-columns: 120px 1fr 52px; }
+  .node.few-classes .bar-track { height: 15px; }
+  .node.few-classes .case-media img { width: 208px; height: 208px; }
+}
+
+/* product branding in the header ---------------------------------------------
+   "CardioNary" is a proper noun: it stays in Latin script under every language,
+   while the descriptor beside it translates. */
+.brand h1 {
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 2px; line-height: 1.15;
+}
+.brand .product { color: var(--accent); font-size: 30px; letter-spacing: 2.5px; }
+.brand .product-desc {
+  font-size: 15px; font-weight: 500; letter-spacing: 1.4px;
+  color: #b9c4d0; text-transform: none;
+}
+
+/* ---- live input --------------------------------------------------------- */
+button.live, .btn.live { border-color: var(--ok); color: var(--ok); }
+button.live:hover:not(:disabled), .btn.live:hover:not(:disabled) {
+  background: rgba(46, 160, 67, .12);
+}
+button.live:disabled { opacity: .5; cursor: default; }
+
+.live-bar {
+  padding: 8px 26px;
+  background: #16324a;
+  color: #dbe7f2;
+  font-size: 13px;
+  border-bottom: 1px solid #21384d;
+}
+.live-bar.ok  { background: #16351f; color: #b7e2c1; }
+.live-bar.bad { background: #3a1b1b; color: #f2c2c2; }
+
+/* ---- reference media for a case ----------------------------------------- */
+.case-media {
+  margin: 12px 0 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.case-media img {
+  width: 168px; height: 168px;
+  object-fit: contain;
+  image-rendering: pixelated;      /* 96x96 source: show the pixels honestly */
+  background: #0b0f14;
+  border: 1px solid #223; border-radius: 6px;
+}
+.case-media audio { width: 100%; max-width: 340px; height: 34px; }
+.media-cap { font-size: 11px; color: var(--muted); letter-spacing: .02em; }
+#case-overlay .case-media img { width: 208px; height: 208px; }
+
+.live-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--warn);
+  border-radius: 3px;
+  color: var(--warn);
+  font-size: 11px;
+  letter-spacing: .02em;
+}
+
+/* Spectrogram of a live microphone capture. */
+.spec-wrap { margin: 12px 0 4px; display: flex; flex-direction: column; gap: 6px; }
+.spec-img {
+  width: 100%; max-width: 100%; height: auto;
+  background: #05080b;
+  border: 1px solid #223; border-radius: 6px;
+  image-rendering: auto;
+}

@@ -101,8 +101,22 @@ cardio/     heart-sound team:  model/  fusion/  tta/  experiments/
 lung/       chest X-ray team:  model/  fusion/  tta/  experiments/
 app/        offline screening tool (later in the semester)
 tests/      evaluation gates, including the anti-leakage tests
-docs/       how we work, and the report
+reports/    small results files, each written by a script
+docs/       how we work, the report, and the v1 design documents
 ```
+
+From the earlier project (v1), kept as prior work:
+
+```
+gateway/    v1 offline dashboard backend and web page; runs without hardware
+models/     the four v1 reference models: heart and chest X-ray, float and 8-bit
+Test_Data/  small public test set: 53 Yaseen clips, 120 Kermany X-rays, with answers
+vectors/    manifests of the test vectors compiled into the v1 firmware
+```
+
+[`docs/v1_overview.md`](docs/v1_overview.md) describes v1 and how to run its dashboard.
+The audio and image files in `Test_Data/` come from the public Yaseen and Kermany
+datasets; no patient recording is in this repository.
 
 ## Getting started
 

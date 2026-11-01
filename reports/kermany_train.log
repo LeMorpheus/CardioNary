@@ -1,0 +1,32 @@
+=== kermany_logmel_w16_b4_noaug ===
+X (5856, 96, 96)  2790 patients  5 folds  augment=False  seeds=1
+model params: 13,122
+
+  seed 0 fold 0: window acc 0.900 F1 0.880 | patient acc 0.930 F1 0.928
+  seed 0 fold 1: window acc 0.931 F1 0.912 | patient acc 0.943 F1 0.940
+  seed 0 fold 2: window acc 0.900 F1 0.866 | patient acc 0.864 F1 0.848
+  seed 0 fold 3: window acc 0.928 F1 0.910 | patient acc 0.950 F1 0.947
+  seed 0 fold 4: window acc 0.923 F1 0.902 | patient acc 0.935 F1 0.931
+
+================================================================
+RESULT  kermany_logmel_w16_b4_noaug   (1 seeds x 5 folds)
+================================================================
+WINDOW  accuracy  0.9163 +/- 0.0152   macro-F1 0.8937 +/- 0.0201
+PATIENT accuracy  0.9244 +/- 0.0347   macro-F1 0.9190 +/- 0.0406
+
+--- patient-level, pooled over all folds and seeds ---
+              precision    recall  f1-score   support
+
+      Normal      0.938     0.868     0.902      1116
+   Pneumonia      0.916     0.962     0.939      1674
+
+    accuracy                          0.924      2790
+   macro avg      0.927     0.915     0.920      2790
+weighted avg      0.925     0.924     0.924      2790
+
+confusion matrix (rows=true, cols=pred):
+           Normal  Pneumonia
+Normal        969        147
+Pneumonia      64       1610
+
+wrote reports/cv_kermany_logmel_w16_b4_noaug.json
