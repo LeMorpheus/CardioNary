@@ -1,0 +1,113 @@
+{
+  "what": "Clinic recordings (10 patients x 5 positions), measured without labels with the Yaseen-trained heart CNN. Aggregates only, per the data's handling rules.",
+  "run_on": "2026-11-01",
+  "model": {
+    "float": "chiron_cardio_v1_float.keras",
+    "int8": "chiron_cardio_v1_int8.tflite",
+    "int8_bytes": 28336
+  },
+  "normalisation": "Yaseen training folds (mean -8.6583, std 3.7640)",
+  "recordings": 50,
+  "patients": 10,
+  "quality_check": {
+    "passed": 9,
+    "failed": 41,
+    "share_passed": 0.18
+  },
+  "recordings_with_handling_spike": 1,
+  "all_recordings": {
+    "recordings": 50,
+    "predicted_class_counts": {
+      "Normal": 0,
+      "AS": 0,
+      "MS": 16,
+      "MR": 3,
+      "MVP": 31
+    },
+    "share_called_abnormal": 1.0,
+    "mean_p_abnormal": 0.9272871613502502,
+    "mean_top_probability": 0.5349466800689697,
+    "share_called_abnormal_by_position": {
+      "aortic_area": {
+        "recordings": 10,
+        "share_called_abnormal": 1.0
+      },
+      "pulmonic_area": {
+        "recordings": 10,
+        "share_called_abnormal": 1.0
+      },
+      "tricuspid_area": {
+        "recordings": 10,
+        "share_called_abnormal": 1.0
+      },
+      "mitral_area": {
+        "recordings": 10,
+        "share_called_abnormal": 1.0
+      },
+      "erbs_point": {
+        "recordings": 10,
+        "share_called_abnormal": 1.0
+      }
+    },
+    "share_segmented": 0.02,
+    "share_heart_rate_plausible": 0.0,
+    "median_heart_rate_bpm": 35.842293906810035,
+    "int8_float_agreement": 0.94
+  },
+  "recordings_passing_quality_check": {
+    "recordings": 9,
+    "predicted_class_counts": {
+      "Normal": 0,
+      "AS": 0,
+      "MS": 1,
+      "MR": 0,
+      "MVP": 8
+    },
+    "share_called_abnormal": 1.0,
+    "mean_p_abnormal": 0.9360068440437317,
+    "mean_top_probability": 0.5331960320472717,
+    "share_called_abnormal_by_position": {
+      "aortic_area": {
+        "recordings": 2,
+        "share_called_abnormal": 1.0
+      },
+      "pulmonic_area": {
+        "recordings": 4,
+        "share_called_abnormal": 1.0
+      },
+      "mitral_area": {
+        "recordings": 1,
+        "share_called_abnormal": 1.0
+      },
+      "erbs_point": {
+        "recordings": 2,
+        "share_called_abnormal": 1.0
+      }
+    },
+    "share_segmented": 0.1111111111111111,
+    "share_heart_rate_plausible": 0.0,
+    "median_heart_rate_bpm": 35.842293906810035,
+    "int8_float_agreement": 1.0
+  },
+  "position_agreement_all_recordings": {
+    "patients": 10,
+    "share_of_patients_all_positions_agree": 1.0,
+    "mean_share_of_positions_with_patient_majority": 1.0
+  },
+  "shift_against_yaseen": {
+    "normalised_input_mean": {
+      "yaseen_fold0": 0.008299966342747211,
+      "clinic": 0.6162867546081543
+    },
+    "normalised_input_std": {
+      "yaseen_fold0": 0.9965904355049133,
+      "clinic": 0.9333105087280273
+    },
+    "largest_mean_shift_in_lowest_10_mel_bands": 0.8128480911254883,
+    "largest_mean_shift_in_other_mel_bands": 0.6764513254165649,
+    "share_segmented_yaseen_fold0": 0.985
+  },
+  "metadata": "None recorded for these patients, so the metadata vote is missing; late fusion drops it and divides its weight between the CNN and feature votes (proposal 4.2).",
+  "heart_rate_method": "60000 / (systole_ms + diastole_ms) from core.descriptors segmentation; plausible means 40 to 180 bpm",
+  "refer_or_not_rule": "p(abnormal) = 1 - p(Normal) > 0.5, uncalibrated float model"
+}
