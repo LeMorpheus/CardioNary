@@ -1,1 +1,1 @@
-"""Heart-sound evaluation scripts."""
+"""Heart-sound evaluation metrics, model checks, and audio corruptions."""
