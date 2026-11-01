@@ -12,5 +12,11 @@
     "float_clip_accuracy": 0.9847715736040609,
     "int8_clip_accuracy": 0.9847715736040609,
     "max_abs_probability_difference": 0.030251890420913696
+  },
+  "physionet_2022": {
+    "recordings": 3163,
+    "windows": 46654,
+    "window_agreement": 0.9691987825266858,
+    "recording_agreement": 0.9649067341131837
   }
 }
