@@ -29,6 +29,9 @@ python -m cardio.eval.agreement            # reports/heart_agreement.json
 
 # clinic recordings, aggregates only; run only on the laptop that holds them
 python -m cardio.eval.real_world --data-dir <path to Real_World_Data>
+
+# the same, plus test-time adaptation on the clinic recordings (roadmap S3)
+python -m cardio.eval.real_world --data-dir <path to Real_World_Data> --adapt
 ```
 
 `reports/heart_oof_yaseen.csv` has one row per clip: its fold, label, and the

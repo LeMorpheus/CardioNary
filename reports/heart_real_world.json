@@ -109,5 +109,196 @@
   },
   "metadata": "None recorded for these patients, so the metadata vote is missing; late fusion drops it and divides its weight between the CNN and feature votes (proposal 4.2).",
   "heart_rate_method": "60000 / (systole_ms + diastole_ms) from core.descriptors segmentation; plausible means 40 to 180 bpm",
-  "refer_or_not_rule": "p(abnormal) = 1 - p(Normal) > 0.5, uncalibrated float model"
+  "refer_or_not_rule": "p(abnormal) = 1 - p(Normal) > 0.5, uncalibrated float model",
+  "adaptation": {
+    "method": "batch-normalisation statistics re-estimated from the clinic windows in one forward pass (momentum 0); no labels, no gradients, weights unchanged (proposal 4.3)",
+    "split": "patients in two halves of 5 by patient number; adapt on one half and measure the other, then swap, so each recording is measured once by a model that never saw it",
+    "folds": [
+      {
+        "adaptation_recordings": 25,
+        "adaptation_windows": 75,
+        "measured_recordings": 25,
+        "seconds_to_adapt_including_model_load": 0.28,
+        "top_class_share_on_adaptation_recordings": {
+          "before": 0.72,
+          "after": 0.44
+        },
+        "collapse_guard_triggered": false
+      },
+      {
+        "adaptation_recordings": 25,
+        "adaptation_windows": 75,
+        "measured_recordings": 25,
+        "seconds_to_adapt_including_model_load": 0.2,
+        "top_class_share_on_adaptation_recordings": {
+          "before": 0.52,
+          "after": 0.44
+        },
+        "collapse_guard_triggered": false
+      }
+    ],
+    "before": {
+      "recordings": 50,
+      "predicted_class_counts": {
+        "Normal": 0,
+        "AS": 0,
+        "MS": 16,
+        "MR": 3,
+        "MVP": 31
+      },
+      "share_called_abnormal": 1.0,
+      "mean_p_abnormal": 0.9272871613502502,
+      "mean_top_probability": 0.5349466800689697,
+      "share_called_abnormal_by_position": {
+        "aortic_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "pulmonic_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "tricuspid_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "mitral_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "erbs_point": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        }
+      },
+      "share_segmented": 0.02,
+      "share_heart_rate_plausible": 0.0,
+      "median_heart_rate_bpm": 35.842293906810035,
+      "int8_float_agreement": 0.94
+    },
+    "after": {
+      "recordings": 50,
+      "predicted_class_counts": {
+        "Normal": 0,
+        "AS": 20,
+        "MS": 13,
+        "MR": 14,
+        "MVP": 3
+      },
+      "share_called_abnormal": 1.0,
+      "mean_p_abnormal": 0.8631702661514282,
+      "mean_top_probability": 0.4248259663581848,
+      "share_called_abnormal_by_position": {
+        "aortic_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "pulmonic_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "tricuspid_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "mitral_area": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        },
+        "erbs_point": {
+          "recordings": 10,
+          "share_called_abnormal": 1.0
+        }
+      },
+      "share_segmented": 0.02,
+      "share_heart_rate_plausible": 0.0,
+      "median_heart_rate_bpm": 35.842293906810035,
+      "int8_float_agreement": null
+    },
+    "position_agreement": {
+      "before": {
+        "patients": 10,
+        "share_of_patients_all_positions_agree": 1.0,
+        "mean_share_of_positions_with_patient_majority": 1.0
+      },
+      "after": {
+        "patients": 10,
+        "share_of_patients_all_positions_agree": 1.0,
+        "mean_share_of_positions_with_patient_majority": 1.0
+      }
+    },
+    "recordings_passing_quality_check": {
+      "before": {
+        "recordings": 9,
+        "predicted_class_counts": {
+          "Normal": 0,
+          "AS": 0,
+          "MS": 1,
+          "MR": 0,
+          "MVP": 8
+        },
+        "share_called_abnormal": 1.0,
+        "mean_p_abnormal": 0.9360068440437317,
+        "mean_top_probability": 0.5331960320472717,
+        "share_called_abnormal_by_position": {
+          "aortic_area": {
+            "recordings": 2,
+            "share_called_abnormal": 1.0
+          },
+          "pulmonic_area": {
+            "recordings": 4,
+            "share_called_abnormal": 1.0
+          },
+          "mitral_area": {
+            "recordings": 1,
+            "share_called_abnormal": 1.0
+          },
+          "erbs_point": {
+            "recordings": 2,
+            "share_called_abnormal": 1.0
+          }
+        },
+        "share_segmented": 0.1111111111111111,
+        "share_heart_rate_plausible": 0.0,
+        "median_heart_rate_bpm": 35.842293906810035,
+        "int8_float_agreement": 1.0
+      },
+      "after": {
+        "recordings": 9,
+        "predicted_class_counts": {
+          "Normal": 0,
+          "AS": 4,
+          "MS": 2,
+          "MR": 2,
+          "MVP": 1
+        },
+        "share_called_abnormal": 1.0,
+        "mean_p_abnormal": 0.8117551207542419,
+        "mean_top_probability": 0.3447079062461853,
+        "share_called_abnormal_by_position": {
+          "aortic_area": {
+            "recordings": 2,
+            "share_called_abnormal": 1.0
+          },
+          "pulmonic_area": {
+            "recordings": 4,
+            "share_called_abnormal": 1.0
+          },
+          "mitral_area": {
+            "recordings": 1,
+            "share_called_abnormal": 1.0
+          },
+          "erbs_point": {
+            "recordings": 2,
+            "share_called_abnormal": 1.0
+          }
+        },
+        "share_segmented": 0.1111111111111111,
+        "share_heart_rate_plausible": 0.0,
+        "median_heart_rate_bpm": 35.842293906810035,
+        "int8_float_agreement": null
+      }
+    },
+    "unchanged_by_adaptation": "quality check, segmentation and heart rate do not use the model; 8-bit agreement needs the adapted model re-quantised (roadmap S4)"
+  }
 }

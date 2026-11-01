@@ -11,6 +11,13 @@ Yaseen-trained model behaves on a new device:
   * whether heart-cycle segmentation works and gives a plausible heart rate
   * whether the 8-bit model agrees with the float model on this data
 
+With --adapt (roadmap S3, proposal 4.3) it also adapts the model to the clinic
+without labels: the batch-normalisation statistics are re-estimated from one
+half of the patients' recordings, and the other half is measured before and
+after; then the halves swap, so every recording is measured once by a model
+that never saw it. Heart-cycle segmentation and the quality check do not use
+the model, so adaptation cannot change them.
+
 Data rules (from the folder's README): the recordings never leave the laptop
 that holds them, and only totals and averages may be reported. This script
 therefore takes the folder as an argument, reads it in place, and writes
@@ -19,6 +26,7 @@ nothing per recording or per patient: the output file holds aggregates only.
 Usage:
     python -m core.quantize --dataset yaseen --holdout-fold 0   # final model, once
     python -m cardio.eval.real_world --data-dir <path to Real_World_Data>
+    python -m cardio.eval.real_world --data-dir <path to Real_World_Data> --adapt
 
 Writes:
     reports/heart_real_world.json
@@ -30,15 +38,15 @@ import argparse
 import datetime as dt
 import json
 import re
-from collections import Counter
+import time
 from pathlib import Path
 
 import numpy as np
 from scipy.io import wavfile
 
-from cardio.model.final_model import CLASSES, FinalModel
+from cardio.model.final_model import CLASSES, MODEL_DIR, STEM, FinalModel
 from core.descriptors import audio_descriptors
-from core.features import CARDIO_CONFIG, load_wav
+from core.features import CARDIO_CONFIG, features_for_file, load_wav
 from core.ood import signal_provenance
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -60,14 +68,16 @@ def measure(path: Path, model: FinalModel) -> dict:
     hr = None
     if desc.get("segmentation_ok") and desc.get("systole_ms") and desc.get("diastole_ms"):
         hr = 60000.0 / (desc["systole_ms"] + desc["diastole_ms"])   # one cycle = systole + diastole
-    p_float, p_int8 = model.predict_file(str(path))
+    feats = features_for_file(str(path), CARDIO_CONFIG)  # the 3-second windows the CNN sees
+    p_float, p_int8 = model.predict_windows(feats)
     _, raw = wavfile.read(str(path))
     raw0 = raw[:, 0] if raw.ndim > 1 else raw
     return {
         "passes_check": bool(gate["in_distribution"]),
         "segmented": bool(desc.get("segmentation_ok")),
         "heart_rate": hr,
-        "p_float": p_float, "p_int8": p_int8,
+        "feats": feats,
+        "p_float": p_float.mean(0), "p_int8": p_int8.mean(0),
         "peak": float(np.max(np.abs(raw0.astype(np.float64)))),
     }
 
@@ -96,8 +106,10 @@ def summarise(rows: list[dict]) -> dict:
         "share_heart_rate_plausible": float(np.mean(
             [r["heart_rate"] is not None and HR_RANGE[0] <= r["heart_rate"] <= HR_RANGE[1] for r in rows])),
         "median_heart_rate_bpm": float(np.median(hr)) if hr else None,
+        # an adapted model has no 8-bit copy until it is re-quantised (S4)
         "int8_float_agreement": float(np.mean(
-            [np.argmax(r["p_int8"]) == np.argmax(r["p_float"]) for r in rows])),
+            [np.argmax(r["p_int8"]) == np.argmax(r["p_float"]) for r in rows]))
+        if all(r.get("p_int8") is not None for r in rows) else None,
     }
 
 
@@ -116,6 +128,91 @@ def position_agreement(rows: list[dict]) -> dict:
         "share_of_patients_all_positions_agree": float(np.mean(all_agree)),
         "mean_share_of_positions_with_patient_majority": float(np.mean(majority_share)),
     }
+
+
+# ---------------------------------------------------------------------------
+# Test-time adaptation (roadmap S3, proposal 4.3)
+# ---------------------------------------------------------------------------
+COLLAPSE_SHARE = 0.95          # "starts predicting one class for everything"
+
+
+def adapt_bn(windows: np.ndarray, model: FinalModel):
+    """An adapted copy of the float model. Every batch-normalisation layer takes
+    the mean and variance of these clinic windows in place of Yaseen's: one
+    forward pass, no labels, no gradients. Weights and the original model are
+    left unchanged.
+
+    This follows proposal 4.3. The team's shared implementation is meant to be
+    cardio/tta/bn_adapt.py (roadmap S3); switch to it once it exists.
+    """
+    from tensorflow import keras
+
+    adapted = keras.models.load_model(MODEL_DIR / f"{STEM}_float.keras")      # a fresh copy
+    bns = [l for l in adapted.layers if isinstance(l, keras.layers.BatchNormalization)]
+    for bn in bns:
+        bn.trainable, bn.momentum = True, 0.0     # momentum 0: moving stats become this batch's
+    adapted(model.normalise(windows), training=True)
+    for bn in bns:
+        bn.trainable = False
+    return adapted
+
+
+def predict(net, model: FinalModel, feats: np.ndarray) -> np.ndarray:
+    """Mean softmax over one recording's windows."""
+    return np.asarray(net(model.normalise(feats), training=False)).reshape(len(feats), -1).mean(0)
+
+
+def top_class_share(p: np.ndarray) -> float:
+    return float(np.bincount(p.argmax(1), minlength=len(CLASSES)).max() / len(p))
+
+
+def clinic_adaptation(rows: list[dict], model: FinalModel) -> dict:
+    """Adapt on one half of the patients, measure the other half; then swap."""
+    patients = sorted({r["patient"] for r in rows}, key=lambda s: int(s[1:]))
+    halves = [set(patients[: len(patients) // 2]), set(patients[len(patients) // 2:])]
+    after, after_raw, folds = [], [], []
+    for adapt_on in halves:
+        src = [r for r in rows if r["patient"] in adapt_on]
+        tgt = [r for r in rows if r["patient"] not in adapt_on]
+        windows = np.concatenate([r["feats"] for r in src])
+        t0 = time.perf_counter()
+        adapted = adapt_bn(windows, model)
+        seconds = time.perf_counter() - t0
+        # collapse guard, judged on the recordings used to adapt
+        before_src = top_class_share(np.array([r["p_float"] for r in src]))
+        after_src = top_class_share(np.array([predict(adapted, model, r["feats"]) for r in src]))
+        collapsed = after_src > COLLAPSE_SHARE >= before_src
+        for r in tgt:
+            p = predict(adapted, model, r["feats"])
+            after_raw.append(dict(r, p_float=p, p_int8=None))
+            after.append(dict(r, p_float=r["p_float"] if collapsed else p, p_int8=None))
+        folds.append({
+            "adaptation_recordings": len(src), "adaptation_windows": int(len(windows)),
+            "measured_recordings": len(tgt),
+            "seconds_to_adapt_including_model_load": round(seconds, 2),
+            "top_class_share_on_adaptation_recordings": {"before": before_src, "after": after_src},
+            "collapse_guard_triggered": bool(collapsed),
+        })
+    out = {
+        "method": "batch-normalisation statistics re-estimated from the clinic windows in one "
+                  "forward pass (momentum 0); no labels, no gradients, weights unchanged (proposal 4.3)",
+        "split": "patients in two halves of 5 by patient number; adapt on one half and measure the "
+                 "other, then swap, so each recording is measured once by a model that never saw it",
+        "folds": folds,
+        "before": summarise(rows),
+        "after": summarise(after),
+        "position_agreement": {"before": position_agreement(rows), "after": position_agreement(after)},
+        "recordings_passing_quality_check": {
+            "before": summarise([r for r in rows if r["passes_check"]]),
+            "after": summarise([r for r in after if r["passes_check"]]),
+        },
+        "unchanged_by_adaptation": "quality check, segmentation and heart rate do not use the model; "
+                                   "8-bit agreement needs the adapted model re-quantised (roadmap S4)",
+    }
+    if any(f["collapse_guard_triggered"] for f in folds):
+        out["after_without_collapse_guard"] = summarise(after_raw)
+        out["position_agreement"]["after_without_collapse_guard"] = position_agreement(after_raw)
+    return out
 
 
 def shift_against_yaseen(files: list[Path], model: FinalModel) -> dict:
@@ -144,6 +241,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--data-dir", required=True, type=Path,
                     help="the Real_World_Data folder, read in place and never copied")
+    ap.add_argument("--adapt", action="store_true",
+                    help="also run test-time adaptation, before against after (roadmap S3)")
     args = ap.parse_args()
 
     files = sorted(f for f in args.data_dir.glob("p*_*.wav") if NAME.match(f.name))
@@ -182,6 +281,10 @@ def main() -> int:
         "refer_or_not_rule": "p(abnormal) = 1 - p(Normal) > 0.5, uncalibrated float model",
     }
     path = REPO_ROOT / "reports" / "heart_real_world.json"
+    if args.adapt:
+        out["adaptation"] = clinic_adaptation(rows, model)
+    elif path.exists() and "adaptation" in (old := json.loads(path.read_text())):
+        out["adaptation"] = old["adaptation"]          # keep an earlier S3 run
     path.parent.mkdir(exist_ok=True)
     path.write_text(json.dumps(out, indent=2))
 
@@ -193,6 +296,16 @@ def main() -> int:
           f"{out['position_agreement_all_recordings']['share_of_patients_all_positions_agree']:.0%}")
     print(f"segmented: {a['share_segmented']:.0%}   plausible heart rate: {a['share_heart_rate_plausible']:.0%}")
     print(f"8-bit vs float agreement: {a['int8_float_agreement']:.0%}")
+    if args.adapt:
+        ad = out["adaptation"]
+        for when in ("before", "after"):
+            s, pa = ad[when], ad["position_agreement"][when]
+            print(f"{when:>6} adaptation: called abnormal {s['share_called_abnormal']:.0%}, "
+                  f"classes {s['predicted_class_counts']}, mean top probability "
+                  f"{s['mean_top_probability']:.2f}, all 5 positions agree for "
+                  f"{pa['share_of_patients_all_positions_agree']:.0%} of patients")
+        print("collapse guard:", [f["collapse_guard_triggered"] for f in ad["folds"]],
+              "| seconds to adapt:", [f["seconds_to_adapt_including_model_load"] for f in ad["folds"]])
     print(f"wrote {path.relative_to(REPO_ROOT)}")
     return 0
 
