@@ -1,1 +1,1 @@
-"""Evaluation metrics and audio corruptions."""
+"""Heart-sound evaluation metrics, model checks, and audio corruptions."""

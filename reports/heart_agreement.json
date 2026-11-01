@@ -1,0 +1,16 @@
+{
+  "model": {
+    "float": "chiron_cardio_v1_float.keras",
+    "int8": "chiron_cardio_v1_int8.tflite",
+    "int8_bytes": 28336
+  },
+  "yaseen_fold0": {
+    "windows": 206,
+    "clips": 197,
+    "window_agreement": 1.0,
+    "clip_agreement": 1.0,
+    "float_clip_accuracy": 0.9847715736040609,
+    "int8_clip_accuracy": 0.9847715736040609,
+    "max_abs_probability_difference": 0.030251890420913696
+  }
+}

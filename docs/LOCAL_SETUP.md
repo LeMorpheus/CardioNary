@@ -1,15 +1,17 @@
-# Shivansh's local heart-sound setup
+# Windows heart-sound setup
 
 This checkout is the active `LeMorpheus/CardioNary` repository, started from
 `cardio` at `59823e4385ff2cbd60ef7f3ae598c6229c31bae1`, on the local branch
-`cardio-shivansh-unseen-metrics`. The downloaded `CardioNary_Baseline-main.zip`
+`cardio-shivansh-unseen-metrics`. Updated from team branch `cardio` at
+`14ce0c4433f193f7cfe19864e95e36acb783965a` before opening the pull request.
+The downloaded `CardioNary_Baseline-main.zip`
 is an older frozen baseline whose README points to this active repository.
 The baseline archive was also extracted into a separate sibling directory.
 
 Use the active checkout for the assignment:
 
 ```powershell
-cd 'C:\Users\shiva\Documents\ChatGPT\Embedded presentation\CardioNary'
+cd 'C:\path\to\CardioNary'
 .\.venv\Scripts\Activate.ps1
 $env:PYTHONUTF8 = '1'
 python --version
@@ -87,7 +89,8 @@ Commits carry a Co-Authored-By trailer as required by the repository README.
   Source revision: `4745751855d15ff5fc9aaed29c32ad3ec7a5d409`.
 - CirCor 1.0.3: all 10,434 published SHA256 entries verified; 3,163 recordings
   and 3,163 feature caches. Repeat-visit linkage yields 872 patient groups.
-- Full test suite: **46 passed, 20 skipped, no failures**. Skips require
+- Full test suite after updating from the team branch: **49 passed, 20 skipped,
+  no failures**. Skips require
   KAUH/ICBHI datasets and caches, pretrained model assets, or exported vectors
   that are not supplied in this active checkout.
 - All unseen manifest paths and cache references exist. Artifact tests read
