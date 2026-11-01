@@ -1,0 +1,72 @@
+{
+  "tag": "icbhi_logmel_w16_b4_noaug",
+  "feature": "logmel",
+  "augment": false,
+  "params": 13638,
+  "seeds": 1,
+  "folds": 5,
+  "window_acc_mean": 0.8727479260914828,
+  "window_acc_std": 0.024571954648102454,
+  "window_f1_mean": 0.3663396320216713,
+  "patient_acc_mean": 0.643,
+  "patient_acc_std": 0.09023426301700599,
+  "patient_f1_mean": 0.3313151450757942,
+  "confusion_matrix_patient": [
+    [
+      3,
+      0,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      2,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      63,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      2,
+      6,
+      11,
+      1,
+      5
+    ],
+    [
+      0,
+      0,
+      4,
+      1,
+      1,
+      0
+    ],
+    [
+      2,
+      3,
+      3,
+      5,
+      0,
+      1
+    ]
+  ],
+  "classes": [
+    "Bronchiectasis",
+    "Bronchiolitis",
+    "COPD",
+    "Healthy",
+    "Pneumonia",
+    "URTI"
+  ]
+}

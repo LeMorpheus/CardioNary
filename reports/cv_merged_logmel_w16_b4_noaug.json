@@ -1,0 +1,72 @@
+{
+  "tag": "merged_logmel_w16_b4_noaug",
+  "feature": "logmel",
+  "augment": false,
+  "params": 13638,
+  "seeds": 1,
+  "folds": 5,
+  "window_acc_mean": 0.843720776556688,
+  "window_acc_std": 0.05443820351410608,
+  "window_f1_mean": 0.42845572668973003,
+  "patient_acc_mean": 0.5920731707317073,
+  "patient_acc_std": 0.07163271795747396,
+  "patient_f1_mean": 0.365190684113834,
+  "confusion_matrix_patient": [
+    [
+      39,
+      2,
+      10,
+      1,
+      6,
+      2
+    ],
+    [
+      19,
+      8,
+      0,
+      0,
+      0,
+      4
+    ],
+    [
+      5,
+      2,
+      64,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      5,
+      0,
+      1,
+      0
+    ],
+    [
+      3,
+      0,
+      9,
+      1,
+      0,
+      0
+    ],
+    [
+      7,
+      3,
+      0,
+      0,
+      0,
+      8
+    ]
+  ],
+  "classes": [
+    "Normal",
+    "Asthma",
+    "COPD",
+    "Pneumonia",
+    "BRON",
+    "Heart Failure"
+  ]
+}

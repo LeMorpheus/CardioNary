@@ -1,0 +1,28 @@
+{
+  "tag": "kermany_logmel_w16_b4_noaug",
+  "feature": "logmel",
+  "augment": false,
+  "params": 13122,
+  "seeds": 1,
+  "folds": 5,
+  "window_acc_mean": 0.9163495698860853,
+  "window_acc_std": 0.015247678384793073,
+  "window_f1_mean": 0.8937394031520138,
+  "patient_acc_mean": 0.9243727598566307,
+  "patient_acc_std": 0.034667114321872264,
+  "patient_f1_mean": 0.9189632944188165,
+  "confusion_matrix_patient": [
+    [
+      969,
+      147
+    ],
+    [
+      64,
+      1610
+    ]
+  ],
+  "classes": [
+    "Normal",
+    "Pneumonia"
+  ]
+}
