@@ -1,6 +1,6 @@
 {
   "what": "Clinic recordings (10 patients x 5 positions), measured without labels with the Yaseen-trained heart CNN. Aggregates only, per the data's handling rules.",
-  "run_on": "2026-11-01",
+  "run_on": "2026-11-02",
   "model": {
     "float": "chiron_cardio_v1_float.keras",
     "int8": "chiron_cardio_v1_int8.tflite",
@@ -52,7 +52,37 @@
     "share_segmented": 0.02,
     "share_heart_rate_plausible": 0.0,
     "median_heart_rate_bpm": 35.842293906810035,
-    "int8_float_agreement": 0.94
+    "int8_float_agreement": 0.94,
+    "intervals_over_patients": {
+      "share_called_abnormal": {
+        "estimate": 1.0,
+        "lower_95": 1.0,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "mean_p_abnormal": {
+        "estimate": 0.9272871689498424,
+        "lower_95": 0.9166507110334933,
+        "upper_95": 0.9372359194606542,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "mean_top_probability": {
+        "estimate": 0.5349466842412949,
+        "lower_95": 0.4798562617301941,
+        "upper_95": 0.5865963315814734,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "int8_float_agreement": {
+        "estimate": 0.94,
+        "lower_95": 0.88,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      }
+    }
   },
   "recordings_passing_quality_check": {
     "recordings": 9,
@@ -87,7 +117,37 @@
     "share_segmented": 0.1111111111111111,
     "share_heart_rate_plausible": 0.0,
     "median_heart_rate_bpm": 35.842293906810035,
-    "int8_float_agreement": 1.0
+    "int8_float_agreement": 1.0,
+    "intervals_over_patients": {
+      "share_called_abnormal": {
+        "estimate": 1.0,
+        "lower_95": 1.0,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "mean_p_abnormal": {
+        "estimate": 0.9360068618423409,
+        "lower_95": 0.9169478419769024,
+        "upper_95": 0.9484165001660585,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "mean_top_probability": {
+        "estimate": 0.5331960353586409,
+        "lower_95": 0.4645140047992269,
+        "upper_95": 0.6296651343016753,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "int8_float_agreement": {
+        "estimate": 1.0,
+        "lower_95": 1.0,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      }
+    }
   },
   "position_agreement_all_recordings": {
     "patients": 10,
@@ -118,7 +178,7 @@
         "adaptation_recordings": 25,
         "adaptation_windows": 75,
         "measured_recordings": 25,
-        "seconds_to_adapt_including_model_load": 0.28,
+        "seconds_to_adapt_including_model_load": 0.2,
         "top_class_share_on_adaptation_recordings": {
           "before": 0.72,
           "after": 0.44
@@ -129,7 +189,7 @@
         "adaptation_recordings": 25,
         "adaptation_windows": 75,
         "measured_recordings": 25,
-        "seconds_to_adapt_including_model_load": 0.2,
+        "seconds_to_adapt_including_model_load": 0.14,
         "top_class_share_on_adaptation_recordings": {
           "before": 0.52,
           "after": 0.44
@@ -174,7 +234,37 @@
       "share_segmented": 0.02,
       "share_heart_rate_plausible": 0.0,
       "median_heart_rate_bpm": 35.842293906810035,
-      "int8_float_agreement": 0.94
+      "int8_float_agreement": 0.94,
+      "intervals_over_patients": {
+        "share_called_abnormal": {
+          "estimate": 1.0,
+          "lower_95": 1.0,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "mean_p_abnormal": {
+          "estimate": 0.9272871689498424,
+          "lower_95": 0.9166507110334933,
+          "upper_95": 0.9372359194606542,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "mean_top_probability": {
+          "estimate": 0.5349466842412949,
+          "lower_95": 0.4798562617301941,
+          "upper_95": 0.5865963315814734,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "int8_float_agreement": {
+          "estimate": 0.94,
+          "lower_95": 0.88,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        }
+      }
     },
     "after": {
       "recordings": 50,
@@ -213,7 +303,30 @@
       "share_segmented": 0.02,
       "share_heart_rate_plausible": 0.0,
       "median_heart_rate_bpm": 35.842293906810035,
-      "int8_float_agreement": null
+      "int8_float_agreement": null,
+      "intervals_over_patients": {
+        "share_called_abnormal": {
+          "estimate": 1.0,
+          "lower_95": 1.0,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "mean_p_abnormal": {
+          "estimate": 0.8631701505184174,
+          "lower_95": 0.8500007801167667,
+          "upper_95": 0.8770471128076315,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "mean_top_probability": {
+          "estimate": 0.4248259681463242,
+          "lower_95": 0.3832777856737375,
+          "upper_95": 0.46675326482951635,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        }
+      }
     },
     "position_agreement": {
       "before": {
@@ -261,7 +374,37 @@
         "share_segmented": 0.1111111111111111,
         "share_heart_rate_plausible": 0.0,
         "median_heart_rate_bpm": 35.842293906810035,
-        "int8_float_agreement": 1.0
+        "int8_float_agreement": 1.0,
+        "intervals_over_patients": {
+          "share_called_abnormal": {
+            "estimate": 1.0,
+            "lower_95": 1.0,
+            "upper_95": 1.0,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "mean_p_abnormal": {
+            "estimate": 0.9360068618423409,
+            "lower_95": 0.9169478419769024,
+            "upper_95": 0.9484165001660585,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "mean_top_probability": {
+            "estimate": 0.5331960353586409,
+            "lower_95": 0.4645140047992269,
+            "upper_95": 0.6296651343016753,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "int8_float_agreement": {
+            "estimate": 1.0,
+            "lower_95": 1.0,
+            "upper_95": 1.0,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          }
+        }
       },
       "after": {
         "recordings": 9,
@@ -296,7 +439,30 @@
         "share_segmented": 0.1111111111111111,
         "share_heart_rate_plausible": 0.0,
         "median_heart_rate_bpm": 35.842293906810035,
-        "int8_float_agreement": null
+        "int8_float_agreement": null,
+        "intervals_over_patients": {
+          "share_called_abnormal": {
+            "estimate": 1.0,
+            "lower_95": 1.0,
+            "upper_95": 1.0,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "mean_p_abnormal": {
+            "estimate": 0.8117550677723355,
+            "lower_95": 0.7978382303633472,
+            "upper_95": 0.8276872858405113,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "mean_top_probability": {
+            "estimate": 0.3447079360485077,
+            "lower_95": 0.29753735288977623,
+            "upper_95": 0.4139255977102688,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          }
+        }
       }
     },
     "unchanged_by_adaptation": "quality check, segmentation and heart rate do not use the model; 8-bit agreement needs the adapted model re-quantised (roadmap S4)"

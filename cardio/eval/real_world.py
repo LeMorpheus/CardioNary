@@ -110,7 +110,25 @@ def summarise(rows: list[dict]) -> dict:
         "int8_float_agreement": float(np.mean(
             [np.argmax(r["p_int8"]) == np.argmax(r["p_float"]) for r in rows]))
         if all(r.get("p_int8") is not None for r in rows) else None,
+        "intervals_over_patients": intervals_over_patients(rows),
     }
+
+
+def intervals_over_patients(rows: list[dict]) -> dict:
+    """95% bootstrap intervals over patients (cardio.eval.intervals). Patient IDs
+    group the resampling only; they are never written out."""
+    from cardio.eval.intervals import (agreement_interval, mean_p_abnormal, mean_top_probability,
+                                       share_abnormal, statistic_interval)
+
+    p = np.array([r["p_float"] for r in rows])
+    g = np.array([r["patient"] for r in rows])
+    out = {"share_called_abnormal": statistic_interval(p, g, share_abnormal),
+           "mean_p_abnormal": statistic_interval(p, g, mean_p_abnormal),
+           "mean_top_probability": statistic_interval(p, g, mean_top_probability)}
+    if all(r.get("p_int8") is not None for r in rows):
+        q = np.array([r["p_int8"] for r in rows])
+        out["int8_float_agreement"] = agreement_interval(q.argmax(1), p, g)
+    return out
 
 
 def position_agreement(rows: list[dict]) -> dict:
