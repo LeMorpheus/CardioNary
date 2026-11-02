@@ -112,5 +112,99 @@
     }
   ],
   "target": "accuracy_mean >= 0.95 (proposal 4.1)",
-  "meets_target": true
+  "meets_target": true,
+  "with_intervals": {
+    "method": "cardio.eval.metrics: patient_bootstrap, 1,000 resamples, seed 0, 95% percentile interval; ece is 15-bin top-label calibration error of the uncalibrated model",
+    "resampling_unit": "clip (Yaseen has clip IDs, not patient IDs)",
+    "five_class": {
+      "accuracy": {
+        "estimate": 0.9929292929292929,
+        "lower_95": 0.9868686868686869,
+        "upper_95": 0.997979797979798,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "macro_f1": {
+        "estimate": 0.9929313376994037,
+        "lower_95": 0.9871454864964712,
+        "upper_95": 0.9979461087753919,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "ece": {
+        "estimate": 0.058363247348533515,
+        "lower_95": 0.05260745726915012,
+        "upper_95": 0.06447577614706057,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "per_class_recall": {
+        "Normal": {
+          "estimate": 1.0,
+          "lower_95": 1.0,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "AS": {
+          "estimate": 0.99,
+          "lower_95": 0.9729655885393591,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "MS": {
+          "estimate": 0.9947368421052631,
+          "lower_95": 0.9833310055865921,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "MR": {
+          "estimate": 0.99,
+          "lower_95": 0.971830985915493,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "MVP": {
+          "estimate": 0.99,
+          "lower_95": 0.973681312311616,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        }
+      }
+    },
+    "refer_or_not": {
+      "auroc": {
+        "estimate": 1.0,
+        "lower_95": 0.9999999999999999,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "sensitivity_at_90_specificity": {
+        "estimate": 1.0,
+        "lower_95": 1.0,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "accuracy": {
+        "estimate": 0.998989898989899,
+        "lower_95": 0.996969696969697,
+        "upper_95": 1.0,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "ece": {
+        "estimate": 0.02042586042559595,
+        "lower_95": 0.018619135466387528,
+        "upper_95": 0.022476240675869123,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      }
+    }
+  }
 }

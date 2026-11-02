@@ -11,14 +11,17 @@ predictions from models that never saw the clips they score.
 Usage:
     python -m core.preprocess --dataset yaseen     # once, builds the cache
     python -m cardio.model.cv_oof
+    python -m cardio.model.cv_oof --from-oof       # intervals only, no retraining
 
 Writes:
     reports/heart_oof_yaseen.csv   one row per clip: patient_id, fold, label,
                                    diagnosis, n_windows, p_Normal ... p_MVP
                                    (mean of the softmax over the clip's windows)
     reports/heart_cv_yaseen.json   accuracy and macro-F1 per fold (mean, std),
-                                   per-class recall, confusion matrix, and the
-                                   refer-or-not AUROC of p(abnormal) = 1 - p(Normal)
+                                   per-class recall, confusion matrix, the
+                                   refer-or-not AUROC of p(abnormal) = 1 - p(Normal),
+                                   and the proposal's metrics with 95% bootstrap
+                                   intervals (cardio.eval.metrics)
 """
 
 from __future__ import annotations
@@ -59,12 +62,46 @@ def clip_table(prob: np.ndarray, pid: np.ndarray, y: np.ndarray, f: int) -> pd.D
     return out.reset_index()
 
 
+def intervals_block(oof: pd.DataFrame) -> dict:
+    """The proposal's heart metrics (4.7) on the out-of-fold probabilities, each with
+    a 95% bootstrap interval, computed by cardio.eval.metrics."""
+    from cardio.eval.intervals import metric_intervals
+
+    p = oof[["p_" + c for c in CLASSES]].to_numpy()
+    p = p / p.sum(axis=1, keepdims=True)          # undo the CSV's 6-decimal rounding
+    y = oof.label.to_numpy().astype(int)
+    groups = oof.patient_id.to_numpy()
+    recall_names = [f"recall_{i}" for i in range(len(CLASSES))]
+    five = metric_intervals(y, p, groups, ["accuracy", "macro_f1", "ece"] + recall_names)
+    five["per_class_recall"] = {CLASSES[i]: five.pop(f"recall_{i}") for i in range(len(CLASSES))}
+    refer = metric_intervals((y != 0).astype(int), 1.0 - p[:, 0], groups,
+                             ["auroc", "sensitivity_at_90_specificity", "accuracy", "ece"])
+    return {
+        "method": "cardio.eval.metrics: patient_bootstrap, 1,000 resamples, seed 0, 95% percentile "
+                  "interval; ece is 15-bin top-label calibration error of the uncalibrated model",
+        "resampling_unit": "clip (Yaseen has clip IDs, not patient IDs)",
+        "five_class": five,
+        "refer_or_not": refer,
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--epochs", type=int, default=SETTINGS.epochs,
                     help="training epochs per fold (baseline: 120)")
+    ap.add_argument("--from-oof", action="store_true",
+                    help="skip training: recompute the intervals from reports/heart_oof_yaseen.csv")
     args = ap.parse_args()
     SETTINGS.epochs = args.epochs
+
+    if args.from_oof:
+        out_path = REPORT_DIR / "heart_cv_yaseen.json"
+        result = json.loads(out_path.read_text()) if out_path.exists() else {"dataset": "yaseen"}
+        result["with_intervals"] = intervals_block(pd.read_csv(REPORT_DIR / "heart_oof_yaseen.csv"))
+        out_path.write_text(json.dumps(result, indent=2))
+        print_intervals(result["with_intervals"])
+        print(f"updated {out_path.relative_to(REPO_ROOT)}")
+        return 0
 
     cache = np.load(CACHE, allow_pickle=True)
     X, y, pid, fold = cache["X"], cache["y"], cache["patient_id"], cache["fold"]
@@ -120,6 +157,7 @@ def main() -> int:
         "per_fold": per_fold,
         "target": "accuracy_mean >= 0.95 (proposal 4.1)",
         "meets_target": bool(pf.accuracy.mean() >= 0.95),
+        "with_intervals": intervals_block(oof),
     }
     (REPORT_DIR / "heart_cv_yaseen.json").write_text(json.dumps(result, indent=2))
 
@@ -127,8 +165,17 @@ def main() -> int:
           f"macro-F1 {result['macro_f1_mean']:.4f} +/- {result['macro_f1_std']:.4f}")
     print("per-class recall:", {k: round(v, 3) for k, v in result["per_class_recall"].items()})
     print(f"refer-or-not AUROC {result['refer_or_not_auroc']:.4f}")
+    print_intervals(result["with_intervals"])
     print("wrote reports/heart_oof_yaseen.csv and reports/heart_cv_yaseen.json")
     return 0
+
+
+def print_intervals(block: dict) -> None:
+    fmt = lambda d: f"{d['estimate']:.4f} [{d['lower_95']:.4f}, {d['upper_95']:.4f}]"
+    f, r = block["five_class"], block["refer_or_not"]
+    print(f"5-class: accuracy {fmt(f['accuracy'])}, macro-F1 {fmt(f['macro_f1'])}, ECE {fmt(f['ece'])}")
+    print(f"refer-or-not: AUROC {fmt(r['auroc'])}, sensitivity at 90% specificity "
+          f"{fmt(r['sensitivity_at_90_specificity'])}")
 
 
 if __name__ == "__main__":

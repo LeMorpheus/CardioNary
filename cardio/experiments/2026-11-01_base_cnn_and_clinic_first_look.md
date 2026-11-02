@@ -25,6 +25,8 @@ On PhysioNet 2022 (all 3,163 public recordings, 46,654 windows; run on 2 Nov wit
 
 The likely cause is the model's 8-bit input range (scale 0.0152, zero point −38). It was fitted to Yaseen windows and covers about −1.4 to +2.5 in normalised units, so inputs from a new device that fall outside it are clipped. Re-quantising after adaptation (S4), with the new site's own windows as the representative set, is the planned fix. Measure agreement again after it.
 
+**Correction, 2 Nov.** The S4 measurement does not support the clipping explanation. The values that seemed to fall below the 8-bit range sit at the log-mel floor, which quantises exactly. Values clipped by more than half a step are almost absent: 0.00% on Yaseen fold 0 and 0.01% on the clinic recordings. Re-quantising on site data removes the clipping that does exist without restoring agreement. See `2026-11-02_requantisation_and_edge_budget.md`.
+
 The downloaded copy matches PhysioNet's checksums for every recording, header, segmentation file and `training_data.csv`. The 942 patient `.txt` files do not match, although their content is well-formed. No result here uses them.
 
 **Clinic recordings (50 recordings, 10 patients, no labels).**
