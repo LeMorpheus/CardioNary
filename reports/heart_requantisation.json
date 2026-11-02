@@ -1,0 +1,300 @@
+{
+  "model": {
+    "float": "chiron_cardio_v1_float.keras",
+    "int8": "chiron_cardio_v1_int8.tflite",
+    "int8_bytes": 28336
+  },
+  "physionet_2022": {
+    "measured_recordings": 3163,
+    "measured_patients": 872,
+    "measured_windows": 46654,
+    "split": "patients in two random halves (seed 0); N = 64 recordings drawn from one half adapt and calibrate, the other half is measured, then swap",
+    "halves": [
+      {
+        "adaptation_recordings": 64,
+        "adaptation_windows": 916,
+        "representative_windows": 300,
+        "seconds_to_requantise": 2.04,
+        "seconds_to_adapt_and_requantise": 1.98,
+        "int8_bytes": {
+          "B_requantised": 28336,
+          "C_adapted_requantised": 28336
+        },
+        "input_range": {
+          "A_original": [
+            -1.3698,
+            2.5113
+          ],
+          "B_requantised": [
+            -1.3745,
+            2.749
+          ],
+          "C_adapted_requantised": [
+            -1.3745,
+            2.749
+          ]
+        }
+      },
+      {
+        "adaptation_recordings": 64,
+        "adaptation_windows": 909,
+        "representative_windows": 300,
+        "seconds_to_requantise": 1.15,
+        "seconds_to_adapt_and_requantise": 1.51,
+        "int8_bytes": {
+          "B_requantised": 28336,
+          "C_adapted_requantised": 28336
+        },
+        "input_range": {
+          "A_original": [
+            -1.3698,
+            2.5113
+          ],
+          "B_requantised": [
+            -1.3779,
+            2.7078
+          ],
+          "C_adapted_requantised": [
+            -1.3779,
+            2.7078
+          ]
+        }
+      }
+    ],
+    "variants": {
+      "A_original": {
+        "recording_agreement": 0.9649067341131837,
+        "recording_agreement_interval": {
+          "estimate": 0.9649067341131837,
+          "lower_95": 0.9585524666559537,
+          "upper_95": 0.9713104276489719,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "window_agreement": 0.9691987825266858,
+        "refer_or_not_agreement": 0.9984192222573506,
+        "agreement_by_float_margin": {
+          "0.00-0.05": {
+            "recordings": 277,
+            "agreement": 0.6498194945848376
+          },
+          "0.05-0.20": {
+            "recordings": 790,
+            "agreement": 0.9822784810126582
+          },
+          "0.20-1.00": {
+            "recordings": 2096,
+            "agreement": 1.0
+          }
+        },
+        "share_of_inputs_clipped": 4.76356975464769e-05,
+        "ms_per_window": 0.082
+      },
+      "B_requantised": {
+        "recording_agreement": 0.9655390452102435,
+        "recording_agreement_interval": {
+          "estimate": 0.9655390452102435,
+          "lower_95": 0.9594667068998133,
+          "upper_95": 0.9714648861549369,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "window_agreement": 0.9709349680627599,
+        "refer_or_not_agreement": 0.9984192222573506,
+        "agreement_by_float_margin": {
+          "0.00-0.05": {
+            "recordings": 277,
+            "agreement": 0.6353790613718412
+          },
+          "0.05-0.20": {
+            "recordings": 790,
+            "agreement": 0.9898734177215189
+          },
+          "0.20-1.00": {
+            "recordings": 2096,
+            "agreement": 1.0
+          }
+        },
+        "share_of_inputs_clipped": 7.172705805861591e-07,
+        "ms_per_window": 0.075
+      },
+      "C_adapted_requantised": {
+        "recording_agreement": 0.9740752450205501,
+        "recording_agreement_interval": {
+          "estimate": 0.9740752450205501,
+          "lower_95": 0.9681043656868235,
+          "upper_95": 0.9798559555208232,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "window_agreement": 0.9669910404252583,
+        "refer_or_not_agreement": 1.0,
+        "agreement_by_float_margin": {
+          "0.00-0.05": {
+            "recordings": 634,
+            "agreement": 0.8706624605678234
+          },
+          "0.05-0.20": {
+            "recordings": 1233,
+            "agreement": 1.0
+          },
+          "0.20-1.00": {
+            "recordings": 1296,
+            "agreement": 1.0
+          }
+        },
+        "share_of_inputs_clipped": 7.172705805861591e-07,
+        "ms_per_window": 0.082
+      }
+    },
+    "target": "agreement >= 98% with the full-precision model (proposal 4.7, edge budget)",
+    "run_on": "2026-11-02"
+  },
+  "clinic": {
+    "measured_recordings": 50,
+    "measured_patients": 10,
+    "measured_windows": 150,
+    "split": "patients in two halves of 5 by patient number (as in S3); all 25 recordings of one half adapt and calibrate, the other half is measured, then swap",
+    "halves": [
+      {
+        "adaptation_recordings": 25,
+        "adaptation_windows": 75,
+        "representative_windows": 75,
+        "seconds_to_requantise": 1.18,
+        "seconds_to_adapt_and_requantise": 1.19,
+        "int8_bytes": {
+          "B_requantised": 28336,
+          "C_adapted_requantised": 28336
+        },
+        "input_range": {
+          "A_original": [
+            -1.3698,
+            2.5113
+          ],
+          "B_requantised": [
+            -1.3695,
+            2.7879
+          ],
+          "C_adapted_requantised": [
+            -1.3695,
+            2.7879
+          ]
+        }
+      },
+      {
+        "adaptation_recordings": 25,
+        "adaptation_windows": 75,
+        "representative_windows": 75,
+        "seconds_to_requantise": 0.89,
+        "seconds_to_adapt_and_requantise": 1.04,
+        "int8_bytes": {
+          "B_requantised": 28336,
+          "C_adapted_requantised": 28336
+        },
+        "input_range": {
+          "A_original": [
+            -1.3698,
+            2.5113
+          ],
+          "B_requantised": [
+            -1.3698,
+            2.7885
+          ],
+          "C_adapted_requantised": [
+            -1.3698,
+            2.7885
+          ]
+        }
+      }
+    ],
+    "variants": {
+      "A_original": {
+        "recording_agreement": 0.94,
+        "recording_agreement_interval": {
+          "estimate": 0.94,
+          "lower_95": 0.88,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "window_agreement": 0.9733333333333334,
+        "refer_or_not_agreement": 1.0,
+        "agreement_by_float_margin": {
+          "0.00-0.05": {
+            "recordings": 10,
+            "agreement": 0.7
+          },
+          "0.05-0.20": {
+            "recordings": 17,
+            "agreement": 1.0
+          },
+          "0.20-1.00": {
+            "recordings": 23,
+            "agreement": 1.0
+          }
+        },
+        "share_of_inputs_clipped": 9.201388888888889e-05,
+        "ms_per_window": 0.115
+      },
+      "B_requantised": {
+        "recording_agreement": 0.96,
+        "recording_agreement_interval": {
+          "estimate": 0.96,
+          "lower_95": 0.9,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "window_agreement": 0.9733333333333334,
+        "refer_or_not_agreement": 1.0,
+        "agreement_by_float_margin": {
+          "0.00-0.05": {
+            "recordings": 10,
+            "agreement": 0.8
+          },
+          "0.05-0.20": {
+            "recordings": 17,
+            "agreement": 1.0
+          },
+          "0.20-1.00": {
+            "recordings": 23,
+            "agreement": 1.0
+          }
+        },
+        "share_of_inputs_clipped": 0.0,
+        "ms_per_window": 0.083
+      },
+      "C_adapted_requantised": {
+        "recording_agreement": 0.96,
+        "recording_agreement_interval": {
+          "estimate": 0.96,
+          "lower_95": 0.9,
+          "upper_95": 1.0,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "window_agreement": 0.9266666666666666,
+        "refer_or_not_agreement": 1.0,
+        "agreement_by_float_margin": {
+          "0.00-0.05": {
+            "recordings": 10,
+            "agreement": 0.8
+          },
+          "0.05-0.20": {
+            "recordings": 17,
+            "agreement": 1.0
+          },
+          "0.20-1.00": {
+            "recordings": 23,
+            "agreement": 1.0
+          }
+        },
+        "share_of_inputs_clipped": 0.0,
+        "ms_per_window": 0.111
+      }
+    },
+    "target": "agreement >= 98% with the full-precision model (proposal 4.7, edge budget)",
+    "run_on": "2026-11-02",
+    "data_rules": "aggregates only; re-quantised models existed in memory only"
+  }
+}

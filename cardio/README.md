@@ -20,19 +20,33 @@ python -m core.preprocess --dataset yaseen
 
 # base CNN, 5-fold cross-validation with out-of-fold probabilities
 python -m cardio.model.cv_oof              # reports/heart_oof_yaseen.csv, heart_cv_yaseen.json
+python -m cardio.model.cv_oof --from-oof   # only the 95% intervals, from the saved file
 
-# final model (folds 1-4) and its 8-bit copy, into models/ (not in Git)
+# final model (folds 1-4) and its 8-bit copy, into models/
 python -m core.quantize --dataset yaseen --holdout-fold 0
 
-# 8-bit against float agreement on Yaseen fold 0 (optionally a folder of recordings)
-python -m cardio.eval.agreement            # reports/heart_agreement.json
+# PhysioNet 2022 manifest and caches (once; see cardio/data/README.md)
+python -m cardio.data.build_unseen --dataset circor
+
+# 8-bit against float agreement: Yaseen fold 0, and PhysioNet 2022 by patient
+python -m cardio.eval.agreement --manifest data/manifests/circor_manifest.csv --name physionet_2022
 
 # clinic recordings, aggregates only; run only on the laptop that holds them
 python -m cardio.eval.real_world --data-dir <path to Real_World_Data>
 
 # the same, plus test-time adaptation on the clinic recordings (roadmap S3)
 python -m cardio.eval.real_world --data-dir <path to Real_World_Data> --adapt
+
+# re-quantisation for a new site (roadmap S4): shipped vs re-quantised vs adapted
+python -m cardio.eval.requantise --site physionet_2022
+python -m cardio.eval.requantise --site clinic --data-dir <path to Real_World_Data>
+
+# edge budget on this laptop (roadmap S4): size, time per case, memory
+python -m cardio.eval.edge_budget          # reports/heart_edge_budget.json
 ```
+
+Every result carries a 95% bootstrap interval over patients, from
+`cardio.eval.intervals`, which wraps `cardio.eval.metrics`.
 
 `reports/heart_oof_yaseen.csv` has one row per clip: its fold, label, and the
 mean softmax over its windows from the model that did not train on that fold.
