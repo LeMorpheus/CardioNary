@@ -1,0 +1,5 @@
+# Additional dependencies for the CardioNary lung branch
+pydicom==3.0.2
+opencv-python-headless==5.0.0.93
+kaggle==2.2.5
+streamlit==1.66.1
