@@ -1,0 +1,49 @@
+{
+  "what": "Final X-ray CNN (trained on Kermany folds 1-4) run on RSNA Normal vs Lung Opacity, one image per patient, Kermany normalisation. No RSNA label was used for anything but scoring.",
+  "n_images": 14863,
+  "pneumonia_share": 0.4044943820224719,
+  "rsna_float": {
+    "n_patients": 14863,
+    "accuracy": 0.8457915629415327,
+    "auroc": 0.9071057974436394,
+    "sensitivity_at_90_specificity": 0.7752827677977379,
+    "ece": 0.06837513002264406,
+    "auroc_ci_95": [
+      0.9018553484149244,
+      0.9121915047107977
+    ],
+    "ece_bins": 15,
+    "bootstrap_resamples": 1000,
+    "bootstrap_seed": 0
+  },
+  "rsna_int8": {
+    "n_patients": 14863,
+    "accuracy": 0.8039426764448631,
+    "auroc": 0.8969890313900125,
+    "sensitivity_at_90_specificity": 0.14504324683965403,
+    "ece": 0.14883855883738142,
+    "auroc_ci_95": [
+      0.8916981311464621,
+      0.9019093264912343
+    ],
+    "ece_bins": 15,
+    "bootstrap_resamples": 1000,
+    "bootstrap_seed": 0
+  },
+  "class_agreement_float_vs_int8": 0.8007131803808114,
+  "kermany_fold0_float": {
+    "n_patients": 558,
+    "accuracy": 0.9802867383512545,
+    "auroc": 0.9937179213002567,
+    "sensitivity_at_90_specificity": 0.9880239520958084,
+    "ece": 0.040887608740445586,
+    "auroc_ci_95": [
+      0.9875455124745812,
+      0.9985680863977763
+    ],
+    "ece_bins": 15,
+    "bootstrap_resamples": 1000,
+    "bootstrap_seed": 0
+  },
+  "auroc_lost_vs_kermany_fold0": 0.08661212385661732
+}

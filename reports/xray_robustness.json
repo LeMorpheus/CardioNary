@@ -1,0 +1,772 @@
+{
+  "data": "Kermany fold 0 (held out from the final model)",
+  "n_adapt": 32,
+  "scored_images": 1130,
+  "scored_patients": 527,
+  "seed": 0,
+  "clean": {
+    "n_patients": 527,
+    "accuracy": 0.9791271347248577,
+    "auroc": 0.9932362122788762,
+    "sensitivity_at_90_specificity": 0.9870967741935484,
+    "ece": 0.040805865867477205,
+    "auroc_ci_95": [
+      0.9864466998313922,
+      0.9983373821786125
+    ],
+    "ece_bins": 15,
+    "bootstrap_resamples": 1000,
+    "bootstrap_seed": 0,
+    "image_accuracy": 0.9628318584070796
+  },
+  "results": {
+    "blur": {
+      "1": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9753320683111955,
+          "auroc": 0.9926415935781181,
+          "sensitivity_at_90_specificity": 0.9903225806451613,
+          "ece": 0.04313055203510581,
+          "auroc_ci_95": [
+            0.9834427224476796,
+            0.998462705994509
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.968141592920354
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9753320683111955,
+          "auroc": 0.9892968633863535,
+          "sensitivity_at_90_specificity": 0.9870967741935484,
+          "ece": 0.057346419503711096,
+          "auroc_ci_95": [
+            0.9797386085122509,
+            0.9965529788349582
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9619469026548673
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.0,
+          "auroc": null
+        }
+      },
+      "2": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9544592030360531,
+          "auroc": 0.9832763490411773,
+          "sensitivity_at_90_specificity": 0.9709677419354839,
+          "ece": 0.0713726324027461,
+          "auroc_ci_95": [
+            0.9706013920109665,
+            0.9932261108216514
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9433628318584071
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9639468690702088,
+          "auroc": 0.9847331648580347,
+          "sensitivity_at_90_specificity": 0.9806451612903225,
+          "ece": 0.04984802908167845,
+          "auroc_ci_95": [
+            0.9714702175711248,
+            0.9947158195707055
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9504424778761061
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.384615384615386,
+          "auroc": 0.1462686567164155
+        }
+      },
+      "3": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.8349146110056926,
+          "auroc": 0.9668054110301769,
+          "sensitivity_at_90_specificity": 0.9258064516129032,
+          "ece": 0.15217360985911735,
+          "auroc_ci_95": [
+            0.949948925323544,
+            0.981084678828383
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.8769911504424779
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9430740037950665,
+          "auroc": 0.9759476735543333,
+          "sensitivity_at_90_specificity": 0.964516129032258,
+          "ece": 0.050442742944668224,
+          "auroc_ci_95": [
+            0.9591024850210117,
+            0.9887123456034247
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9362831858407079
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.7500000000000002,
+          "auroc": 0.3458942632170989
+        }
+      },
+      "4": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.6015180265654649,
+          "auroc": 0.9538724542886873,
+          "sensitivity_at_90_specificity": 0.9032258064516129,
+          "ece": 0.299776920078881,
+          "auroc_ci_95": [
+            0.9357184951377459,
+            0.9702061696035086
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7327433628318584
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9240986717267552,
+          "auroc": 0.9690500966255389,
+          "sensitivity_at_90_specificity": 0.9451612903225807,
+          "ece": 0.040644893033524365,
+          "auroc_ci_95": [
+            0.9521524244001435,
+            0.9824100920231568
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9230088495575222
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.8542713567839195,
+          "auroc": 0.3855740181268899
+        }
+      },
+      "5": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.5882352941176471,
+          "auroc": 0.9490560428125465,
+          "sensitivity_at_90_specificity": 0.8451612903225807,
+          "ece": 0.34263244592797154,
+          "auroc_ci_95": [
+            0.9298631570486375,
+            0.9644435149631683
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7238938053097345
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9089184060721063,
+          "auroc": 0.9635201427084883,
+          "sensitivity_at_90_specificity": 0.9258064516129032,
+          "ece": 0.0510028779043204,
+          "auroc_ci_95": [
+            0.9466262150359848,
+            0.9771379680447828
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9097345132743363
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.8203883495145632,
+          "auroc": 0.3273889636608361
+        }
+      }
+    },
+    "noise": {
+      "1": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9430740037950665,
+          "auroc": 0.9776423368514939,
+          "sensitivity_at_90_specificity": 0.9838709677419355,
+          "ece": 0.06384663803725348,
+          "auroc_ci_95": [
+            0.962551973184719,
+            0.9898506057295174
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9495575221238938
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9430740037950665,
+          "auroc": 0.9718150735840642,
+          "sensitivity_at_90_specificity": 0.9806451612903225,
+          "ece": 0.053192939826327806,
+          "auroc_ci_95": [
+            0.954399170932148,
+            0.9857370400370347
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9389380530973451
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.0,
+          "auroc": -0.37368922783603437
+        }
+      },
+      "2": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.8273244781783681,
+          "auroc": 0.950215549279025,
+          "sensitivity_at_90_specificity": 0.9419354838709677,
+          "ece": 0.1453549165136164,
+          "auroc_ci_95": [
+            0.9275296243362202,
+            0.9714747160621673
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.8840707964601769
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.8538899430740038,
+          "auroc": 0.9435855507655716,
+          "sensitivity_at_90_specificity": 0.8774193548387097,
+          "ece": 0.1090911998435283,
+          "auroc_ci_95": [
+            0.9193428950457607,
+            0.9648018980242606
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.8964601769911504
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.1750000000000002,
+          "auroc": -0.15411195577056297
+        }
+      },
+      "3": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.6318785578747628,
+          "auroc": 0.8855953619741341,
+          "sensitivity_at_90_specificity": 0.5225806451612903,
+          "ece": 0.2883736183037848,
+          "auroc_ci_95": [
+            0.8531916925604037,
+            0.9185314365394485
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7610619469026548
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.7988614800759013,
+          "auroc": 0.8772112382934443,
+          "sensitivity_at_90_specificity": 0.42258064516129035,
+          "ece": 0.15679874316424092,
+          "auroc_ci_95": [
+            0.8396483307760617,
+            0.9122191269062148
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.863716814159292
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.4808743169398907,
+          "auroc": -0.07788979422731766
+        }
+      },
+      "4": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.5901328273244781,
+          "auroc": 0.7138546157276646,
+          "sensitivity_at_90_specificity": 0.21935483870967742,
+          "ece": 0.35416124538125127,
+          "auroc_ci_95": [
+            0.6686942703560581,
+            0.7604252314641718
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7256637168141593
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.7514231499051234,
+          "auroc": 0.8592388880630295,
+          "sensitivity_at_90_specificity": 0.4129032258064516,
+          "ece": 0.1976388959296974,
+          "auroc_ci_95": [
+            0.8210961337631871,
+            0.8941017695437045
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.8371681415929203
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.41463414634146356,
+          "auroc": 0.5203788443120142
+        }
+      },
+      "5": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.5882352941176471,
+          "auroc": 0.5802289281997919,
+          "sensitivity_at_90_specificity": 0.11935483870967742,
+          "ece": 0.37022089365826405,
+          "auroc_ci_95": [
+            0.5337175508716726,
+            0.6305281910447326
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7238938053097345
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.715370018975332,
+          "auroc": 0.8314701947376245,
+          "sensitivity_at_90_specificity": 0.3096774193548387,
+          "ece": 0.22245667016654408,
+          "auroc_ci_95": [
+            0.7913944397577178,
+            0.8685309596793802
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.8168141592920354
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.3252427184466018,
+          "auroc": 0.6083216355325199
+        }
+      }
+    },
+    "contrast": {
+      "1": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9753320683111955,
+          "auroc": 0.9920915712799168,
+          "sensitivity_at_90_specificity": 0.9838709677419355,
+          "ece": 0.04263819819063269,
+          "auroc_ci_95": [
+            0.9832594179884049,
+            0.9978338142145382
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.963716814159292
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.969639468690702,
+          "auroc": 0.9881819533224321,
+          "sensitivity_at_90_specificity": 0.9870967741935484,
+          "ece": 0.05919221532073821,
+          "auroc_ci_95": [
+            0.9779195981156109,
+            0.9958943861996756
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9548672566371681
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": -1.5000000000000147,
+          "auroc": -3.4155844155844246
+        }
+      },
+      "2": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9449715370018975,
+          "auroc": 0.987200832466181,
+          "sensitivity_at_90_specificity": 0.9838709677419355,
+          "ece": 0.060579596434241594,
+          "auroc_ci_95": [
+            0.9754861524755141,
+            0.9947494620127509
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9495575221238938
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9715370018975332,
+          "auroc": 0.9885387245428869,
+          "sensitivity_at_90_specificity": 0.9870967741935484,
+          "ece": 0.054914862443420885,
+          "auroc_ci_95": [
+            0.977996545114961,
+            0.9960640798689804
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9557522123893806
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.7777777777777785,
+          "auroc": 0.22167487684731557
+        }
+      },
+      "3": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.8064516129032258,
+          "auroc": 0.9710272038055596,
+          "sensitivity_at_90_specificity": 0.9419354838709677,
+          "ece": 0.16965217995373588,
+          "auroc_ci_95": [
+            0.9553518593212408,
+            0.9836987777056765
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.8646017699115044
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.969639468690702,
+          "auroc": 0.9883454734651405,
+          "sensitivity_at_90_specificity": 0.9903225806451613,
+          "ece": 0.05553742344042305,
+          "auroc_ci_95": [
+            0.9776723766028154,
+            0.996195276497696
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9557522123893806
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.9450549450549449,
+          "auroc": 0.7797858099062921
+        }
+      },
+      "4": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.6053130929791272,
+          "auroc": 0.936450126356474,
+          "sensitivity_at_90_specificity": 0.8290322580645161,
+          "ece": 0.32328712543303434,
+          "auroc_ci_95": [
+            0.9134258990434633,
+            0.9569833266889995
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7407079646017699
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9715370018975332,
+          "auroc": 0.9874238144789653,
+          "sensitivity_at_90_specificity": 0.9806451612903225,
+          "ece": 0.05425888677909342,
+          "auroc_ci_95": [
+            0.9750456210881603,
+            0.9958013203541491
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9557522123893806
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.9796954314720813,
+          "auroc": 0.8976439790575911
+        }
+      },
+      "5": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.5882352941176471,
+          "auroc": 0.9189683365541845,
+          "sensitivity_at_90_specificity": 0.7548387096774194,
+          "ece": 0.3723481982186304,
+          "auroc_ci_95": [
+            0.8944592251842899,
+            0.9409205496997622
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.7238938053097345
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.967741935483871,
+          "auroc": 0.9880481641147614,
+          "sensitivity_at_90_specificity": 0.9806451612903225,
+          "ece": 0.057008247954039235,
+          "auroc_ci_95": [
+            0.9761140826327593,
+            0.996089801191884
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9513274336283186
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": 0.9708737864077671,
+          "auroc": 0.9301441152922336
+        }
+      }
+    },
+    "jpeg": {
+      "1": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9753320683111955,
+          "auroc": 0.989832020217036,
+          "sensitivity_at_90_specificity": 0.9903225806451613,
+          "ece": 0.04230595550931536,
+          "auroc_ci_95": [
+            0.9786961255299034,
+            0.9978943763957238
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9628318584070796
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9658444022770398,
+          "auroc": 0.9867102720380556,
+          "sensitivity_at_90_specificity": 0.9774193548387097,
+          "ece": 0.05297943532509649,
+          "auroc_ci_95": [
+            0.9735026973655104,
+            0.9953889917241509
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9575221238938053
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": -2.5000000000000147,
+          "auroc": -0.9170305676856763
+        }
+      },
+      "2": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9772296015180265,
+          "auroc": 0.9914969525791587,
+          "sensitivity_at_90_specificity": 0.9870967741935484,
+          "ece": 0.04451414016764891,
+          "auroc_ci_95": [
+            0.9817451825162694,
+            0.9977400560900491
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9654867256637168
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.967741935483871,
+          "auroc": 0.988152222387394,
+          "sensitivity_at_90_specificity": 0.9870967741935484,
+          "ece": 0.06176745852169267,
+          "auroc_ci_95": [
+            0.9782462086494454,
+            0.9951236184514635
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.947787610619469
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": -4.999999999999824,
+          "auroc": -1.9230769230771636
+        }
+      },
+      "3": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9658444022770398,
+          "auroc": 0.991065854021109,
+          "sensitivity_at_90_specificity": 0.9870967741935484,
+          "ece": 0.042094438524037936,
+          "auroc_ci_95": [
+            0.9806679209246543,
+            0.9974583438027445
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9601769911504425
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.952561669829222,
+          "auroc": 0.9806005648877657,
+          "sensitivity_at_90_specificity": 0.9741935483870968,
+          "ece": 0.04885875889047253,
+          "auroc_ci_95": [
+            0.9668485741935765,
+            0.9904427971191628
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9424778761061947
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": -1.0,
+          "auroc": -4.821917808219399
+        }
+      },
+      "4": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9658444022770398,
+          "auroc": 0.9908131410732868,
+          "sensitivity_at_90_specificity": 0.9806451612903225,
+          "ece": 0.05153947941049441,
+          "auroc_ci_95": [
+            0.9838652513903441,
+            0.9964282787156636
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9530973451327434
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9506641366223909,
+          "auroc": 0.9821911699122937,
+          "sensitivity_at_90_specificity": 0.964516129032258,
+          "ece": 0.05986757077926771,
+          "auroc_ci_95": [
+            0.9696306855915577,
+            0.9911013286433097
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9327433628318584
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": -1.1428571428571381,
+          "auroc": -3.5582822085890315
+        }
+      },
+      "5": {
+        "plain": {
+          "n_patients": 527,
+          "accuracy": 0.9544592030360531,
+          "auroc": 0.9813289727961944,
+          "sensitivity_at_90_specificity": 0.9774193548387097,
+          "ece": 0.07307633248416551,
+          "auroc_ci_95": [
+            0.9680477882921691,
+            0.9912131909838559
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9424778761061947
+        },
+        "adapted": {
+          "n_patients": 527,
+          "accuracy": 0.9013282732447818,
+          "auroc": 0.958168574401665,
+          "sensitivity_at_90_specificity": 0.9161290322580645,
+          "ece": 0.06760815155026628,
+          "auroc_ci_95": [
+            0.9358739407296933,
+            0.9749590016543586
+          ],
+          "ece_bins": 15,
+          "bootstrap_resamples": 1000,
+          "bootstrap_seed": 0,
+          "image_accuracy": 0.9123893805309734
+        },
+        "collapse_guard_triggered": false,
+        "recovery": {
+          "accuracy": -2.1538461538461533,
+          "auroc": -1.9450686641697614
+        }
+      }
+    }
+  }
+}

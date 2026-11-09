@@ -16,7 +16,9 @@ def main() -> int:
     man, X = load_rsna()
     out = CACHE_DIR / "rsna_96.npz"
     np.savez_compressed(out, X=X, y=man.label.to_numpy(np.int64),
-                        patient_id=man.patient_id.astype(str).to_numpy(),
+                        # Use a fixed-width Unicode array so consumers can load this
+                        # archive with NumPy's safe default allow_pickle=False.
+                        patient_id=man.patient_id.astype(str).to_numpy(dtype=str),
                         fold=man.fold.to_numpy(np.int64))
     print(f"packed {len(man)} RSNA images, shape {X.shape}, value range "
           f"[{X.min():.2f}, {X.max():.2f}] -> {out}")
