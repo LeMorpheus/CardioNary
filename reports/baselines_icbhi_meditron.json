@@ -1,0 +1,16 @@
+{
+  "dataset": "icbhi_meditron",
+  "n_units": 59,
+  "n_classes": 5,
+  "baselines": {
+    "majority_class": {
+      "accuracy": 0.4406779661016949,
+      "macro_f1": 0.1223529411764706
+    },
+    "stratified_random": {
+      "accuracy": 0.28796610169491527,
+      "macro_f1": 0.1978004084867758
+    }
+  },
+  "hurdle_accuracy": 0.4406779661016949
+}

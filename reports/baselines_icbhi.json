@@ -1,0 +1,20 @@
+{
+  "dataset": "icbhi",
+  "n_units": 123,
+  "n_classes": 6,
+  "baselines": {
+    "majority_class": {
+      "accuracy": 0.5203252032520326,
+      "macro_f1": 0.1140819964349376
+    },
+    "stratified_random": {
+      "accuracy": 0.3328048780487805,
+      "macro_f1": 0.16207711561079585
+    },
+    "device_only": {
+      "accuracy": 0.6747967479674797,
+      "macro_f1": 0.2504105090311987
+    }
+  },
+  "hurdle_accuracy": 0.6747967479674797
+}

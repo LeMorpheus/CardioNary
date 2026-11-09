@@ -1,0 +1,26 @@
+# Chiron gateway systemd unit.
+#   sudo cp chiron-gateway.service /etc/systemd/system/
+#   sudo systemctl enable --now chiron-gateway
+#
+# Acceptance test: power-cycle the Pi with no keyboard or monitor attached; the
+# dashboard must be reachable and both nodes connected within 60 s.
+[Unit]
+Description=Project Chiron BLE Gateway and Dashboard
+After=bluetooth.target network-online.target
+Wants=network-online.target
+Requires=bluetooth.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/chiron/gateway
+ExecStart=/home/pi/chiron/.venv/bin/python chiron_gateway.py --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=5
+# Journal captures the BLE reconnect log, which is the first thing to check
+# when a node does not appear.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,2175 @@
+{
+  "generated": "2026-08-14 12:57 UTC",
+  "dataset": "kermany",
+  "modality": "image",
+  "holdout_fold": 0,
+  "model": "chiron_pulmo_v1_int8.tflite",
+  "classes": [
+    "Normal",
+    "Pneumonia"
+  ],
+  "flash_bytes": 1105920,
+  "offline_accuracy_on_vectors": 0.9583,
+  "vectors": [
+    {
+      "vector_id": 0,
+      "source_file": "NORMAL2-IM-0364-0001.jpeg",
+      "patient_id": "N00364",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": false,
+      "confidence": 0.9453125,
+      "probs": [
+        0.0547,
+        0.9453
+      ],
+      "n_elements": 9216,
+      "payload_md5": "68dd39ad937d2cc20aaad768afeb4eef",
+      "window_index": 0
+    },
+    {
+      "vector_id": 1,
+      "source_file": "NORMAL2-IM-1142-0001-0002.jpeg",
+      "patient_id": "N01142",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ffd057857c1607273e4174315307abc9",
+      "window_index": 0
+    },
+    {
+      "vector_id": 2,
+      "source_file": "NORMAL2-IM-1128-0001-0001.jpeg",
+      "patient_id": "N01128",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.94140625,
+      "probs": [
+        0.9414,
+        0.0586
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d5f23264c870510a8aa6e321b5b45381",
+      "window_index": 0
+    },
+    {
+      "vector_id": 3,
+      "source_file": "NORMAL2-IM-1157-0001.jpeg",
+      "patient_id": "N01157",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.53125,
+      "probs": [
+        0.5312,
+        0.4688
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ff9be6397ae728cd397877400dc91316",
+      "window_index": 0
+    },
+    {
+      "vector_id": 4,
+      "source_file": "IM-0679-0001.jpeg",
+      "patient_id": "N00679",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "21aa4eced6582f8251cd49c86afb68e3",
+      "window_index": 0
+    },
+    {
+      "vector_id": 5,
+      "source_file": "NORMAL2-IM-0635-0001.jpeg",
+      "patient_id": "N00635",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "7c8e96f09f856db4b295073ab6cbe21a",
+      "window_index": 0
+    },
+    {
+      "vector_id": 6,
+      "source_file": "IM-0425-0001.jpeg",
+      "patient_id": "N00425",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "36f9b8fc1f4ac02a75829297a54c3c10",
+      "window_index": 0
+    },
+    {
+      "vector_id": 7,
+      "source_file": "IM-0343-0001.jpeg",
+      "patient_id": "N00343",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "64f37ddac3232ef4721b3c78f8ac1598",
+      "window_index": 0
+    },
+    {
+      "vector_id": 8,
+      "source_file": "NORMAL2-IM-0317-0001.jpeg",
+      "patient_id": "N00317",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.94140625,
+      "probs": [
+        0.9414,
+        0.0586
+      ],
+      "n_elements": 9216,
+      "payload_md5": "05f3024d01d21dcc521327eb7ca16571",
+      "window_index": 0
+    },
+    {
+      "vector_id": 9,
+      "source_file": "NORMAL2-IM-1114-0001.jpeg",
+      "patient_id": "N01114",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "88a72fd5d8b66c21430b0f403b2872eb",
+      "window_index": 0
+    },
+    {
+      "vector_id": 10,
+      "source_file": "NORMAL2-IM-0281-0001.jpeg",
+      "patient_id": "N00281",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.96875,
+      "probs": [
+        0.9688,
+        0.0312
+      ],
+      "n_elements": 9216,
+      "payload_md5": "f061b5b527924d363249f3a4831512ca",
+      "window_index": 0
+    },
+    {
+      "vector_id": 11,
+      "source_file": "IM-0404-0001.jpeg",
+      "patient_id": "N00404",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "7547927e2e94c1be4ece371ad4f7bb37",
+      "window_index": 0
+    },
+    {
+      "vector_id": 12,
+      "source_file": "NORMAL2-IM-0528-0001.jpeg",
+      "patient_id": "N00528",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "0c8820320f9618ca9499aefa583a63e2",
+      "window_index": 0
+    },
+    {
+      "vector_id": 13,
+      "source_file": "NORMAL2-IM-0983-0001.jpeg",
+      "patient_id": "N00983",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9921875,
+      "probs": [
+        0.9922,
+        0.0078
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3e6fa285ad08e301075e488008c11e9c",
+      "window_index": 0
+    },
+    {
+      "vector_id": 14,
+      "source_file": "NORMAL2-IM-0287-0001.jpeg",
+      "patient_id": "N00287",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ca3fa489e2d3f7f886fe4f463076b98c",
+      "window_index": 0
+    },
+    {
+      "vector_id": 15,
+      "source_file": "NORMAL2-IM-0833-0001.jpeg",
+      "patient_id": "N00833",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "43c38d90fe6677261a6f7e513cdd8fcc",
+      "window_index": 0
+    },
+    {
+      "vector_id": 16,
+      "source_file": "NORMAL2-IM-0602-0001.jpeg",
+      "patient_id": "N00602",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.95703125,
+      "probs": [
+        0.957,
+        0.043
+      ],
+      "n_elements": 9216,
+      "payload_md5": "da82252e65be7a0753a9991f038b0054",
+      "window_index": 0
+    },
+    {
+      "vector_id": 17,
+      "source_file": "NORMAL2-IM-0013-0001.jpeg",
+      "patient_id": "N00013",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "98032d2c6e57d4150551d3c830a95738",
+      "window_index": 0
+    },
+    {
+      "vector_id": 18,
+      "source_file": "NORMAL2-IM-1430-0001.jpeg",
+      "patient_id": "N01430",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "bc8da189cc4f205cc3c9055f3ce55f30",
+      "window_index": 0
+    },
+    {
+      "vector_id": 19,
+      "source_file": "NORMAL2-IM-1306-0001.jpeg",
+      "patient_id": "N01306",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "69b19ddd06860cd4b6b15671a31fbff8",
+      "window_index": 0
+    },
+    {
+      "vector_id": 20,
+      "source_file": "NORMAL2-IM-1100-0001.jpeg",
+      "patient_id": "N01100",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "219db093fd4d0960b86014a80886cad5",
+      "window_index": 0
+    },
+    {
+      "vector_id": 21,
+      "source_file": "NORMAL2-IM-1320-0001.jpeg",
+      "patient_id": "N01320",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3a7e9322e53550e6af55ca5a9fe9f4b5",
+      "window_index": 0
+    },
+    {
+      "vector_id": 22,
+      "source_file": "NORMAL2-IM-0781-0001.jpeg",
+      "patient_id": "N00781",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "50557115782c0754374ec7b05aa92fc9",
+      "window_index": 0
+    },
+    {
+      "vector_id": 23,
+      "source_file": "NORMAL2-IM-0455-0001.jpeg",
+      "patient_id": "N00455",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "5c992811e0fcf07556af19202daae464",
+      "window_index": 0
+    },
+    {
+      "vector_id": 24,
+      "source_file": "IM-0111-0001.jpeg",
+      "patient_id": "N00111",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "51fd724a191398887ff8e3fa2a6fcd71",
+      "window_index": 0
+    },
+    {
+      "vector_id": 25,
+      "source_file": "NORMAL2-IM-1436-0001.jpeg",
+      "patient_id": "N01436",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": false,
+      "confidence": 0.515625,
+      "probs": [
+        0.4844,
+        0.5156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "e932ef603005c1e118d1462833022a8f",
+      "window_index": 0
+    },
+    {
+      "vector_id": 26,
+      "source_file": "NORMAL2-IM-0373-0001.jpeg",
+      "patient_id": "N00373",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": false,
+      "confidence": 0.75,
+      "probs": [
+        0.25,
+        0.75
+      ],
+      "n_elements": 9216,
+      "payload_md5": "83cdc61e0916507f8825c88efea0a797",
+      "window_index": 0
+    },
+    {
+      "vector_id": 27,
+      "source_file": "NORMAL2-IM-0997-0001.jpeg",
+      "patient_id": "N00997",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.9648,
+        0.0352
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3be7f608c25c6ecaae7cd4686d135093",
+      "window_index": 0
+    },
+    {
+      "vector_id": 28,
+      "source_file": "NORMAL2-IM-0112-0001.jpeg",
+      "patient_id": "N00112",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.94921875,
+      "probs": [
+        0.9492,
+        0.0508
+      ],
+      "n_elements": 9216,
+      "payload_md5": "11bff204c8a7c34bcd87007c91c5c602",
+      "window_index": 0
+    },
+    {
+      "vector_id": 29,
+      "source_file": "IM-0302-0001.jpeg",
+      "patient_id": "N00302",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a1d2ec67db4ac20a9bb691cb048b4a8a",
+      "window_index": 0
+    },
+    {
+      "vector_id": 30,
+      "source_file": "NORMAL2-IM-0811-0001.jpeg",
+      "patient_id": "N00811",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "23fecbc72e6eff2fc12438f9423ed3dc",
+      "window_index": 0
+    },
+    {
+      "vector_id": 31,
+      "source_file": "NORMAL2-IM-0404-0001.jpeg",
+      "patient_id": "N00404",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "73737e1551bae4898a07bf6f9c00c452",
+      "window_index": 0
+    },
+    {
+      "vector_id": 32,
+      "source_file": "NORMAL2-IM-1175-0001.jpeg",
+      "patient_id": "N01175",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "9448ecb7ba826e3324c157bdf06787d0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 33,
+      "source_file": "NORMAL2-IM-1346-0001.jpeg",
+      "patient_id": "N01346",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a86e4ffa5fffdd7d4b5bf3d3a3813854",
+      "window_index": 0
+    },
+    {
+      "vector_id": 34,
+      "source_file": "NORMAL2-IM-0460-0001.jpeg",
+      "patient_id": "N00460",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.890625,
+      "probs": [
+        0.8906,
+        0.1094
+      ],
+      "n_elements": 9216,
+      "payload_md5": "dfc373633f3a341d2cb3b1a663773147",
+      "window_index": 0
+    },
+    {
+      "vector_id": 35,
+      "source_file": "NORMAL2-IM-1281-0001.jpeg",
+      "patient_id": "N01281",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.9727,
+        0.0273
+      ],
+      "n_elements": 9216,
+      "payload_md5": "30e7ca58f2baa2b2a5aeb24a80bf6c2a",
+      "window_index": 0
+    },
+    {
+      "vector_id": 36,
+      "source_file": "NORMAL2-IM-1045-0001.jpeg",
+      "patient_id": "N01045",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.9648,
+        0.0352
+      ],
+      "n_elements": 9216,
+      "payload_md5": "0576eff831f061206f6b67d1590a59a3",
+      "window_index": 0
+    },
+    {
+      "vector_id": 37,
+      "source_file": "NORMAL2-IM-1039-0001.jpeg",
+      "patient_id": "N01039",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9921875,
+      "probs": [
+        0.9922,
+        0.0078
+      ],
+      "n_elements": 9216,
+      "payload_md5": "b6e346f5fa2e4fbc9dbe66418b1909f5",
+      "window_index": 0
+    },
+    {
+      "vector_id": 38,
+      "source_file": "IM-0377-0001.jpeg",
+      "patient_id": "N00377",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.72265625,
+      "probs": [
+        0.7227,
+        0.2773
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d8c82e7c2dea2c44a6c86d40905ff2e9",
+      "window_index": 0
+    },
+    {
+      "vector_id": 39,
+      "source_file": "NORMAL2-IM-0353-0001.jpeg",
+      "patient_id": "N00353",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.95703125,
+      "probs": [
+        0.957,
+        0.043
+      ],
+      "n_elements": 9216,
+      "payload_md5": "9a2d3638d1ccbfa4454d34844a46d3bd",
+      "window_index": 0
+    },
+    {
+      "vector_id": 40,
+      "source_file": "NORMAL2-IM-0386-0001.jpeg",
+      "patient_id": "N00386",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a733a91bff4023732cc0ad05679da579",
+      "window_index": 0
+    },
+    {
+      "vector_id": 41,
+      "source_file": "IM-0339-0001.jpeg",
+      "patient_id": "N00339",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "9ecdd44886a117b1ac1fc4cd5766c178",
+      "window_index": 0
+    },
+    {
+      "vector_id": 42,
+      "source_file": "IM-0061-0001.jpeg",
+      "patient_id": "N00061",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.90234375,
+      "probs": [
+        0.9023,
+        0.0977
+      ],
+      "n_elements": 9216,
+      "payload_md5": "4a2b9fb541ff7e0eb7f9407be5b731d1",
+      "window_index": 0
+    },
+    {
+      "vector_id": 43,
+      "source_file": "IM-0595-0001.jpeg",
+      "patient_id": "N00595",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.9648,
+        0.0352
+      ],
+      "n_elements": 9216,
+      "payload_md5": "654fdf25e0103b5609631e303ed9c580",
+      "window_index": 0
+    },
+    {
+      "vector_id": 44,
+      "source_file": "IM-0354-0001.jpeg",
+      "patient_id": "N00354",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "9efb40a7486aae34db2328659c83f28d",
+      "window_index": 0
+    },
+    {
+      "vector_id": 45,
+      "source_file": "IM-0317-0001.jpeg",
+      "patient_id": "N00317",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "7598462791f96c439aaa69e89dbc1566",
+      "window_index": 0
+    },
+    {
+      "vector_id": 46,
+      "source_file": "IM-0189-0001.jpeg",
+      "patient_id": "N00189",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.953125,
+      "probs": [
+        0.9531,
+        0.0469
+      ],
+      "n_elements": 9216,
+      "payload_md5": "0c243775a819ed4ec9b5303fc67f894d",
+      "window_index": 0
+    },
+    {
+      "vector_id": 47,
+      "source_file": "IM-0013-0001.jpeg",
+      "patient_id": "N00013",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "cfdcc998dc3753511dcf1230454f5a28",
+      "window_index": 0
+    },
+    {
+      "vector_id": 48,
+      "source_file": "IM-0650-0001-0002.jpeg",
+      "patient_id": "N00650",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "826b08d912b442751f5e94d629521206",
+      "window_index": 0
+    },
+    {
+      "vector_id": 49,
+      "source_file": "NORMAL2-IM-0059-0001.jpeg",
+      "patient_id": "N00059",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3dcd747d88b7142c8a45e179629fba62",
+      "window_index": 0
+    },
+    {
+      "vector_id": 50,
+      "source_file": "NORMAL2-IM-0905-0001.jpeg",
+      "patient_id": "N00905",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9921875,
+      "probs": [
+        0.9922,
+        0.0078
+      ],
+      "n_elements": 9216,
+      "payload_md5": "e869402396244194b48099c5d5ba1669",
+      "window_index": 0
+    },
+    {
+      "vector_id": 51,
+      "source_file": "NORMAL2-IM-1228-0001.jpeg",
+      "patient_id": "N01228",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.9883,
+        0.0117
+      ],
+      "n_elements": 9216,
+      "payload_md5": "4150a41f2537773f1c01575f8bf96b4f",
+      "window_index": 0
+    },
+    {
+      "vector_id": 52,
+      "source_file": "NORMAL2-IM-0486-0001.jpeg",
+      "patient_id": "N00486",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.9805,
+        0.0195
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a0b79e9903b63f8c8a08637855794ddb",
+      "window_index": 0
+    },
+    {
+      "vector_id": 53,
+      "source_file": "NORMAL2-IM-0539-0001.jpeg",
+      "patient_id": "N00539",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9609375,
+      "probs": [
+        0.9609,
+        0.0391
+      ],
+      "n_elements": 9216,
+      "payload_md5": "08ae6f5da5df1e2239369bf742a11757",
+      "window_index": 0
+    },
+    {
+      "vector_id": 54,
+      "source_file": "NORMAL2-IM-0595-0001.jpeg",
+      "patient_id": "N00595",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.86328125,
+      "probs": [
+        0.8633,
+        0.1367
+      ],
+      "n_elements": 9216,
+      "payload_md5": "37b5a3e8c55b2e60fad02107ae13aba2",
+      "window_index": 0
+    },
+    {
+      "vector_id": 55,
+      "source_file": "NORMAL2-IM-1142-0001-0001.jpeg",
+      "patient_id": "N01142",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "15ec8407221b9351df6d22d432cb2856",
+      "window_index": 0
+    },
+    {
+      "vector_id": 56,
+      "source_file": "NORMAL2-IM-0301-0001.jpeg",
+      "patient_id": "N00301",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.95703125,
+      "probs": [
+        0.957,
+        0.043
+      ],
+      "n_elements": 9216,
+      "payload_md5": "fe64063ae897f886cbc7e4f403cc39a8",
+      "window_index": 0
+    },
+    {
+      "vector_id": 57,
+      "source_file": "NORMAL2-IM-1017-0001.jpeg",
+      "patient_id": "N01017",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.9844,
+        0.0156
+      ],
+      "n_elements": 9216,
+      "payload_md5": "bc484515fdfcfcaaba8edceaf886bc73",
+      "window_index": 0
+    },
+    {
+      "vector_id": 58,
+      "source_file": "NORMAL2-IM-0339-0001.jpeg",
+      "patient_id": "N00339",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "6298477f79fbcf65703c9208a7681eac",
+      "window_index": 0
+    },
+    {
+      "vector_id": 59,
+      "source_file": "IM-0663-0001.jpeg",
+      "patient_id": "N00663",
+      "expected_class": "Normal",
+      "expected_label": 0,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": true,
+      "confidence": 0.95703125,
+      "probs": [
+        0.957,
+        0.043
+      ],
+      "n_elements": 9216,
+      "payload_md5": "79c86df0a1def4ca6b829922cc1f4c2c",
+      "window_index": 0
+    },
+    {
+      "vector_id": 60,
+      "source_file": "person66_bacteria_323.jpeg",
+      "patient_id": "P00066",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ad5629dc9e12f9932b5b254e9e7be056",
+      "window_index": 0
+    },
+    {
+      "vector_id": 61,
+      "source_file": "person1186_bacteria_3134.jpeg",
+      "patient_id": "P01186",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d17e6e774eab14ba7e4ea2e2e3ec9f71",
+      "window_index": 0
+    },
+    {
+      "vector_id": 62,
+      "source_file": "person133_bacteria_633.jpeg",
+      "patient_id": "P00133",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.953125,
+      "probs": [
+        0.0469,
+        0.9531
+      ],
+      "n_elements": 9216,
+      "payload_md5": "5df4de6b3c246f842aac830a12419e55",
+      "window_index": 0
+    },
+    {
+      "vector_id": 63,
+      "source_file": "person58_bacteria_276.jpeg",
+      "patient_id": "P00058",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.0117,
+        0.9883
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a3c0c7062cb083ba69e7d8c1dd1f94ac",
+      "window_index": 0
+    },
+    {
+      "vector_id": 64,
+      "source_file": "person1541_virus_2681.jpeg",
+      "patient_id": "P01541",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.0195,
+        0.9805
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d7ee34e5ff7058a18f0c8b2dd24b783e",
+      "window_index": 0
+    },
+    {
+      "vector_id": 65,
+      "source_file": "person1649_bacteria_4378.jpeg",
+      "patient_id": "P01649",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9609375,
+      "probs": [
+        0.0391,
+        0.9609
+      ],
+      "n_elements": 9216,
+      "payload_md5": "f7e0610bf40ec452dc2cd561b93afda3",
+      "window_index": 0
+    },
+    {
+      "vector_id": 66,
+      "source_file": "person1235_virus_2095.jpeg",
+      "patient_id": "P01235",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.0195,
+        0.9805
+      ],
+      "n_elements": 9216,
+      "payload_md5": "64313bb8c1808024981646c0f959aac9",
+      "window_index": 0
+    },
+    {
+      "vector_id": 67,
+      "source_file": "person1555_bacteria_4059.jpeg",
+      "patient_id": "P01555",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.0352,
+        0.9648
+      ],
+      "n_elements": 9216,
+      "payload_md5": "94770379ba1ed97d91c2e7a8f9e7a42a",
+      "window_index": 0
+    },
+    {
+      "vector_id": 68,
+      "source_file": "person100_bacteria_480.jpeg",
+      "patient_id": "P00100",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d13092134e7627052af71585737dac01",
+      "window_index": 0
+    },
+    {
+      "vector_id": 69,
+      "source_file": "person500_virus_1009.jpeg",
+      "patient_id": "P00500",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.0117,
+        0.9883
+      ],
+      "n_elements": 9216,
+      "payload_md5": "8089bf808ec6fd0efcc0a84eff530be0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 70,
+      "source_file": "person1023_bacteria_2954.jpeg",
+      "patient_id": "P01023",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": false,
+      "confidence": 0.9765625,
+      "probs": [
+        0.9766,
+        0.0234
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a1965db2d5ca855da5567312704ed832",
+      "window_index": 0
+    },
+    {
+      "vector_id": 71,
+      "source_file": "person1147_virus_1917.jpeg",
+      "patient_id": "P01147",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.0352,
+        0.9648
+      ],
+      "n_elements": 9216,
+      "payload_md5": "5270a70399d573b0bd9d2cf63a348201",
+      "window_index": 0
+    },
+    {
+      "vector_id": 72,
+      "source_file": "person622_virus_1196.jpeg",
+      "patient_id": "P00622",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "8614c340f6c1ea0b5c7ff5195b3005e0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 73,
+      "source_file": "person158_bacteria_743.jpeg",
+      "patient_id": "P00158",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3e5629af956718245233bcc720cb13c7",
+      "window_index": 0
+    },
+    {
+      "vector_id": 74,
+      "source_file": "person333_virus_688.jpeg",
+      "patient_id": "P00333",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.94140625,
+      "probs": [
+        0.0586,
+        0.9414
+      ],
+      "n_elements": 9216,
+      "payload_md5": "f5bfc1bfa5f0876e956eba177e950347",
+      "window_index": 0
+    },
+    {
+      "vector_id": 75,
+      "source_file": "person761_virus_1389.jpeg",
+      "patient_id": "P00761",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96875,
+      "probs": [
+        0.0312,
+        0.9688
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a2fa38100c1602b410a9232f0e7b7613",
+      "window_index": 0
+    },
+    {
+      "vector_id": 76,
+      "source_file": "person326_bacteria_1504.jpeg",
+      "patient_id": "P00326",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 0,
+      "offline_int8_pred_class": "Normal",
+      "match": false,
+      "confidence": 0.5703125,
+      "probs": [
+        0.5703,
+        0.4297
+      ],
+      "n_elements": 9216,
+      "payload_md5": "2c2d45b6b00c1bc627d46eba39a32dca",
+      "window_index": 0
+    },
+    {
+      "vector_id": 77,
+      "source_file": "person62_bacteria_302.jpeg",
+      "patient_id": "P00062",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.95703125,
+      "probs": [
+        0.043,
+        0.957
+      ],
+      "n_elements": 9216,
+      "payload_md5": "65f2b7de4cda9087b0afd937a1417e35",
+      "window_index": 0
+    },
+    {
+      "vector_id": 78,
+      "source_file": "person1281_virus_2204.jpeg",
+      "patient_id": "P01281",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9609375,
+      "probs": [
+        0.0391,
+        0.9609
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a3e9dd9ffafecf82a863796514b30b5c",
+      "window_index": 0
+    },
+    {
+      "vector_id": 79,
+      "source_file": "person590_virus_1138.jpeg",
+      "patient_id": "P00590",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ba73a51cc92e264f8ee1c0d022a60738",
+      "window_index": 0
+    },
+    {
+      "vector_id": 80,
+      "source_file": "person294_bacteria_1385.jpeg",
+      "patient_id": "P00294",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "1528d2a584411f1d8f30756b6844a952",
+      "window_index": 0
+    },
+    {
+      "vector_id": 81,
+      "source_file": "person1019_virus_1708.jpeg",
+      "patient_id": "P01019",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.0156,
+        0.9844
+      ],
+      "n_elements": 9216,
+      "payload_md5": "6e6c82f22063f957ad1235256d297e98",
+      "window_index": 0
+    },
+    {
+      "vector_id": 82,
+      "source_file": "person401_virus_798.jpeg",
+      "patient_id": "P00401",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "8d6ee7dac3b03ff43611120e861c711e",
+      "window_index": 0
+    },
+    {
+      "vector_id": 83,
+      "source_file": "person294_bacteria_1380.jpeg",
+      "patient_id": "P00294",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9453125,
+      "probs": [
+        0.0547,
+        0.9453
+      ],
+      "n_elements": 9216,
+      "payload_md5": "6192a39fcc11c370fc0b95f8616aad63",
+      "window_index": 0
+    },
+    {
+      "vector_id": 84,
+      "source_file": "person1085_virus_1797.jpeg",
+      "patient_id": "P01085",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "443420711792cd101b907d904d1ab54e",
+      "window_index": 0
+    },
+    {
+      "vector_id": 85,
+      "source_file": "person924_bacteria_2849.jpeg",
+      "patient_id": "P00924",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.91015625,
+      "probs": [
+        0.0898,
+        0.9102
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ab3d9c1c03599f661a4d658deec31318",
+      "window_index": 0
+    },
+    {
+      "vector_id": 86,
+      "source_file": "person1867_bacteria_4741.jpeg",
+      "patient_id": "P01867",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96875,
+      "probs": [
+        0.0312,
+        0.9688
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3bf7b84031766775fc4e8e5d52d1fa19",
+      "window_index": 0
+    },
+    {
+      "vector_id": 87,
+      "source_file": "person409_virus_820.jpeg",
+      "patient_id": "P00409",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d55009378a2041cdd8d9358455c7b9ac",
+      "window_index": 0
+    },
+    {
+      "vector_id": 88,
+      "source_file": "person1949_bacteria_4880.jpeg",
+      "patient_id": "P01949",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "1a4d26688ca191e868f534171654acca",
+      "window_index": 0
+    },
+    {
+      "vector_id": 89,
+      "source_file": "person30_bacteria_153.jpeg",
+      "patient_id": "P00030",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9609375,
+      "probs": [
+        0.0391,
+        0.9609
+      ],
+      "n_elements": 9216,
+      "payload_md5": "8d865b7c830a2f54b6b9fde6bb967bb0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 90,
+      "source_file": "person409_bacteria_1824.jpeg",
+      "patient_id": "P00409",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.92578125,
+      "probs": [
+        0.0742,
+        0.9258
+      ],
+      "n_elements": 9216,
+      "payload_md5": "4da65572587ba6c4e1735e2d910b47e0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 91,
+      "source_file": "person470_bacteria_2002.jpeg",
+      "patient_id": "P00470",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.88671875,
+      "probs": [
+        0.1133,
+        0.8867
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3e2c2cfb171b5ba3d3d94f3f9f078004",
+      "window_index": 0
+    },
+    {
+      "vector_id": 92,
+      "source_file": "person1320_bacteria_3340.jpeg",
+      "patient_id": "P01320",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "c5545ff99fb82393c5abc0cf94e9f9d1",
+      "window_index": 0
+    },
+    {
+      "vector_id": 93,
+      "source_file": "person1204_bacteria_3156.jpeg",
+      "patient_id": "P01204",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.93359375,
+      "probs": [
+        0.0664,
+        0.9336
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ff802c2cea2d65b1b929f5e845a1379b",
+      "window_index": 0
+    },
+    {
+      "vector_id": 94,
+      "source_file": "person1557_bacteria_4063.jpeg",
+      "patient_id": "P01557",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.0117,
+        0.9883
+      ],
+      "n_elements": 9216,
+      "payload_md5": "360c55148f3cc06746a8dc2d3488b1f4",
+      "window_index": 0
+    },
+    {
+      "vector_id": 95,
+      "source_file": "person1468_bacteria_3822.jpeg",
+      "patient_id": "P01468",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96875,
+      "probs": [
+        0.0312,
+        0.9688
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ad6a2e24f5e844c4435e34d8730eaa1e",
+      "window_index": 0
+    },
+    {
+      "vector_id": 96,
+      "source_file": "person579_bacteria_2384.jpeg",
+      "patient_id": "P00579",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.94921875,
+      "probs": [
+        0.0508,
+        0.9492
+      ],
+      "n_elements": 9216,
+      "payload_md5": "7db2318df76daea33d4612b429b84ce0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 97,
+      "source_file": "person1127_virus_1854.jpeg",
+      "patient_id": "P01127",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "287b89933251e2480277e4b12d733ef8",
+      "window_index": 0
+    },
+    {
+      "vector_id": 98,
+      "source_file": "person120_bacteria_572.jpeg",
+      "patient_id": "P00120",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9609375,
+      "probs": [
+        0.0391,
+        0.9609
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d3ae3d99797bc8dbcb44e188466e714b",
+      "window_index": 0
+    },
+    {
+      "vector_id": 99,
+      "source_file": "person1147_virus_1920.jpeg",
+      "patient_id": "P01147",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.95703125,
+      "probs": [
+        0.043,
+        0.957
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3eb264b84944ee7cb92215cdc80a44a4",
+      "window_index": 0
+    },
+    {
+      "vector_id": 100,
+      "source_file": "person311_bacteria_1452.jpeg",
+      "patient_id": "P00311",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9609375,
+      "probs": [
+        0.0391,
+        0.9609
+      ],
+      "n_elements": 9216,
+      "payload_md5": "af5773ed38aa5815c2378684ba1e5dba",
+      "window_index": 0
+    },
+    {
+      "vector_id": 101,
+      "source_file": "person294_bacteria_1381.jpeg",
+      "patient_id": "P00294",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.0195,
+        0.9805
+      ],
+      "n_elements": 9216,
+      "payload_md5": "be0b16af4af128e31abdb3be1bbc713f",
+      "window_index": 0
+    },
+    {
+      "vector_id": 102,
+      "source_file": "person759_virus_1387.jpeg",
+      "patient_id": "P00759",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96875,
+      "probs": [
+        0.0312,
+        0.9688
+      ],
+      "n_elements": 9216,
+      "payload_md5": "f5096aeaab6123e2796c7442355af95b",
+      "window_index": 0
+    },
+    {
+      "vector_id": 103,
+      "source_file": "person1469_bacteria_3824.jpeg",
+      "patient_id": "P01469",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.94921875,
+      "probs": [
+        0.0508,
+        0.9492
+      ],
+      "n_elements": 9216,
+      "payload_md5": "8a73e99c4516ef6c07310491f0b4fbc0",
+      "window_index": 0
+    },
+    {
+      "vector_id": 104,
+      "source_file": "person569_bacteria_2360.jpeg",
+      "patient_id": "P00569",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "1051710a7300f86957fbe9ec7ab7e162",
+      "window_index": 0
+    },
+    {
+      "vector_id": 105,
+      "source_file": "person1325_bacteria_3366.jpeg",
+      "patient_id": "P01325",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.0117,
+        0.9883
+      ],
+      "n_elements": 9216,
+      "payload_md5": "a404d43e8ec0b1e86275d5867afe3969",
+      "window_index": 0
+    },
+    {
+      "vector_id": 106,
+      "source_file": "person647_virus_1228.jpeg",
+      "patient_id": "P00647",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98046875,
+      "probs": [
+        0.0195,
+        0.9805
+      ],
+      "n_elements": 9216,
+      "payload_md5": "021760268b55e3bc037d28af18545af4",
+      "window_index": 0
+    },
+    {
+      "vector_id": 107,
+      "source_file": "person964_bacteria_2889.jpeg",
+      "patient_id": "P00964",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9921875,
+      "probs": [
+        0.0078,
+        0.9922
+      ],
+      "n_elements": 9216,
+      "payload_md5": "7d20f092fb4ce9502ed30fcc202b10db",
+      "window_index": 0
+    },
+    {
+      "vector_id": 108,
+      "source_file": "person1346_bacteria_3430.jpeg",
+      "patient_id": "P01346",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.953125,
+      "probs": [
+        0.0469,
+        0.9531
+      ],
+      "n_elements": 9216,
+      "payload_md5": "5c9e9afce9219d7a8baa06ea080c05f3",
+      "window_index": 0
+    },
+    {
+      "vector_id": 109,
+      "source_file": "person749_virus_1374.jpeg",
+      "patient_id": "P00749",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9765625,
+      "probs": [
+        0.0234,
+        0.9766
+      ],
+      "n_elements": 9216,
+      "payload_md5": "2a805eccc3e2e1f5c7bdc702eb90b7c6",
+      "window_index": 0
+    },
+    {
+      "vector_id": 110,
+      "source_file": "person1548_bacteria_4048.jpeg",
+      "patient_id": "P01548",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.984375,
+      "probs": [
+        0.0156,
+        0.9844
+      ],
+      "n_elements": 9216,
+      "payload_md5": "82fc114b8ee07be02d731828efd86b9b",
+      "window_index": 0
+    },
+    {
+      "vector_id": 111,
+      "source_file": "person110_virus_205.jpeg",
+      "patient_id": "P00110",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.98828125,
+      "probs": [
+        0.0117,
+        0.9883
+      ],
+      "n_elements": 9216,
+      "payload_md5": "fb0e2855faa5ac33caad1de019120c5a",
+      "window_index": 0
+    },
+    {
+      "vector_id": 112,
+      "source_file": "person956_bacteria_2881.jpeg",
+      "patient_id": "P00956",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9921875,
+      "probs": [
+        0.0078,
+        0.9922
+      ],
+      "n_elements": 9216,
+      "payload_md5": "2372591d255d75673272a5625bd3262d",
+      "window_index": 0
+    },
+    {
+      "vector_id": 113,
+      "source_file": "person1344_virus_2319.jpeg",
+      "patient_id": "P01344",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.97265625,
+      "probs": [
+        0.0273,
+        0.9727
+      ],
+      "n_elements": 9216,
+      "payload_md5": "ffc3dd0025f8d42b2b083fc459f288d1",
+      "window_index": 0
+    },
+    {
+      "vector_id": 114,
+      "source_file": "person732_virus_1353.jpeg",
+      "patient_id": "P00732",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.0352,
+        0.9648
+      ],
+      "n_elements": 9216,
+      "payload_md5": "3a9d3f5b2574a555a8e89f04ed5dae88",
+      "window_index": 0
+    },
+    {
+      "vector_id": 115,
+      "source_file": "person12_bacteria_48.jpeg",
+      "patient_id": "P00012",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.92578125,
+      "probs": [
+        0.0742,
+        0.9258
+      ],
+      "n_elements": 9216,
+      "payload_md5": "f0887d1b75c19d7b61a3980f2c9c7c81",
+      "window_index": 0
+    },
+    {
+      "vector_id": 116,
+      "source_file": "person569_bacteria_2364.jpeg",
+      "patient_id": "P00569",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.96484375,
+      "probs": [
+        0.0352,
+        0.9648
+      ],
+      "n_elements": 9216,
+      "payload_md5": "d3f943e94dd6c0f874c32544520f8978",
+      "window_index": 0
+    },
+    {
+      "vector_id": 117,
+      "source_file": "person1576_bacteria_4124.jpeg",
+      "patient_id": "P01576",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.9921875,
+      "probs": [
+        0.0078,
+        0.9922
+      ],
+      "n_elements": 9216,
+      "payload_md5": "0827b6e91868788dee1604e520ef0d8d",
+      "window_index": 0
+    },
+    {
+      "vector_id": 118,
+      "source_file": "person100_bacteria_475.jpeg",
+      "patient_id": "P00100",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.71484375,
+      "probs": [
+        0.2852,
+        0.7148
+      ],
+      "n_elements": 9216,
+      "payload_md5": "69a7b2f1efc2a7949c9b734c524f5da2",
+      "window_index": 0
+    },
+    {
+      "vector_id": 119,
+      "source_file": "person1700_bacteria_4500.jpeg",
+      "patient_id": "P01700",
+      "expected_class": "Pneumonia",
+      "expected_label": 1,
+      "offline_int8_pred": 1,
+      "offline_int8_pred_class": "Pneumonia",
+      "match": true,
+      "confidence": 0.89453125,
+      "probs": [
+        0.1055,
+        0.8945
+      ],
+      "n_elements": 9216,
+      "payload_md5": "84944545c679b918ea2bcec13bb3c247",
+      "window_index": 0
+    }
+  ]
+}

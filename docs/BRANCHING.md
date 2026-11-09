@@ -68,7 +68,8 @@ Fill in the template, and ask one teammate to approve it.
 2. **Always merge with "Create a merge commit", never "Squash".** Squashing hides who
    did what, and the course grades each person's commit history.
 3. **Never commit datasets or trained model weights.** `.gitignore` already blocks them.
-   Data manifests and small results files *are* committed.
+   The exceptions are data manifests, small results files, the four v1 reference
+   models in `models/` and the small public test set in `Test_Data/`.
 
 ---
 

@@ -1,0 +1,38 @@
+{
+  "float": {
+    "model": "chiron_pulmo_v1_float.keras",
+    "format": "float32 Keras",
+    "file_size_bytes": 5456130,
+    "file_size_kb": 5328.251953125,
+    "file_size_mb": 5.203371047973633,
+    "num_inferences": 100,
+    "total_time_s": 7.733340250008041,
+    "mean_time_ms": 77.33340250008041,
+    "mean_time_s": 0.07733340250008042,
+    "throughput_fps": 12.931022917282867,
+    "peak_memory_bytes": 291721,
+    "peak_memory_kb": 284.8837890625,
+    "peak_memory_mb": 0.27820682525634766
+  },
+  "int8": {
+    "model": "chiron_pulmo_v1_int8.tflite",
+    "format": "int8 TFLite",
+    "file_size_bytes": 625080,
+    "file_size_kb": 610.4296875,
+    "file_size_mb": 0.5961227416992188,
+    "num_inferences": 100,
+    "total_time_s": 0.019198708003386855,
+    "mean_time_ms": 0.19198708003386855,
+    "mean_time_s": 0.00019198708003386855,
+    "throughput_fps": 5208.6838334308195,
+    "peak_memory_bytes": 368,
+    "peak_memory_kb": 0.359375,
+    "peak_memory_mb": 0.0003509521484375
+  },
+  "size_reduction_ratio": 8.72869072758687,
+  "speedup_ratio": 402.80524338636735,
+  "meets_edge_budget": {
+    "size_under_1mb": true,
+    "time_under_1s": true
+  }
+}

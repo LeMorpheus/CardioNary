@@ -1,0 +1,93 @@
+path,filename,filter_code,patient_id,diagnosis_raw,diagnosis,comorbid,sound_type,chest_zone,age,sex,sample_rate,n_samples,duration_s,pcm_md5,excluded_reason,in_task_4class,fold,label
+"data/raw/kauh/audio/DP1_Asthma,I E W,P L L,70,M.wav","DP1_Asthma,I E W,P L L,70,M.wav",D,P001,Asthma,Asthma,False,I E W,P L L,70,M,4000,120000,30.0,e1ef0507697547171d26abe414b5bb95,,True,0,1
+"data/raw/kauh/audio/DP2_Asthma,E W,P L L R,52,F.wav","DP2_Asthma,E W,P L L R,52,F.wav",D,P002,Asthma,Asthma,False,E W,P L L R,52,F,4000,120000,30.0,8887f56f39ed99e39eb1cf6da9bfceba,,True,2,1
+"data/raw/kauh/audio/DP3_Asthma,I E W,P L L R,50,F.wav","DP3_Asthma,I E W,P L L R,50,F.wav",D,P003,Asthma,Asthma,False,I E W,P L L R,50,F,4000,120000,30.0,2d37e1b06214c6dd8e405d4bd36fd71b,,True,0,1
+"data/raw/kauh/audio/DP9_Asthma,E W,P R L ,59,M.wav","DP9_Asthma,E W,P R L ,59,M.wav",D,P009,Asthma,Asthma,False,E W,P R L,59,M,4000,61376,15.344,e814f07dbe6fc7f6848c108f248a5996,,True,1,1
+"data/raw/kauh/audio/DP10_Asthma,E W,P R U,59,M.wav","DP10_Asthma,E W,P R U,59,M.wav",D,P010,Asthma,Asthma,False,E W,P R U,59,M,4000,23744,5.936,4f6fdc0d49ea3e26e38213a11a0458df,,True,0,1
+"data/raw/kauh/audio/DP11_Heart Failure,C,P L L,53,M.wav","DP11_Heart Failure,C,P L L,53,M.wav",D,P011,Heart Failure,Heart Failure,False,C,P L L,53,M,4000,98496,24.624,0edb81c543fd066beb8885bda3c6109a,,True,1,2
+"data/raw/kauh/audio/DP12_Asthma,E W,P L L,50,F.wav","DP12_Asthma,E W,P L L,50,F.wav",D,P012,Asthma,Asthma,False,E W,P L L,50,F,4000,50112,12.528,2b3ae90c81fbed7b7e80f222829f608f,,True,1,1
+"data/raw/kauh/audio/DP13_Heart Failure,C,P L L,55,M.wav","DP13_Heart Failure,C,P L L,55,M.wav",D,P013,Heart Failure,Heart Failure,False,C,P L L,55,M,4000,58304,14.576,2cbf2f1b75e70dea2aa2108370b75207,,True,0,2
+"data/raw/kauh/audio/DP14_Heart Failure,C,A R M,54,M.wav","DP14_Heart Failure,C,A R M,54,M.wav",D,P014,Heart Failure,Heart Failure,False,C,A R M,54,M,4000,51136,12.784,699b94b1d083371bf912df50a824f875,,True,3,2
+"data/raw/kauh/audio/DP15_Asthma,E W,P R U,49,F.wav","DP15_Asthma,E W,P R U,49,F.wav",D,P015,Asthma,Asthma,False,E W,P R U,49,F,4000,41408,10.352,a62a09502eab328b9bdb3b970029e4fe,,True,1,1
+"data/raw/kauh/audio/DP16_heart failure,C,P R U,56,M.wav","DP16_heart failure,C,P R U,56,M.wav",D,P016,heart failure,Heart Failure,False,C,P R U,56,M,4000,52672,13.168,56338b30741840244a872da7f5c338a1,,True,4,2
+"data/raw/kauh/audio/DP17_COPD,E W,A R M,57,M.wav","DP17_COPD,E W,A R M,57,M.wav",D,P017,COPD,COPD,False,E W,A R M,57,M,4000,62144,15.536,cfc3028c5434aab4612c701b11898421,,True,1,3
+"data/raw/kauh/audio/DP19_heart failure,C,P R U,70,F.wav","DP19_heart failure,C,P R U,70,F.wav",D,P019,heart failure,Heart Failure,False,C,P R U,70,F,4000,95424,23.856,21523cc7801e1213c27798d4faac041e,,True,4,2
+"data/raw/kauh/audio/DP24_heart failure,Crep,P R L ,76,F.wav","DP24_heart failure,Crep,P R L ,76,F.wav",D,P024,heart failure,Heart Failure,False,Crep,P R L,76,F,4000,38336,9.584,8635c124cf97d54413bf2f17f969f3fe,,True,4,2
+"data/raw/kauh/audio/DP25_copd,E W,P L L,76,M.wav","DP25_copd,E W,P L L,76,M.wav",D,P025,copd,COPD,False,E W,P L L,76,M,4000,45760,11.44,f04ee59d0b861bec772a8797ff4abea2,,True,2,3
+"data/raw/kauh/audio/DP27_asthma,E W,P R M,53,F.wav","DP27_asthma,E W,P R M,53,F.wav",D,P027,asthma,Asthma,False,E W,P R M,53,F,4000,55744,13.936,16d15362472580c3a53cdea6ebce0b47,,True,2,1
+"data/raw/kauh/audio/DP29_heart failure,Crep,P L L,57,M.wav","DP29_heart failure,Crep,P L L,57,M.wav",D,P029,heart failure,Heart Failure,False,Crep,P L L,57,M,4000,33472,8.368,9793edad186d9f63f715cf4568b872b9,,True,1,2
+"data/raw/kauh/audio/DP30_N,N,P R M,18,F.wav","DP30_N,N,P R M,18,F.wav",D,P030,N,Normal,False,N,P R M,18,F,4000,48576,12.144,0dc5998acbf2bda7553dc05ce7ecdf1d,,True,3,0
+"data/raw/kauh/audio/DP31_N,N,P L M,27,F.wav","DP31_N,N,P L M,27,F.wav",D,P031,N,Normal,False,N,P L M,27,F,4000,80320,20.08,cefd72577053e5b01523d3599f3d7552,,True,2,0
+"data/raw/kauh/audio/DP32_N,N,A R L,30,M.wav","DP32_N,N,A R L,30,M.wav",D,P032,N,Normal,False,N,A R L,30,M,4000,73408,18.352,a29fe4a78221c3d429cfeef965649fa7,,True,1,0
+"data/raw/kauh/audio/DP33_Asthma,E W,P R M,43,F.wav","DP33_Asthma,E W,P R M,43,F.wav",D,P033,Asthma,Asthma,False,E W,P R M,43,F,4000,70272,17.568,2ca14c4f625a6c9d1479290ef56acf75,,True,0,1
+"data/raw/kauh/audio/DP34_heart failure,Crep,P R M,78,F.wav","DP34_heart failure,Crep,P R M,78,F.wav",D,P034,heart failure,Heart Failure,False,Crep,P R M,78,F,4000,76736,19.184,5cca79a851371986dff09049d940af27,,True,0,2
+"data/raw/kauh/audio/DP35_Asthma,E W,A R L,38,M.wav","DP35_Asthma,E W,A R L,38,M.wav",D,P035,Asthma,Asthma,False,E W,A R L,38,M,4000,63936,15.984,399121b4c59e532850e6a358317feef6,,True,3,1
+"data/raw/kauh/audio/DP38_Asthma,E W,P R M,38,M.wav","DP38_Asthma,E W,P R M,38,M.wav",D,P038,Asthma,Asthma,False,E W,P R M,38,M,4000,63936,15.984,382cd9955dcf782c75f5cc1b95920b78,,True,2,1
+"data/raw/kauh/audio/DP39_heart failure,Crep,P R L ,67,M.wav","DP39_heart failure,Crep,P R L ,67,M.wav",D,P039,heart failure,Heart Failure,False,Crep,P R L,67,M,4000,89024,22.256,e200bec28261370e458536e7f98989bc,,True,3,2
+"data/raw/kauh/audio/DP40_heart failure,Crep,A R M,26,M.wav","DP40_heart failure,Crep,A R M,26,M.wav",D,P040,heart failure,Heart Failure,False,Crep,A R M,26,M,4000,53440,13.36,4e1909e842232e2adb0c0a1ac41d3d2d,,True,3,2
+"data/raw/kauh/audio/DP42_heart failure,Crep,P L L,56,M.wav","DP42_heart failure,Crep,P L L,56,M.wav",D,P042,heart failure,Heart Failure,False,Crep,P L L,56,M,4000,50624,12.656,351f1604980ff4b3af9976d76bd4990f,,True,1,2
+"data/raw/kauh/audio/DP43_asthma,E W,P L M,15,M.wav","DP43_asthma,E W,P L M,15,M.wav",D,P043,asthma,Asthma,False,E W,P L M,15,M,4000,59328,14.832,11006619b36319ec78254ce398e84d54,,True,3,1
+"data/raw/kauh/audio/DP44_asthma,E W,P R U,40,M.wav","DP44_asthma,E W,P R U,40,M.wav",D,P044,asthma,Asthma,False,E W,P R U,40,M,4000,57536,14.384,9607198b1125dc4f51466428af997340,,True,3,1
+"data/raw/kauh/audio/DP45_heart failure,Crep,P R L ,30,M.wav","DP45_heart failure,Crep,P R L ,30,M.wav",D,P045,heart failure,Heart Failure,False,Crep,P R L,30,M,4000,39104,9.776,922b98d7fda2956185b5b55fa76102b1,,True,0,2
+"data/raw/kauh/audio/DP46_asthma,E W,P L U,41,F.wav","DP46_asthma,E W,P L U,41,F.wav",D,P046,asthma,Asthma,False,E W,P L U,41,F,4000,54208,13.552,6c09ff8be7c06267f928c973cd75820f,,True,2,1
+"data/raw/kauh/audio/DP47_asthma,E W,P L M,60,M.wav","DP47_asthma,E W,P L M,60,M.wav",D,P047,asthma,Asthma,False,E W,P L M,60,M,4000,67776,16.944,57acc3d9ef96e060e2f7edceda87109f,,True,0,1
+"data/raw/kauh/audio/DP48_N,N,P L U,31,M.wav","DP48_N,N,P L U,31,M.wav",D,P048,N,Normal,False,N,P L U,31,M,4000,61888,15.472,9409db932c95d8de018a7a7a12636cb8,,True,1,0
+"data/raw/kauh/audio/DP49_N,N,P R M,21,M.wav","DP49_N,N,P R M,21,M.wav",D,P049,N,Normal,False,N,P R M,21,M,4000,53440,13.36,7a8a1412dee19cfeb0092676f008f3ec,,True,4,0
+"data/raw/kauh/audio/DP50_N,N,P R L ,27,M.wav","DP50_N,N,P R L ,27,M.wav",D,P050,N,Normal,False,N,P R L,27,M,4000,77760,19.44,ababfb3caa7861ab18bb8852376a01aa,,True,3,0
+"data/raw/kauh/audio/DP51_N,N,P L M,30,M.wav","DP51_N,N,P L M,30,M.wav",D,P051,N,Normal,False,N,P L M,30,M,4000,66752,16.688,9ea3b8812aff8b7c2053a3ea64e3fd8d,,True,1,0
+"data/raw/kauh/audio/DP53_asthma,E W,P R M,72,F.wav","DP53_asthma,E W,P R M,72,F.wav",D,P053,asthma,Asthma,False,E W,P R M,72,F,4000,34752,8.688,a4750c6288a300ea8ba0554f3bcb214d,,True,2,1
+"data/raw/kauh/audio/DP54_heart failure,Crep,P R L ,73,F.wav","DP54_heart failure,Crep,P R L ,73,F.wav",D,P054,heart failure,Heart Failure,False,Crep,P R L,73,F,4000,56256,14.064,6dc5eba9ab580c2120cf9914c152c700,,True,1,2
+"data/raw/kauh/audio/DP55_asthma,E W,P R U,72,F.wav","DP55_asthma,E W,P R U,72,F.wav",D,P055,asthma,Asthma,False,E W,P R U,72,F,4000,36544,9.136,214f0e341257d6c79695bac9c44e822b,,True,3,1
+"data/raw/kauh/audio/DP56_asthma,E W,P R M,56,F.wav","DP56_asthma,E W,P R M,56,F.wav",D,P056,asthma,Asthma,False,E W,P R M,56,F,4000,47808,11.952,b716375664622e3afea6c54cfb007951,,True,0,1
+"data/raw/kauh/audio/DP57_COPD,E W,P R L ,42,M.wav","DP57_COPD,E W,P R L ,42,M.wav",D,P057,COPD,COPD,False,E W,P R L,42,M,4000,63936,15.984,4f730ae2dc3491f71744c5dda2547d5f,,True,4,3
+"data/raw/kauh/audio/DP58_asthma,E W,P L M,40,M.wav","DP58_asthma,E W,P L M,40,M.wav",D,P058,asthma,Asthma,False,E W,P L M,40,M,4000,94144,23.536,04a6a02c6e0958a33c96c1a1986ee7e4,,True,0,1
+"data/raw/kauh/audio/DP59_heart failure,Crep,P R L ,83,F.wav","DP59_heart failure,Crep,P R L ,83,F.wav",D,P059,heart failure,Heart Failure,False,Crep,P R L,83,F,4000,74944,18.736,cc4069a798c3582f785c6a794f9f8c46,,True,2,2
+"data/raw/kauh/audio/DP60_heart failure,Crep,P L L,83,F.wav","DP60_heart failure,Crep,P L L,83,F.wav",D,P060,heart failure,Heart Failure,False,Crep,P L L,83,F,4000,53440,13.36,a2f99d1cc964684d58f001c1142e58d6,,True,3,2
+"data/raw/kauh/audio/DP61_COPD,E W,P R L ,53,M.wav","DP61_COPD,E W,P R L ,53,M.wav",D,P061,COPD,COPD,False,E W,P R L,53,M,4000,61888,15.472,6c62dd9ea9390c41da40c7437d25c7b7,,True,0,3
+"data/raw/kauh/audio/DP62_COPD,E W,P L M,53,M.wav","DP62_COPD,E W,P L M,53,M.wav",D,P062,COPD,COPD,False,E W,P L M,53,M,4000,120000,30.0,8cce207f98dab50dabfdecb93293af30,,True,3,3
+"data/raw/kauh/audio/DP63_COPD,E W,P R L ,58,F.wav","DP63_COPD,E W,P R L ,58,F.wav",D,P063,COPD,COPD,False,E W,P R L,58,F,4000,69312,17.328,f44c4a04bef711613508e1e95260c714,,True,4,3
+"data/raw/kauh/audio/DP64_asthma,E W,P L U,60,M.wav","DP64_asthma,E W,P L U,60,M.wav",D,P064,asthma,Asthma,False,E W,P L U,60,M,4000,92352,23.088,06b1ef6c565f0d092234f8d67a09ddd6,,True,1,1
+"data/raw/kauh/audio/DP65_asthma,E W,P R L ,60,F.wav","DP65_asthma,E W,P R L ,60,F.wav",D,P065,asthma,Asthma,False,E W,P R L,60,F,4000,99776,24.944,9ab007534c6680c7e78783bece5331bc,,True,4,1
+"data/raw/kauh/audio/DP66_heart failure,Crep,P R L ,43,M.wav","DP66_heart failure,Crep,P R L ,43,M.wav",D,P066,heart failure,Heart Failure,False,Crep,P R L,43,M,4000,62144,15.536,e6a6d0c5205290798ce78c329b9f18a7,,True,2,2
+"data/raw/kauh/audio/DP67_heart failure,Crep,P R L ,24,F.wav","DP67_heart failure,Crep,P R L ,24,F.wav",D,P067,heart failure,Heart Failure,False,Crep,P R L,24,F,4000,75456,18.864,013321df3f553ee082499770be2a3ec6,,True,2,2
+"data/raw/kauh/audio/DP68_asthma,E W,P R L ,21,F.wav","DP68_asthma,E W,P R L ,21,F.wav",D,P068,asthma,Asthma,False,E W,P R L,21,F,4000,79552,19.888,c3d7a6a3902a164ddf71fb3504ce4446,,True,3,1
+"data/raw/kauh/audio/DP70_N,N,P L U,52,F.wav","DP70_N,N,P L U,52,F.wav",D,P070,N,Normal,False,N,P L U,52,F,4000,54976,13.744,64de08ba15e75c26f1bb02a82ff85c1e,,True,0,0
+"data/raw/kauh/audio/DP71_N,N,P R U,36,M.wav","DP71_N,N,P R U,36,M.wav",D,P071,N,Normal,False,N,P R U,36,M,4000,57536,14.384,6614dfac7242a91f6296bf1b64bef03e,,True,0,0
+"data/raw/kauh/audio/DP72_N,N,P R U,24,F.wav","DP72_N,N,P R U,24,F.wav",D,P072,N,Normal,False,N,P R U,24,F,4000,96960,24.24,ab8369c3a1e7d31a54f4026a1c9f6010,,True,2,0
+"data/raw/kauh/audio/DP73_N,N,P L L,32,M.wav","DP73_N,N,P L L,32,M.wav",D,P073,N,Normal,False,N,P L L,32,M,4000,78272,19.568,597c2073051452a84a84dce09295b632,,True,4,0
+"data/raw/kauh/audio/DP74_N,N,P R M,74,M.wav","DP74_N,N,P R M,74,M.wav",D,P074,N,Normal,False,N,P R M,74,M,4000,105408,26.352,c90658066acaf514d77a2259815d481f,,True,3,0
+"data/raw/kauh/audio/DP75_N,N,P L U,73,F.wav","DP75_N,N,P L U,73,F.wav",D,P075,N,Normal,False,N,P L U,73,F,4000,93888,23.472,3efa234feed4e47318138a957dc2d1c8,,True,4,0
+"data/raw/kauh/audio/DP76_N,N,A L U,31,M.wav","DP76_N,N,A L U,31,M.wav",D,P076,N,Normal,False,N,A L U,31,M,4000,80576,20.144,322663ccb741a2f86661595545a5ea5a,,True,0,0
+"data/raw/kauh/audio/DP77_Asthma,E W,A R L,40,M.wav","DP77_Asthma,E W,A R L,40,M.wav",D,P077,Asthma,Asthma,False,E W,A R L,40,M,4000,58304,14.576,fbb87aef5c9919e1fe0ea124d4e05780,,True,4,1
+"data/raw/kauh/audio/DP78_Asthma,E W,P R M,20,M.wav","DP78_Asthma,E W,P R M,20,M.wav",D,P078,Asthma,Asthma,False,E W,P R M,20,M,4000,81088,20.272,0f7ece672bbf36cbd8256a28d391cda8,,True,2,1
+"data/raw/kauh/audio/DP79_asthma,E W,A R U,46,M.wav","DP79_asthma,E W,A R U,46,M.wav",D,P079,asthma,Asthma,False,E W,A R U,46,M,4000,81344,20.336,b320c81123844bf8190ce6141a3f131c,,True,4,1
+"data/raw/kauh/audio/DP80_asthma,E W,A L U,38,M.wav","DP80_asthma,E W,A L U,38,M.wav",D,P080,asthma,Asthma,False,E W,A L U,38,M,4000,72128,18.032,74bcd550807745433ebccabfbe2e5579,,True,4,1
+"data/raw/kauh/audio/DP81_N,N,P L U,33,M.wav","DP81_N,N,P L U,33,M.wav",D,P081,N,Normal,False,N,P L U,33,M,4000,94144,23.536,03d0a4fafdf68131383a92b7d260d640,,True,3,0
+"data/raw/kauh/audio/DP82_N,N,P L U,38,M.wav","DP82_N,N,P L U,38,M.wav",D,P082,N,Normal,False,N,P L U,38,M,4000,74688,18.672,e86e4f1ca207b749920284eef63b01d2,,True,4,0
+"data/raw/kauh/audio/DP83_N,N,A R U,18,F.wav","DP83_N,N,A R U,18,F.wav",D,P083,N,Normal,False,N,A R U,18,F,4000,102592,25.648,b24b534fe3c1434671a605ac0c65cd0f,,True,4,0
+"data/raw/kauh/audio/DP84_N,N,A R U,65,F.wav","DP84_N,N,A R U,65,F.wav",D,P084,N,Normal,False,N,A R U,65,F,4000,103104,25.776,fdbc2e2674ac2260bc5d0dc06c5976ec,,True,0,0
+"data/raw/kauh/audio/DP85_N,N,A R U,33,M.wav","DP85_N,N,A R U,33,M.wav",D,P085,N,Normal,False,N,A R U,33,M,4000,49088,12.272,40e4ff199cf01405a85fd66a734a8cf4,,True,3,0
+"data/raw/kauh/audio/DP86_N,N,P R U,68,F.wav","DP86_N,N,P R U,68,F.wav",D,P086,N,Normal,False,N,P R U,68,F,4000,57792,14.448,73fbdb435fa311b85fb13bb5d9f9801d,,True,0,0
+"data/raw/kauh/audio/DP87_N,N,P R M,72,M.wav","DP87_N,N,P R M,72,M.wav",D,P087,N,Normal,False,N,P R M,72,M,4000,69824,17.456,ed46279db0e4298b0411d83386070c7e,,True,3,0
+"data/raw/kauh/audio/DP88_N,N,A R U,29,M.wav","DP88_N,N,A R U,29,M.wav",D,P088,N,Normal,False,N,A R U,29,M,4000,94912,23.728,5cbea645ccdcdadf106deb78c33c0488,,True,2,0
+"data/raw/kauh/audio/DP89_N,N,P L M,70,M.wav","DP89_N,N,P L M,70,M.wav",D,P089,N,Normal,False,N,P L M,70,M,4000,88256,22.064,b2bc43b3e05965658b225f1b5a6620d8,,True,3,0
+"data/raw/kauh/audio/DP90_heart failure,Crep,P L M,74,F.wav","DP90_heart failure,Crep,P L M,74,F.wav",D,P090,heart failure,Heart Failure,False,Crep,P L M,74,F,4000,59840,14.96,78bcab86c5bdd41dee54660f876bafc3,,True,2,2
+"data/raw/kauh/audio/DP91_asthma,E W,P R U,43,F.wav","DP91_asthma,E W,P R U,43,F.wav",D,P091,asthma,Asthma,False,E W,P R U,43,F,4000,48576,12.144,2c67029f20e5f7a0007423df7e6dcf4f,,True,1,1
+"data/raw/kauh/audio/DP92_N,N,P L L ,43,M.wav","DP92_N,N,P L L ,43,M.wav",D,P092,N,Normal,False,N,P L L,43,M,4000,49856,12.464,3952108f6f8ca083899b542e130f3715,,True,2,0
+"data/raw/kauh/audio/DP93_N,N,P R M,75,M.wav","DP93_N,N,P R M,75,M.wav",D,P093,N,Normal,False,N,P R M,75,M,4000,39360,9.84,3e52c90355cdb9d4e63e183b116dc486,,True,1,0
+"data/raw/kauh/audio/DP94_N,N,P L L,24,M.wav","DP94_N,N,P L L,24,M.wav",D,P094,N,Normal,False,N,P L L,24,M,4000,57536,14.384,219befb13a118f20bf88270aa93bf99d,,True,4,0
+"data/raw/kauh/audio/DP95_N,N,P L M,18,M.wav","DP95_N,N,P L M,18,M.wav",D,P095,N,Normal,False,N,P L M,18,M,4000,54208,13.552,063576d478a256beac867b4c2794acb2,,True,1,0
+"data/raw/kauh/audio/DP96_N,N,P R L ,66,F.wav","DP96_N,N,P R L ,66,F.wav",D,P096,N,Normal,False,N,P R L,66,F,4000,61888,15.472,fad83ceb817289ebed5a7a9b319f5c1d,,True,2,0
+"data/raw/kauh/audio/DP97_Asthma,E W,P R U,24,M.wav","DP97_Asthma,E W,P R U,24,M.wav",D,P097,Asthma,Asthma,False,E W,P R U,24,M,4000,87744,21.936,c06193c6cf1baf60f35cb7e01c08ae2a,,True,1,1
+"data/raw/kauh/audio/DP98_N,N,P L L,53,M.wav","DP98_N,N,P L L,53,M.wav",D,P098,N,Normal,False,N,P L L,53,M,4000,75712,18.928,e19402e5a2e8507a3eacbb6270fc89bf,,True,1,0
+"data/raw/kauh/audio/DP99_N,N,P R M,50,M.wav","DP99_N,N,P R M,50,M.wav",D,P099,N,Normal,False,N,P R M,50,M,4000,111552,27.888,a95f5284fe401e70a6e4bc649c065fc9,,True,4,0
+"data/raw/kauh/audio/DP102_N,N,P L L,41,M.wav","DP102_N,N,P L L,41,M.wav",D,P102,N,Normal,False,N,P L L,41,M,4000,76224,19.056,d53ca80ab5feda666d1e2a1420beb2a6,,True,2,0
+"data/raw/kauh/audio/DP103_N,N,P R U,81,F.wav","DP103_N,N,P R U,81,F.wav",D,P103,N,Normal,False,N,P R U,81,F,4000,51392,12.848,e5975cb53802d81fd9fb969da4b62ec7,,True,0,0
+"data/raw/kauh/audio/DP104_Asthma,E W,P L U,45,F.wav","DP104_Asthma,E W,P L U,45,F.wav",D,P104,Asthma,Asthma,False,E W,P L U,45,F,4000,47040,11.76,72725eb14d30a5b1ebc75aeb6c02c326,,True,4,1
+"data/raw/kauh/audio/DP106_Asthma,E W,P L U,45,F.wav","DP106_Asthma,E W,P L U,45,F.wav",D,P106,Asthma,Asthma,False,E W,P L U,45,F,4000,79296,19.824,22a33ced92148d7f88ff7f823aedebc4,,True,4,1
+"data/raw/kauh/audio/DP107_Asthma,E W,P L U,59,F.wav","DP107_Asthma,E W,P L U,59,F.wav",D,P107,Asthma,Asthma,False,E W,P L U,59,F,4000,50624,12.656,1d8a7a88e476780b8bdf7464de589cd6,,True,3,1
+"data/raw/kauh/audio/DP108_COPD,E W,P R L ,63,M.wav","DP108_COPD,E W,P R L ,63,M.wav",D,P108,COPD,COPD,False,E W,P R L,63,M,4000,91328,22.832,eeb096cc72e39979a3698d55b414bb04,,True,0,3
+"data/raw/kauh/audio/DP109_N,N,P L M,26,M.wav","DP109_N,N,P L M,26,M.wav",D,P109,N,Normal,False,N,P L M,26,M,4000,52928,13.232,18bf96346d455a7aba04b1f1818175ae,,True,0,0
+"data/raw/kauh/audio/DP110_COPD,E W,P L L,62,M.wav","DP110_COPD,E W,P L L,62,M.wav",D,P110,COPD,COPD,False,E W,P L L,62,M,4000,50624,12.656,256785320b876012a5ebf30e6ba7adad,,True,1,3
+"data/raw/kauh/audio/DP111_COPD,E W,P R L ,51,M.wav","DP111_COPD,E W,P R L ,51,M.wav",D,P111,COPD,COPD,False,E W,P R L,51,M,4000,68288,17.072,c9c088db40c3b4ee65813a18109e5cb5,,True,2,3
+"data/raw/kauh/audio/DP112_N,N,P L M,30,M.wav","DP112_N,N,P L M,30,M.wav",D,P112,N,Normal,False,N,P L M,30,M,4000,50624,12.656,f4ea7d82fedddadea8d2aa1f20ce1ba5,,True,1,0

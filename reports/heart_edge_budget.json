@@ -1,0 +1,140 @@
+{
+  "machine": {
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 140 Stepping 1, GenuineIntel",
+    "python": "3.10.0"
+  },
+  "model": {
+    "float": "chiron_cardio_v1_float.keras",
+    "int8": "chiron_cardio_v1_int8.tflite",
+    "int8_bytes": 28336
+  },
+  "sizes": {
+    "int8_bytes": 28336,
+    "float_bytes": 238537
+  },
+  "timing_per_case": {
+    "yaseen_fold0": {
+      "recordings": 197,
+      "median_seconds_of_audio": 2.517875,
+      "median_windows": 1.0,
+      "load_and_resample_ms": {
+        "median": 0.32,
+        "p95": 0.62,
+        "max": 0.81
+      },
+      "quality_check_ms": {
+        "median": 1.9,
+        "p95": 4.55,
+        "max": 6.34
+      },
+      "front_end_ms": {
+        "median": 0.97,
+        "p95": 2.04,
+        "max": 3.4
+      },
+      "cnn_8bit_ms": {
+        "median": 0.18,
+        "p95": 0.34,
+        "max": 0.43
+      },
+      "secondary_characteristics_ms": {
+        "median": 3.75,
+        "p95": 8.02,
+        "max": 10.16
+      },
+      "systole_diastole_attribution_ms": {
+        "median": 1.22,
+        "p95": 2.85,
+        "max": 3.88
+      },
+      "total_ms": {
+        "median": 8.71,
+        "p95": 15.83,
+        "max": 21.16
+      }
+    },
+    "physionet_2022_sample": {
+      "recordings": 100,
+      "median_seconds_of_audio": 22.184,
+      "median_windows": 14.0,
+      "load_and_resample_ms": {
+        "median": 3.7,
+        "p95": 6.11,
+        "max": 8.91
+      },
+      "quality_check_ms": {
+        "median": 12.93,
+        "p95": 62.01,
+        "max": 102.48
+      },
+      "front_end_ms": {
+        "median": 13.11,
+        "p95": 21.97,
+        "max": 28.15
+      },
+      "cnn_8bit_ms": {
+        "median": 1.17,
+        "p95": 2.45,
+        "max": 3.43
+      },
+      "secondary_characteristics_ms": {
+        "median": 28.96,
+        "p95": 44.86,
+        "max": 52.03
+      },
+      "systole_diastole_attribution_ms": {
+        "median": 1.48,
+        "p95": 2.55,
+        "max": 3.6
+      },
+      "total_ms": {
+        "median": 63.03,
+        "p95": 130.35,
+        "max": 190.66
+      }
+    }
+  },
+  "votes_and_fusion": "pending: not built yet (two logistic regressions on a few dozen numbers)",
+  "agreement": {
+    "yaseen_fold0_clip_agreement": 1.0,
+    "physionet_2022_recording_agreement_shipped_model": 0.9649067341131837,
+    "physionet_2022_after_requantisation": {
+      "A_original": 0.9649067341131837,
+      "B_requantised": 0.9655390452102435,
+      "C_adapted_requantised": 0.9740752450205501
+    },
+    "physionet_2022_refer_or_not_agreement": {
+      "A_original": 0.9984192222573506,
+      "B_requantised": 0.9984192222573506,
+      "C_adapted_requantised": 1.0
+    },
+    "physionet_2022_ms_per_window": {
+      "A_original": 0.082,
+      "B_requantised": 0.075,
+      "C_adapted_requantised": 0.082
+    },
+    "clinic_after_requantisation": {
+      "A_original": 0.94,
+      "B_requantised": 0.96,
+      "C_adapted_requantised": 0.96
+    },
+    "clinic_refer_or_not_agreement": {
+      "A_original": 1.0,
+      "B_requantised": 1.0,
+      "C_adapted_requantised": 1.0
+    },
+    "clinic_ms_per_window": {
+      "A_original": 0.115,
+      "B_requantised": 0.083,
+      "C_adapted_requantised": 0.111
+    }
+  },
+  "peak_memory_mb_whole_process": 444.37890625,
+  "targets": {
+    "int8_under_1_MB": true,
+    "case_under_1_s_at_p95": true,
+    "agreement_at_least_98_percent_on_yaseen_fold0": true
+  },
+  "notes": "Times are wall-clock on one laptop CPU, after one warm-up case. Peak memory includes the TensorFlow runtime loaded by this script."
+}

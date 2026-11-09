@@ -1,0 +1,39 @@
+{
+  "model": {
+    "float": "chiron_cardio_v1_float.keras",
+    "int8": "chiron_cardio_v1_int8.tflite",
+    "int8_bytes": 28336
+  },
+  "yaseen_fold0": {
+    "windows": 206,
+    "clips": 197,
+    "window_agreement": 1.0,
+    "clip_agreement": 1.0,
+    "clip_agreement_interval": {
+      "estimate": 1.0,
+      "lower_95": 1.0,
+      "upper_95": 1.0,
+      "valid_resamples": 1000,
+      "resamples": 1000
+    },
+    "resampling_unit": "clip (Yaseen has clip IDs, not patient IDs)",
+    "float_clip_accuracy": 0.9847715736040609,
+    "int8_clip_accuracy": 0.9847715736040609,
+    "max_abs_probability_difference": 0.030251890420913696
+  },
+  "physionet_2022": {
+    "recordings": 3163,
+    "patients": 872,
+    "windows": 46654,
+    "window_agreement": 0.9691987825266858,
+    "recording_agreement": 0.9649067341131837,
+    "recording_agreement_interval": {
+      "estimate": 0.9649067341131837,
+      "lower_95": 0.9577064355694941,
+      "upper_95": 0.9716470829241698,
+      "valid_resamples": 1000,
+      "resamples": 1000
+    },
+    "resampling_unit": "patient"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "n_adapt": 32,
+  "n_eval": 1207,
+  "seed": 0,
+  "collapse_guard_triggered": false,
+  "clean": {
+    "item_acc": 0.9652029826014913,
+    "patient_acc": 0.9800362976406534,
+    "auroc": 0.9921454648566264
+  },
+  "shifted_plain": {
+    "item_acc": 0.7995028997514498,
+    "patient_acc": 0.6751361161524501,
+    "auroc": 0.8189274447949526
+  },
+  "shifted_adapted": {
+    "item_acc": 0.956089478044739,
+    "patient_acc": 0.9745916515426497,
+    "auroc": 0.9888065785276291
+  },
+  "recovery": {
+    "item": 0.9449999999999998,
+    "patient": 0.9821428571428571
+  }
+}
