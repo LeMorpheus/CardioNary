@@ -112,9 +112,15 @@ def main() -> int:
     # ---- 2. metadata gain within RSNA folds ------------------------------
     folds = sorted(set(fold.tolist()))
     p_meta = np.zeros(len(y))
+    rsna_age = pd.to_numeric(rs["age"], errors="coerce")
+    age_observed_rows = int(rsna_age.notna().sum())
     for k in folds:
         tr, te = fold != k, fold == k
-        med = float(np.nanmedian(pd.to_numeric(rs.age[tr], errors="coerce")))
+        training_ages = rsna_age[tr].dropna()
+        # Some RSNA DICOMs do not expose PatientAge. If an entire training fold
+        # lacks age, use a constant neutral fill; the age terms then carry no
+        # signal and the metadata vote is effectively sex-only.
+        med = float(training_ages.median()) if not training_ages.empty else 0.0
         M = meta_matrix(rs, med)
         p_meta[te] = lr().fit(M[tr], y[tr]).predict_proba(M[te])[:, 1]
 
@@ -131,6 +137,12 @@ def main() -> int:
     meta = paired_auroc(y, f2, f3)
     metadata_gain = {
         "weights_chosen_on": "the other four RSNA folds, rechosen for each fold",
+        "age_observed_rows": age_observed_rows,
+        "age_note": (
+            "No RSNA ages were available; age features are constant after imputation, so the metadata vote uses sex only."
+            if age_observed_rows == 0 else
+            "Missing ages are imputed with each training fold's median."
+        ),
         "per_fold": per_fold,
         "cnn_plus_features_vs_plus_metadata": meta,
         "metadata_vote_alone": summary(y, p_meta),

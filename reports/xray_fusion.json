@@ -1,0 +1,169 @@
+{
+  "calibration_cnn_kermany": {
+    "temperature": 0.9441746943038064,
+    "fitted_on": "Kermany out-of-fold CNN probabilities, all 5 folds",
+    "ece_before": 0.02686975825109772,
+    "ece_after": 0.02474281088436351,
+    "target": "ece_after <= 0.05"
+  },
+  "generalisation": {
+    "weights_chosen_on": "Kermany out-of-fold predictions",
+    "weights": {
+      "cnn": 0.95,
+      "features": 0.05
+    },
+    "plain_cnn_vs_cnn_plus_features": {
+      "a": {
+        "auroc": 0.9071057222729249,
+        "ci95": [
+          0.9018552834468777,
+          0.9121913674944365
+        ]
+      },
+      "b": {
+        "auroc": 0.9010170635266956,
+        "ci95": [
+          0.8954455258393994,
+          0.9061966863590741
+        ]
+      },
+      "difference_b_minus_a": {
+        "estimate": -0.006088658746229214,
+        "ci95": [
+          -0.007345040874358058,
+          -0.004739161655568167
+        ]
+      },
+      "resamples": 1000
+    },
+    "feature_vote_alone": {
+      "auroc": 0.7235347968620436,
+      "sensitivity_at_90_specificity": 0.4013639387890885
+    },
+    "plain_cnn": {
+      "auroc": 0.9071057222729249,
+      "sensitivity_at_90_specificity": 0.7752827677977379
+    },
+    "cnn_plus_features": {
+      "auroc": 0.9010170635266956,
+      "sensitivity_at_90_specificity": 0.7737857618097139
+    },
+    "target": "AUROC gain >= +0.03",
+    "gain": -0.006088658746229214,
+    "meets_target": false
+  },
+  "metadata_gain": {
+    "weights_chosen_on": "the other four RSNA folds, rechosen for each fold",
+    "age_observed_rows": 0,
+    "age_note": "No RSNA ages were available; age features are constant after imputation, so the metadata vote uses sex only.",
+    "per_fold": [
+      {
+        "fold": 0,
+        "weights_without_metadata": {
+          "cnn": 0.9,
+          "features": 0.1
+        },
+        "weights_with_metadata": {
+          "cnn": 0.85,
+          "features": 0.05,
+          "metadata": 0.1
+        }
+      },
+      {
+        "fold": 1,
+        "weights_without_metadata": {
+          "cnn": 0.9,
+          "features": 0.1
+        },
+        "weights_with_metadata": {
+          "cnn": 0.85,
+          "features": 0.05,
+          "metadata": 0.1
+        }
+      },
+      {
+        "fold": 2,
+        "weights_without_metadata": {
+          "cnn": 0.9,
+          "features": 0.1
+        },
+        "weights_with_metadata": {
+          "cnn": 0.85,
+          "features": 0.05,
+          "metadata": 0.1
+        }
+      },
+      {
+        "fold": 3,
+        "weights_without_metadata": {
+          "cnn": 0.9,
+          "features": 0.1
+        },
+        "weights_with_metadata": {
+          "cnn": 0.85,
+          "features": 0.05,
+          "metadata": 0.1
+        }
+      },
+      {
+        "fold": 4,
+        "weights_without_metadata": {
+          "cnn": 0.9,
+          "features": 0.1
+        },
+        "weights_with_metadata": {
+          "cnn": 0.85,
+          "features": 0.05,
+          "metadata": 0.1
+        }
+      }
+    ],
+    "cnn_plus_features_vs_plus_metadata": {
+      "a": {
+        "auroc": 0.8954666458894811,
+        "ci95": [
+          0.8896088214410421,
+          0.9010627316750386
+        ]
+      },
+      "b": {
+        "auroc": 0.9002700545506359,
+        "ci95": [
+          0.8945224161686013,
+          0.9055247505070518
+        ]
+      },
+      "difference_b_minus_a": {
+        "estimate": 0.004803408661154807,
+        "ci95": [
+          0.00419162596757768,
+          0.005421508312868015
+        ]
+      },
+      "resamples": 1000
+    },
+    "metadata_vote_alone": {
+      "auroc": 0.5069128116681185,
+      "sensitivity_at_90_specificity": 0.0
+    },
+    "without_metadata": {
+      "auroc": 0.8954666458894811,
+      "sensitivity_at_90_specificity": 0.7711244178310046
+    },
+    "with_metadata": {
+      "auroc": 0.9002700545506359,
+      "sensitivity_at_90_specificity": 0.7737857618097139
+    },
+    "mean_metadata_weight": 0.1,
+    "target": "AUROC gain >= +0.02 with w3 <= 0.3",
+    "gain": 0.004803408661154807,
+    "meets_target": false,
+    "note": "metadata vote is trained on adults (RSNA) while the CNN is trained on children (Kermany); view position is never an input"
+  },
+  "app_weights": {
+    "cnn": 0.85,
+    "features": 0.05,
+    "metadata": 0.1
+  },
+  "bootstrap": "1,000 resamples of cases (one image per RSNA patient), seed 0, 95% percentile interval"
+}
