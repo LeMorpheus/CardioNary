@@ -47,7 +47,7 @@ def characteristics(path):
 def main():
     parser = argparse.ArgumentParser(description="Extract secondary acoustic characteristics.")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--dataset", choices=["yaseen", "physionet"], help="Target dataset name.")
+    group.add_argument("--dataset", choices=["yaseen", "physionet", "bmdhs"], help="Target dataset name.")
     group.add_argument("--folder", type=Path, help="Folder containing WAV files.")
     parser.add_argument("--out", type=Path, default=None, help="Optional output CSV path.")
     args = parser.parse_args()
@@ -70,11 +70,12 @@ def main():
                 **feats,
             }
             rows.append(row)
-    elif args.dataset == "physionet":
-        manifest_path = Path("data/manifests/circor_manifest.csv")
-        out_path = args.out or reports_dir / "heart_features_physionet.csv"
+    elif args.dataset in ("physionet", "bmdhs"):
+        manifest_name = "circor" if args.dataset == "physionet" else "bmdhs"
+        manifest_path = Path("data/manifests") / f"{manifest_name}_manifest.csv"
+        out_path = args.out or reports_dir / f"heart_features_{args.dataset}.csv"
         df_manifest = pd.read_csv(manifest_path)
-        print(f"Extracting features for PhysioNet ({len(df_manifest)} recordings)...")
+        print(f"Extracting features for {args.dataset} ({len(df_manifest)} recordings)...")
         for idx, item in df_manifest.iterrows():
             feats = characteristics(item["path"])
             row = {
