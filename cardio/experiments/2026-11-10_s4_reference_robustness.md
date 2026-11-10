@@ -23,3 +23,8 @@ measures a different outcome, so gains here do not establish a referral gain.
 Use the confirmed team checkpoint and its paired report for the official
 `reports/heart_robustness.json` run. The reproducible commands are in the
 [evaluation README](../eval/README.md).
+
+The audit replay reproduced the JSON exactly. The audit also measured each
+noise level on a real clip, verified the filter cutoffs passed to the runner,
+and recomputed accuracy from all 75 draw counts. All five classes were present
+in the scoring panel, and every adaptation batch was disjoint from it.
