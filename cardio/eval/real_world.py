@@ -44,7 +44,8 @@ from pathlib import Path
 import numpy as np
 from scipy.io import wavfile
 
-from cardio.model.final_model import CLASSES, MODEL_DIR, STEM, FinalModel
+from cardio.model.final_model import CLASSES, FinalModel
+from cardio.tta.bn_adapt import COLLAPSE_SHARE, reestimate_bn, top_class_share
 from core.descriptors import audio_descriptors
 from core.features import CARDIO_CONFIG, features_for_file, load_wav
 from core.ood import signal_provenance
@@ -151,37 +152,14 @@ def position_agreement(rows: list[dict]) -> dict:
 # ---------------------------------------------------------------------------
 # Test-time adaptation (roadmap S3, proposal 4.3)
 # ---------------------------------------------------------------------------
-COLLAPSE_SHARE = 0.95          # "starts predicting one class for everything"
-
-
 def adapt_bn(windows: np.ndarray, model: FinalModel):
-    """An adapted copy of the float model. Every batch-normalisation layer takes
-    the mean and variance of these clinic windows in place of Yaseen's: one
-    forward pass, no labels, no gradients. Weights and the original model are
-    left unchanged.
-
-    This follows proposal 4.3. The team's shared implementation is meant to be
-    cardio/tta/bn_adapt.py (roadmap S3); switch to it once it exists.
-    """
-    from tensorflow import keras
-
-    adapted = keras.models.load_model(MODEL_DIR / f"{STEM}_float.keras")      # a fresh copy
-    bns = [l for l in adapted.layers if isinstance(l, keras.layers.BatchNormalization)]
-    for bn in bns:
-        bn.trainable, bn.momentum = True, 0.0     # momentum 0: moving stats become this batch's
-    adapted(model.normalise(windows), training=True)
-    for bn in bns:
-        bn.trainable = False
-    return adapted
+    """Return an adapted copy. Clinic scoring applies its guard per half."""
+    return reestimate_bn(model.float_model, model.normalise(windows))
 
 
 def predict(net, model: FinalModel, feats: np.ndarray) -> np.ndarray:
     """Mean softmax over one recording's windows."""
     return np.asarray(net(model.normalise(feats), training=False)).reshape(len(feats), -1).mean(0)
-
-
-def top_class_share(p: np.ndarray) -> float:
-    return float(np.bincount(p.argmax(1), minlength=len(CLASSES)).max() / len(p))
 
 
 def clinic_adaptation(rows: list[dict], model: FinalModel) -> dict:
