@@ -5,10 +5,11 @@ import pytest
 
 from cardio.eval.metrics import classification_metrics
 from cardio.eval.run_tta import binary_metrics, compare, draw_indices, split_patients
+from cardio.model.final_model import FinalModel, STEM
 from cardio.tta import bn_adapt
 
 
-def test_bn_copy_updates_statistics_and_preserves_source_weights():
+def test_bn_copy_updates_statistics_and_preserves_source_weights(tmp_path):
     keras = pytest.importorskip("tensorflow").keras
     inputs = keras.Input(shape=(2,))
     layer = keras.layers.BatchNormalization()
@@ -25,6 +26,12 @@ def test_bn_copy_updates_statistics_and_preserves_source_weights():
         np.testing.assert_array_equal(actual, original)
     for updated, original in zip(adapted.get_weights()[:2], before[:2]):
         np.testing.assert_array_equal(updated, original)
+    checkpoint = tmp_path / f"{STEM}_float.keras"
+    adapted.save(checkpoint)
+    (tmp_path / f"quantization_{STEM}.json").write_text('{"norm_mean": 0, "norm_std": 1}')
+    loaded = FinalModel(tmp_path, tmp_path, load_int8=False).float_model
+    assert not loaded.layers[-1].trainable
+    np.testing.assert_allclose(loaded(windows, training=False), adapted(windows, training=False))
 
 
 @pytest.mark.parametrize("already_collapsed", [False, True])

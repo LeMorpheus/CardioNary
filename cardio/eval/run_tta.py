@@ -9,6 +9,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from time import perf_counter
 from typing import Callable
 
@@ -82,6 +83,8 @@ def split_patients(records, max_score_patients=None):
     if max_score_patients is not None and len(test) > max_score_patients:
         _, test = train_test_split(test, test_size=max_score_patients, random_state=0,
                                    stratify=[labels[patient] for patient in test])
+    if len({labels[patient] for patient in test}) != 2:
+        raise ValueError("The scoring panel needs both classes. Increase --max-score-patients.")
     pool, test = set(pool), set(test)
     return ([row for row in records if row.patient in pool],
             [row for row in records if row.patient in test])
@@ -202,6 +205,13 @@ def run_site(site, records, clean_set, clean_weights, clean, model, args):
                 retained = binary_metrics(clean_set.labels, clean_set.scores(adapted), clean_weights)
             draw_scores.append(shifted)
             clean_scores.append(retained)
+            if args.save_adapted is not None:
+                with TemporaryDirectory(dir=args.save_adapted.parent) as staging:
+                    saved = Path(staging) / args.save_adapted.name
+                    adapted.save(saved)
+                    if args.save_adapted.exists():
+                        raise FileExistsError(args.save_adapted)
+                    saved.rename(args.save_adapted)
             details.append({
                 "adaptation_patients": len({pool[index].patient for index in selected}),
                 "abnormal_recordings": sum(pool[index].label for index in selected),
@@ -233,7 +243,10 @@ def main(argv=None):
     parser.add_argument("--max-score-patients", type=int, help="Cap the fixed test panel for a pilot.")
     parser.add_argument("--model-dir", type=Path, default=MODEL_DIR)
     parser.add_argument("--report-dir", type=Path, default=REPO_ROOT / "reports")
-    parser.add_argument("--reference-model", action="store_true", help="Mark the checkpoint as provisional.")
+    checkpoint = parser.add_mutually_exclusive_group()
+    checkpoint.add_argument("--reference-model", action="store_true", help="Mark the reference checkpoint as provisional.")
+    checkpoint.add_argument("--team-model", action="store_true", help="Confirm that the model and report are the team's matched pair.")
+    parser.add_argument("--save-adapted", type=Path, help="Save the selected .keras model from one draw.")
     parser.add_argument("--out", type=Path)
     args = parser.parse_args(argv)
     if (min(args.sizes) < 1 or args.draws < 1 or args.imbalance_size < 0
@@ -243,15 +256,34 @@ def main(argv=None):
     pilot = bool(set(sites) != set(SITES) or args.max_score_patients or tuple(args.sizes) != SIZES
                  or args.draws != 5 or args.imbalance_size != 32)
     official = REPO_ROOT / "reports/heart_tta.json"
-    default_output = official
+    default_output = official if args.team_model else REPO_ROOT / "scratch/heart_tta_reference.json"
     if pilot:
         default_output = REPO_ROOT / "scratch/heart_tta_pilot.json"
-    elif args.reference_model:
-        default_output = REPO_ROOT / "scratch/heart_tta_reference.json"
     out = args.out or default_output
-    if (pilot or args.reference_model) and out.resolve() == official.resolve():
-        parser.error("Use a separate output path for pilot or reference-model results.")
-    model = FinalModel(args.model_dir, args.report_dir)
+    if out.suffix.lower() != ".json":
+        parser.error("Use a .json path for the report.")
+    if (pilot or not args.team_model) and out.resolve() == official.resolve():
+        parser.error("The official report requires the full sweep and --team-model.")
+    if args.save_adapted is not None:
+        if len(sites) != 1 or len(args.sizes) != 1 or args.draws != 1 or args.imbalance_size:
+            parser.error("Saving a model requires one --site, one --sizes value, --draws 1, and --imbalance-size 0.")
+        if args.save_adapted.suffix.lower() != ".keras" or args.save_adapted.exists():
+            parser.error("Choose a new .keras output path.")
+        args.save_adapted.parent.mkdir(parents=True, exist_ok=True)
+
+    norm_bytes = (args.report_dir / f"quantization_{STEM}.json").read_bytes()
+    norm = json.loads(norm_bytes)
+    normalisation = (norm.get("norm_mean"), norm.get("norm_std"))
+    if (norm.get("dataset") != "yaseen" or norm.get("holdout_fold") != 0
+            or norm.get("feature") != "logmel" or norm.get("classes") != CLASSES
+            or any(type(value) not in (int, float) for value in normalisation)
+            or not np.isfinite(normalisation).all() or normalisation[1] <= 0):
+        parser.error("Use a Yaseen log-mel report for holdout fold 0 with valid training normalisation and class order.")
+
+    import tensorflow as tf
+
+    tf.config.set_visible_devices([], "GPU")
+    model = FinalModel(args.model_dir, args.report_dir, load_int8=False)
     yaseen = yaseen_recordings()
     clean_records = [Recording(patient, label, lambda windows=windows: windows)
                      for patient, label, _, windows in yaseen]
@@ -259,10 +291,15 @@ def main(argv=None):
     clean_set = EvaluationSet.from_records(clean_test, model.normalise)
     clean_weights = resample_weights(len(clean_set.labels), np.random.default_rng(0))
     clean = binary_metrics(clean_set.labels, clean_set.scores(model.float_model), clean_weights)
+    model_status = "unverified_checkpoint"
+    if args.team_model:
+        model_status = "confirmed_team_checkpoint"
+    elif args.reference_model:
+        model_status = "provisional_reference"
     result = {
-        "model_status": "provisional_reference" if args.reference_model else "local_checkpoint",
+        "model_status": model_status,
         "model_sha256": hashlib.sha256((args.model_dir / f"{STEM}_float.keras").read_bytes()).hexdigest(),
-        "normalization_report_sha256": hashlib.sha256((args.report_dir / f"quantization_{STEM}.json").read_bytes()).hexdigest(),
+        "normalization_report_sha256": hashlib.sha256(norm_bytes).hexdigest(),
         "classes": CLASSES,
         "pilot": pilot,
         "planned_sites": list(sites),
@@ -278,6 +315,8 @@ def main(argv=None):
         "clean_yaseen": {"score_clips": len(clean_test), "metrics": {name: interval(clean[name]) for name in METRICS}},
         "sites": {},
     }
+    if args.save_adapted is not None:
+        result["saved_model_file"] = args.save_adapted.name
     out.parent.mkdir(parents=True, exist_ok=True)
     partial = out.with_suffix(".partial.json")
     for site in sites:

@@ -29,3 +29,11 @@ shows why the guard and the clean-score check are both needed.
 
 These are provisional reference-model results. The official team-model run
 uses the same runner with the confirmed checkpoint and paired report.
+
+The audit replay reproduced the cohorts, scores, intervals, and guard outcomes
+for all 140 draws. Timings varied as expected, with a replay maximum of 1.25 s.
+The BMD-HS AUROC intervals used 997 valid resamples because three resamples
+contained just one class. A saved BMD-HS adaptation reloaded with all four BN
+layers updated and frozen, and its held-out predictions matched a fresh
+adaptation of the same batch. The earlier clinic report remains the record of
+the run on the laptop holding those recordings.
