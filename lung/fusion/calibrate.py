@@ -26,6 +26,8 @@ from scipy.special import logsumexp
 REPO_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_PLR_CSV = REPO_ROOT / "reports" / "xray_plr_kermany.csv"
 DEFAULT_OUT_JSON = REPO_ROOT / "reports" / "xray_calibration_kermany.json"
+DEFAULT_OOF_CSV = REPO_ROOT / "reports" / "xray_oof_kermany.csv"
+DEFAULT_CNN_OUT_JSON = REPO_ROOT / "reports" / "xray_calibration_cnn_kermany.json"
 
 EPS = 1e-12
 
@@ -194,9 +196,49 @@ def test_overconfident_probabilities() -> dict:
     }
 
 
+def calibrate_cnn_oof(
+    oof_csv: Path | None = None,
+    out_json: Path | None = None,
+) -> dict:
+    """Fit T on CNN out-of-fold predictions (xray_oof_kermany.csv).
+
+    Uses p_pneumonia as P(abnormal).  Returns a dict with before/after metrics.
+    """
+    oof_csv = Path(oof_csv or DEFAULT_OOF_CSV)
+    out_json = Path(out_json or DEFAULT_CNN_OUT_JSON)
+
+    df = pd.read_csv(oof_csv)
+    y = df["label"].to_numpy()
+    # p_pneumonia == P(abnormal)
+    p_cnn = df["p_pneumonia"].to_numpy()
+
+    nll_raw = negative_log_likelihood(p_cnn, y)
+    ece_raw = expected_calibration_error(p_cnn, y)
+
+    T = fit_temperature(p_cnn, y)
+    p_cal = apply_temperature(p_cnn, T)
+
+    nll_cal = negative_log_likelihood(p_cal, y)
+    ece_cal = expected_calibration_error(p_cal, y)
+
+    result = {
+        "n_samples": int(len(df)),
+        "temperature_T": round(T, 4),
+        "nll_before": round(nll_raw, 4),
+        "nll_after": round(nll_cal, 4),
+        "ece_before_pct": round(ece_raw * 100, 2),
+        "ece_after_pct": round(ece_cal * 100, 2),
+    }
+
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_json.write_text(json.dumps(result, indent=2))
+    return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--plr-csv", type=Path, default=DEFAULT_PLR_CSV, help="Path to xray_plr_kermany.csv")
+    parser.add_argument("--oof-csv", type=Path, default=DEFAULT_OOF_CSV, help="Path to CNN OOF CSV (xray_oof_kermany.csv)")
     parser.add_argument("--output", type=Path, default=DEFAULT_OUT_JSON, help="Path to output summary JSON")
     args = parser.parse_args()
 
@@ -211,9 +253,20 @@ def main() -> int:
         "synthetic_test": test_results,
     }
 
-    # If Kermany pLR CSV exists, evaluate and calibrate it
+    # --- Task 1: Fit T on CNN OOF (xray_oof_kermany.csv) ---
+    if args.oof_csv.exists():
+        print(f"=== Calibrating CNN OOF ({args.oof_csv}) ===")
+        cnn_result = calibrate_cnn_oof(args.oof_csv)
+        print(f"  Fitted Temperature T:            {cnn_result['temperature_T']}")
+        print(f"  NLL:                             {cnn_result['nll_before']:.4f} -> {cnn_result['nll_after']:.4f}")
+        print(f"  ECE:                             {cnn_result['ece_before_pct']:.2f}% -> {cnn_result['ece_after_pct']:.2f}%")
+        summary["cnn_oof_kermany"] = cnn_result
+    else:
+        print(f"  [SKIP] OOF CSV not found: {args.oof_csv}")
+
+    # --- Fit T on feature-vote pLR ---
     if args.plr_csv.exists():
-        print(f"=== Calibrating Kermany Feature Vote ({args.plr_csv}) ===")
+        print(f"\n=== Calibrating Kermany Feature Vote ({args.plr_csv}) ===")
         df = pd.read_csv(args.plr_csv)
         y = df["label"].to_numpy()
         pLR = df["pLR"].to_numpy()

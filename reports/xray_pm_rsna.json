@@ -1,0 +1,6 @@
+{
+  "n_images": 14863,
+  "n_patients": 14863,
+  "auroc_image_level": 0.5069,
+  "auroc_patient_level": 0.5069
+}

@@ -52,3 +52,27 @@ def test_meta_matrix_handles_missing_age_and_sex():
     assert m.shape == (2, 3)
     assert m[0].tolist() == pytest.approx([0.5, 0.25, 1.0])
     assert m[1].tolist() == pytest.approx([0.4, 0.16, 0.5])
+
+
+def test_generalisation_comparison_with_adapted_model():
+    from lung.eval.run_fusion_rsna import compute_generalisation_comparison
+    rng, y, cnn = _data()
+    feat = np.clip(0.3 + 0.4 * y + rng.normal(0, 0.2, len(y)), 0.01, 0.99)
+    adapted = np.clip(0.15 + 0.7 * y + rng.normal(0, 0.1, len(y)), 0.01, 0.99)
+    w = {"cnn": 0.8, "features": 0.2}
+
+    # Baseline comparison (plain CNN vs CNN + features)
+    res1 = compute_generalisation_comparison(y, cnn, feat, w)
+    assert "plain_cnn" in res1
+    assert "cnn_plus_features" in res1
+    assert "adapted_cnn" not in res1
+
+    # Extended comparison including the adapted model (full CardioNary branch)
+    res2 = compute_generalisation_comparison(y, cnn, feat, w, p_adapted=adapted)
+    assert "adapted_cnn" in res2
+    assert "adapted_cnn_plus_features" in res2
+    assert "plain_cnn_vs_adapted_cnn" in res2
+    assert "plain_cnn_vs_adapted_cnn_plus_features" in res2
+    assert "cnn_plus_features_vs_adapted_cnn_plus_features" in res2
+    assert "full_cardionary_gain" in res2
+

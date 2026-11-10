@@ -58,6 +58,48 @@ def summary(y, p) -> dict:
             "sensitivity_at_90_specificity": sensitivity_at_specificity(y, p, 0.90)}
 
 
+def compute_generalisation_comparison(
+    y: np.ndarray,
+    p_cnn: np.ndarray,
+    p_feat: np.ndarray,
+    w_k: dict,
+    p_adapted: np.ndarray | None = None,
+) -> dict:
+    """Compare plain CNN, CNN + feature vote, and optionally adapted CNN (full CardioNary branch)."""
+    fused1 = fuse({"cnn": p_cnn, "features": p_feat}, w_k)
+    gen = paired_auroc(y, p_cnn, fused1)
+    res = {
+        "weights_chosen_on": "Kermany out-of-fold predictions",
+        "weights": w_k,
+        "plain_cnn_vs_cnn_plus_features": gen,
+        "feature_vote_alone": summary(y, p_feat),
+        "plain_cnn": summary(y, p_cnn),
+        "cnn_plus_features": summary(y, fused1),
+        "target": "AUROC gain >= +0.03",
+        "gain": gen["difference_b_minus_a"]["estimate"],
+        "meets_target": bool(gen["difference_b_minus_a"]["estimate"] >= 0.03),
+    }
+
+    # Add adapted model and the full CardioNary branch (adapted CNN + features)
+    if p_adapted is not None:
+        p_adapt = np.asarray(p_adapted, dtype=float)
+        fused_adapt = fuse({"cnn": p_adapt, "features": p_feat}, w_k)
+        gen_adapt = paired_auroc(y, p_cnn, p_adapt)
+        gen_full = paired_auroc(y, p_cnn, fused_adapt)
+        gen_features_vs_full = paired_auroc(y, fused1, fused_adapt)
+        res.update({
+            "adapted_cnn": summary(y, p_adapt),
+            "adapted_cnn_plus_features": summary(y, fused_adapt),
+            "plain_cnn_vs_adapted_cnn": gen_adapt,
+            "plain_cnn_vs_adapted_cnn_plus_features": gen_full,
+            "cnn_plus_features_vs_adapted_cnn_plus_features": gen_features_vs_full,
+            "adapted_gain": gen_adapt["difference_b_minus_a"]["estimate"],
+            "full_cardionary_gain": gen_full["difference_b_minus_a"]["estimate"],
+        })
+
+    return res
+
+
 def main() -> int:
     # ---- inputs ----------------------------------------------------------
     cnn = read("xray_cnn_rsna.csv", dtype={"patient_id": str})
@@ -78,6 +120,16 @@ def main() -> int:
     p_cnn = rs.p_float.to_numpy(float)
     yk, pk = oof.label.to_numpy(int), oof.p_pneumonia.to_numpy(float)
 
+    # Check for adapted model predictions
+    p_adapted = None
+    if "p_adapted" in rs.columns:
+        p_adapted = rs["p_adapted"].to_numpy(float)
+    elif (REPORT_DIR / "xray_cnn_adapted_rsna.csv").exists():
+        adapt_df = read("xray_cnn_adapted_rsna.csv", dtype={"patient_id": str})
+        m_adapt = rs[["patient_id"]].merge(adapt_df[["patient_id", "p_adapted"]], on="patient_id", how="left")
+        if "p_adapted" in m_adapt.columns and m_adapt["p_adapted"].notna().all():
+            p_adapted = m_adapt["p_adapted"].to_numpy(float)
+
     # ---- calibration of the CNN (Kermany out-of-fold) --------------------
     T = fit_temperature(pk, yk)
     calibration = {
@@ -95,19 +147,13 @@ def main() -> int:
 
     # ---- 1. generalisation -----------------------------------------------
     w_k = choose_weights({"cnn": pk, "features": plr.pLR.to_numpy(float)}, yk)
-    fused1 = fuse({"cnn": p_cnn, "features": p_feat}, w_k)
-    gen = paired_auroc(y, p_cnn, fused1)
-    generalisation = {
-        "weights_chosen_on": "Kermany out-of-fold predictions",
-        "weights": w_k,
-        "plain_cnn_vs_cnn_plus_features": gen,
-        "feature_vote_alone": summary(y, p_feat),
-        "plain_cnn": summary(y, p_cnn),
-        "cnn_plus_features": summary(y, fused1),
-        "target": "AUROC gain >= +0.03",
-        "gain": gen["difference_b_minus_a"]["estimate"],
-        "meets_target": bool(gen["difference_b_minus_a"]["estimate"] >= 0.03),
-    }
+    generalisation = compute_generalisation_comparison(
+        y=y,
+        p_cnn=p_cnn,
+        p_feat=p_feat,
+        w_k=w_k,
+        p_adapted=p_adapted,
+    )
 
     # ---- 2. metadata gain within RSNA folds ------------------------------
     folds = sorted(set(fold.tolist()))
@@ -168,7 +214,11 @@ def main() -> int:
     print(f"calibration: T={T:.3f}, ECE {calibration['ece_before']:.4f} -> {calibration['ece_after']:.4f}")
     print(f"1. generalisation: CNN {g['plain_cnn']['auroc']:.4f} -> CNN+features "
           f"{g['cnn_plus_features']['auroc']:.4f}  gain {g['gain']:+.4f} "
-          f"{gen['difference_b_minus_a']['ci95']}  weights {w_k}")
+          f"{g['plain_cnn_vs_cnn_plus_features']['difference_b_minus_a']['ci95']}  weights {w_k}")
+    if "adapted_cnn_plus_features" in g:
+        print(f"   adapted CNN: {g['adapted_cnn']['auroc']:.4f} (gain {g['adapted_gain']:+.4f}) -> "
+              f"adapted+features (full branch): {g['adapted_cnn_plus_features']['auroc']:.4f} "
+              f"(gain {g['full_cardionary_gain']:+.4f})")
     print(f"2. metadata gain:  {m['without_metadata']['auroc']:.4f} -> {m['with_metadata']['auroc']:.4f}  "
           f"gain {m['gain']:+.4f} {meta['difference_b_minus_a']['ci95']}  mean w3 {m['mean_metadata_weight']:.2f}")
     print("wrote reports/xray_fusion.json")

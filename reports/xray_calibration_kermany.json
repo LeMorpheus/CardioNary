@@ -4,6 +4,14 @@
     "underconfident_T": 0.01,
     "well_calibrated_T": 0.9856
   },
+  "cnn_oof_kermany": {
+    "n_samples": 5856,
+    "temperature_T": 0.9442,
+    "nll_before": 0.1191,
+    "nll_after": 0.1186,
+    "ece_before_pct": 1.16,
+    "ece_after_pct": 0.62
+  },
   "kermany_plr": {
     "n_samples": 5856,
     "temperature_T": 1.0045,

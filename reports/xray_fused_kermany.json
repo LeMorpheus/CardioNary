@@ -1,0 +1,11 @@
+{
+  "dataset": "kermany",
+  "n_images": 5856,
+  "n_patients": 2790,
+  "votes_used": [
+    "cnn",
+    "features"
+  ],
+  "auroc_image_level": 0.988,
+  "auroc_patient_level": 0.9879
+}
