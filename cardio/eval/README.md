@@ -58,3 +58,22 @@ fail explicitly. With both options, noise is applied before filtering; the
 requested SNR describes the addition before filtering.
 
 Run all project tests with `python -m pytest tests/`.
+
+## S4 heart robustness
+
+Run the Yaseen fold-0 comparison with the confirmed team float model and its
+matching normalisation report.
+
+```powershell
+python -m cardio.eval.run_robustness --model-dir 'C:/path/to/models' --report-dir 'C:/path/to/reports' --team-model
+```
+
+The runner writes `reports/heart_robustness.json`. It measures five-class clip
+accuracy at all five white-noise SNRs, all five pink-noise SNRs, and all five
+low-pass cutoffs. A fixed quarter of usable fold-0 clips is scored for every
+condition. Five batches of 32 recordings are drawn from the remaining clips and
+reused across conditions. The accuracy change uses the same clip resamples for
+both model variants. Yaseen provides clip IDs, which are the resampling unit.
+
+Use `--reference-model` for the provisional checkpoint. Its default report is
+`scratch/heart_robustness_reference.json`.

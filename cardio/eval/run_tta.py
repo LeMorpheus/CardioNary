@@ -54,12 +54,15 @@ def yaseen_recordings():
     return rows
 
 
-def corrupted_windows(path, site, seed):
+def corrupted_windows(path, site, seed, *, severity=None):
     samples = load_wav(str(path), CARDIO_CONFIG)
-    if site == "white_noise":
-        shifted = add_noise(samples, 5, kind="white", seed=seed)
+    if site in ("white_noise", "pink_noise"):
+        shifted = add_noise(samples, 5 if severity is None else severity,
+                            kind=site.removesuffix("_noise"), seed=seed)
+    elif site == "low_pass":
+        shifted = low_pass(samples, CARDIO_CONFIG.sample_rate, 300 if severity is None else severity)
     else:
-        shifted = low_pass(samples, CARDIO_CONFIG.sample_rate, 300)
+        raise ValueError(f"Unsupported audio shift: {site}")
     signal = preprocess(shifted, CARDIO_CONFIG)
     return np.stack([extract(window, CARDIO_CONFIG) for window in iter_windows(signal, CARDIO_CONFIG)])
 
@@ -234,6 +237,29 @@ def run_site(site, records, clean_set, clean_weights, clean, model, args):
             "conditions": output}
 
 
+def load_fold_zero_model(model_dir, report_dir):
+    """Load the float CNN and its fold-0 metadata on CPU."""
+    norm_bytes = (report_dir / f"quantization_{STEM}.json").read_bytes()
+    norm = json.loads(norm_bytes)
+    normalisation = (norm.get("norm_mean"), norm.get("norm_std"))
+    if (norm.get("dataset") != "yaseen" or norm.get("holdout_fold") != 0
+            or norm.get("feature") != "logmel" or norm.get("classes") != CLASSES
+            or any(type(value) not in (int, float) for value in normalisation)
+            or not np.isfinite(normalisation).all() or normalisation[1] <= 0):
+        raise ValueError("Use a Yaseen log-mel report for holdout fold 0 with valid training normalisation and class order.")
+
+    import tensorflow as tf
+
+    tf.config.set_visible_devices([], "GPU")
+    model = FinalModel(model_dir, report_dir, load_int8=False)
+    provenance = {
+        "model_sha256": hashlib.sha256((model_dir / f"{STEM}_float.keras").read_bytes()).hexdigest(),
+        "normalization_report_sha256": hashlib.sha256(norm_bytes).hexdigest(),
+        "classes": CLASSES,
+    }
+    return model, provenance
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--site", action="append", choices=SITES, help="Repeat to select sites. Default: all four.")
@@ -271,19 +297,10 @@ def main(argv=None):
             parser.error("Choose a new .keras output path.")
         args.save_adapted.parent.mkdir(parents=True, exist_ok=True)
 
-    norm_bytes = (args.report_dir / f"quantization_{STEM}.json").read_bytes()
-    norm = json.loads(norm_bytes)
-    normalisation = (norm.get("norm_mean"), norm.get("norm_std"))
-    if (norm.get("dataset") != "yaseen" or norm.get("holdout_fold") != 0
-            or norm.get("feature") != "logmel" or norm.get("classes") != CLASSES
-            or any(type(value) not in (int, float) for value in normalisation)
-            or not np.isfinite(normalisation).all() or normalisation[1] <= 0):
-        parser.error("Use a Yaseen log-mel report for holdout fold 0 with valid training normalisation and class order.")
-
-    import tensorflow as tf
-
-    tf.config.set_visible_devices([], "GPU")
-    model = FinalModel(args.model_dir, args.report_dir, load_int8=False)
+    try:
+        model, provenance = load_fold_zero_model(args.model_dir, args.report_dir)
+    except ValueError as error:
+        parser.error(str(error))
     yaseen = yaseen_recordings()
     clean_records = [Recording(patient, label, lambda windows=windows: windows)
                      for patient, label, _, windows in yaseen]
@@ -298,9 +315,7 @@ def main(argv=None):
         model_status = "provisional_reference"
     result = {
         "model_status": model_status,
-        "model_sha256": hashlib.sha256((args.model_dir / f"{STEM}_float.keras").read_bytes()).hexdigest(),
-        "normalization_report_sha256": hashlib.sha256(norm_bytes).hexdigest(),
-        "classes": CLASSES,
+        **provenance,
         "pilot": pilot,
         "planned_sites": list(sites),
         "method": {
