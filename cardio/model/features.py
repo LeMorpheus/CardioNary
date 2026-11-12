@@ -23,7 +23,14 @@ def heart_rate(x16, fs=FS, rate=100):
 
 
 def characteristics(path):
-    x = load_wav(str(path), CARDIO_CONFIG)  # mono, 8 kHz, from any input rate
+    return characteristics_from_audio(load_wav(str(path), CARDIO_CONFIG))  # mono, 8 kHz, from any input rate
+
+
+def characteristics_from_audio(x):
+    """The same 17 characteristics from 8 kHz samples in [-1, 1], with no file.
+
+    cardio/predict.py uses this so a dashboard upload is measured in memory.
+    """
     x16 = (np.clip(x, -1, 1) * 32767).astype(np.int16)
     d = audio_descriptors(x16, fs=FS)
     row = {f"band_{k}": v for k, v in d["band_power_pct"].items()}
@@ -47,7 +54,7 @@ def characteristics(path):
 def main():
     parser = argparse.ArgumentParser(description="Extract secondary acoustic characteristics.")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--dataset", choices=["yaseen", "physionet"], help="Target dataset name.")
+    group.add_argument("--dataset", choices=["yaseen", "physionet", "bmdhs"], help="Target dataset name.")
     group.add_argument("--folder", type=Path, help="Folder containing WAV files.")
     parser.add_argument("--out", type=Path, default=None, help="Optional output CSV path.")
     args = parser.parse_args()
@@ -70,11 +77,12 @@ def main():
                 **feats,
             }
             rows.append(row)
-    elif args.dataset == "physionet":
-        manifest_path = Path("data/manifests/circor_manifest.csv")
-        out_path = args.out or reports_dir / "heart_features_physionet.csv"
+    elif args.dataset in ("physionet", "bmdhs"):
+        manifest_name = "circor" if args.dataset == "physionet" else "bmdhs"
+        manifest_path = Path("data/manifests") / f"{manifest_name}_manifest.csv"
+        out_path = args.out or reports_dir / f"heart_features_{args.dataset}.csv"
         df_manifest = pd.read_csv(manifest_path)
-        print(f"Extracting features for PhysioNet ({len(df_manifest)} recordings)...")
+        print(f"Extracting features for {args.dataset} ({len(df_manifest)} recordings)...")
         for idx, item in df_manifest.iterrows():
             feats = characteristics(item["path"])
             row = {
@@ -103,4 +111,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

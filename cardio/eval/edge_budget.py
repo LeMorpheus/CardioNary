@@ -1,20 +1,28 @@
-"""Edge budget of the heart branch on an ordinary laptop (roadmap S4, proposal 4.5, 4.7).
+"""Edge budget of the heart branch on an ordinary laptop (roadmap S4 and S5, proposal 4.5, 4.7).
 
 Targets (proposal 4.7): each 8-bit model under 1 MB; at least 98% agreement with
 the full-precision model; under 1 s per case on a laptop CPU.
 
-One case is one recording, timed stage by stage with the shipped 8-bit model on
-public recordings (Yaseen fold 0, and a sample of PhysioNet 2022):
+One case is one recording, run through cardio.predict.analyse_heart exactly as the
+dashboard runs it, so the time per case is the dashboard's own. Stages:
 
   load and resample -> quality check -> front-end (band-pass, windows, log-mel)
-  -> 8-bit CNN on every window -> secondary characteristics
-  -> systole/diastole attribution (occlusion on the 8-bit model)
+  -> 8-bit CNN on every window, then temperature -> the 17 secondary characteristics
+  -> systole or diastole from the measured energy -> votes and late fusion
 
-Votes and late fusion (two logistic regressions, roadmap S2 for the fusion owner)
-are not built yet and are listed as pending. Peak memory is the whole process's
-peak working set, so it includes the full TensorFlow runtime, which a deployed
-tool using only the 8-bit interpreter would not need. Agreement comes from
-reports/heart_agreement.json and reports/heart_requantisation.json.
+Recordings come from Yaseen fold 0 and a seeded sample of PhysioNet 2022. A case is
+timed whole even when it fails the quality check (analyse_heart with complete=True).
+Until heart_fusion and its parameter file exist, "votes and fusion" is the CNN vote
+alone, and the report says so; run this again once they land.
+
+The report also gives the share of every public recording that passes the quality
+check, with a 95% interval over patients: the dashboard withholds the heart result
+for the rest.
+
+Peak memory is the whole process's peak working set, so it includes the full
+TensorFlow runtime, which a deployed tool using only the 8-bit interpreter would not
+need. Agreement comes from reports/heart_agreement.json and
+reports/heart_requantisation.json.
 
 Usage:
     python -m cardio.eval.edge_budget
@@ -30,22 +38,28 @@ import csv
 import json
 import platform
 import sys
-import time
 from pathlib import Path
 
 import numpy as np
 
+from cardio.eval.intervals import statistic_interval
 from cardio.model.final_model import MODEL_DIR, STEM, FinalModel
-from core.descriptors import audio_descriptors, audio_phase_attribution, segment_cycles
-from core.features import CARDIO_CONFIG, extract, iter_windows, load_wav, preprocess
-from core.ood import signal_provenance
-from core.quantize import tflite_predict
+from cardio.predict import MIN_SAMPLES, STAGES, analyse_heart, fusion_function, temperature
+from core.features import CARDIO_CONFIG, load_wav
+from core.ood import OOD_HIBAND_THRESHOLD, signal_provenance
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 REPORTS = REPO_ROOT / "reports"
-FS = CARDIO_CONFIG.sample_rate
-STAGES = ["load_and_resample", "quality_check", "front_end", "cnn_8bit",
-          "secondary_characteristics", "systole_diastole_attribution"]
+MANIFESTS = REPO_ROOT / "data" / "manifests"
+STAGE_NOTES = {
+    "load_and_resample": "read the WAV, take channel 0, convert to 8 kHz",
+    "quality_check": "at least 1.5 s of sound, and the energy test of core/ood.py",
+    "front_end": "band-pass, 3-second windows with 50% overlap, log-mel",
+    "cnn_8bit": "the shipped 8-bit model on every window, mean softmax, temperature",
+    "secondary_characteristics": "the 17 numbers of cardio.model.features",
+    "systole_or_diastole": "which phase holds the extra sound, from the measured energy",
+    "votes_and_fusion": "heart_fusion, or the CNN vote alone until it exists",
+}
 
 
 def peak_memory_mb() -> float | None:
@@ -80,55 +94,77 @@ def peak_memory_mb() -> float | None:
 
 
 def time_case(path: Path, model: FinalModel) -> dict | None:
-    """Seconds per stage for one recording, with the shipped 8-bit model."""
-    t, clock = {}, time.perf_counter
-    t0 = clock(); x8 = load_wav(str(path), CARDIO_CONFIG); t["load_and_resample"] = clock() - t0
-    pcm = (np.clip(x8, -1.0, 1.0) * 32767.0).astype(np.int16)
-    t0 = clock(); signal_provenance(pcm.tobytes()); t["quality_check"] = clock() - t0
-    t0 = clock()
-    feats = [extract(w, CARDIO_CONFIG) for w in iter_windows(preprocess(x8, CARDIO_CONFIG), CARDIO_CONFIG, 0.5)]
-    t["front_end"] = clock() - t0
-    if not feats:
+    """Milliseconds per stage for one recording, through the dashboard's own code."""
+    res = analyse_heart(path, model=model, complete=True)
+    if res.withheld in ("unreadable", "too_short"):
         return None
-    x = model.normalise(np.stack(feats))
-    t0 = clock(); tflite_predict(model.interp, x); t["cnn_8bit"] = clock() - t0
-    t0 = clock(); audio_descriptors(pcm, fs=FS); t["secondary_characteristics"] = clock() - t0
-    t0 = clock()
-    inp = model.interp.get_input_details()[0]
-    scale, zp = inp["quantization"]
-    q = np.clip(np.round(x[:1] / scale + zp), -128, 127).astype(inp["dtype"])
-    audio_phase_attribution(model.interp, q, segment_cycles(pcm[: 3 * FS].astype(np.float64), FS), FS)
-    t["systole_diastole_attribution"] = clock() - t0
-    t["total"] = sum(t[s] for s in STAGES)
-    t["seconds_of_audio"] = len(x8) / FS
-    t["windows"] = len(feats)
+    t = {s: res.timings_ms[s] for s in STAGES}
+    t["total"] = res.total_ms
+    t["seconds_of_audio"] = res.seconds_of_audio
+    t["windows"] = res.windows
+    t["passed_quality_check"] = res.withheld is None
     return t
 
 
 def summarise(times: list[dict]) -> dict:
     out = {"recordings": len(times),
+           "passed_quality_check": int(sum(t["passed_quality_check"] for t in times)),
            "median_seconds_of_audio": float(np.median([t["seconds_of_audio"] for t in times])),
            "median_windows": float(np.median([t["windows"] for t in times]))}
-    for s in STAGES + ["total"]:
-        v = np.array([t[s] for t in times]) * 1000
+    for s in list(STAGES) + ["total"]:
+        v = np.array([t[s] for t in times])
         out[f"{s}_ms"] = {"median": round(float(np.median(v)), 2), "p95": round(float(np.percentile(v, 95)), 2),
                           "max": round(float(v.max()), 2)}
     return out
 
 
+def manifest_rows(name: str) -> list[dict]:
+    path = MANIFESTS / f"{name}_manifest.csv"
+    if not path.exists():
+        return []
+    with path.open(encoding="utf-8") as fh:
+        return [r for r in csv.DictReader(fh) if (REPO_ROOT / r["path"]).exists()]
+
+
 def public_recordings(n_physionet: int) -> dict[str, list[Path]]:
-    with (REPO_ROOT / "data" / "manifests" / "yaseen_manifest.csv").open(encoding="utf-8") as fh:
-        yaseen = [REPO_ROOT / r["path"] for r in csv.DictReader(fh) if r["fold"] == "0"]
-    sets = {"yaseen_fold0": [p for p in yaseen if p.exists()]}
-    circor = REPO_ROOT / "data" / "manifests" / "circor_manifest.csv"
-    if circor.exists():
-        with circor.open(encoding="utf-8") as fh:
-            paths = [REPO_ROOT / r["path"] for r in csv.DictReader(fh)]
-        paths = [p for p in paths if p.exists()]
-        if paths:
-            pick = np.random.default_rng(0).permutation(len(paths))[:n_physionet]
-            sets["physionet_2022_sample"] = [paths[i] for i in sorted(pick)]
+    sets = {"yaseen_fold0": [REPO_ROOT / r["path"] for r in manifest_rows("yaseen") if r["fold"] == "0"]}
+    paths = [REPO_ROOT / r["path"] for r in manifest_rows("circor")]
+    if paths:
+        pick = np.random.default_rng(0).permutation(len(paths))[:n_physionet]
+        sets["physionet_2022_sample"] = [paths[i] for i in sorted(pick)]
     return sets
+
+
+def _share_of_ones(p: np.ndarray) -> float:
+    """The bootstrap helper turns a 0/1 column into (1 - x, x); the share is column 1's mean."""
+    return float(np.mean(p[:, 1]))
+
+
+def quality_survey(name: str) -> dict | None:
+    """Share of a public dataset's recordings that pass the quality check, by patient."""
+    rows = manifest_rows(name)
+    passes, groups, hi_band, short = [], [], [], 0
+    for r in rows:
+        x8 = load_wav(str(REPO_ROOT / r["path"]), CARDIO_CONFIG)
+        if len(x8) < MIN_SAMPLES:
+            short += 1
+            continue
+        q = signal_provenance((np.clip(x8, -1.0, 1.0) * 32767.0).astype(np.int16).tobytes())
+        passes.append(float(bool(q["in_distribution"])))
+        groups.append(r["patient_id"])
+        hi_band.append(q["hi_band"])
+    if not passes:
+        return None
+    hb = np.array(hi_band)
+    return {
+        "recordings": len(passes),
+        "patients": len(set(groups)),
+        "shorter_than_1_5_s": short,
+        "share_passing": statistic_interval(np.array(passes), np.array(groups), _share_of_ones),
+        "share_of_energy_above_1_khz": {"median": float(np.median(hb)), "p10": float(np.percentile(hb, 10)),
+                                        "p90": float(np.percentile(hb, 90))},
+        "threshold": OOD_HIBAND_THRESHOLD,
+    }
 
 
 def agreement_summary() -> dict:
@@ -169,15 +205,24 @@ def main() -> int:
     for name, paths in sets.items():
         times = [t for t in (time_case(p, model) for p in paths) if t is not None]
         timing[name] = summarise(times)
+    survey = {name: s for name in ("yaseen", "circor") if (s := quality_survey(name)) is not None}
+    survey = {("physionet_2022" if k == "circor" else k): v for k, v in survey.items()}
     agree = agreement_summary()
     slowest = max(v["total_ms"]["p95"] for v in timing.values())
+    fused = fusion_function() is not None
     out = {
         "machine": {"platform": platform.platform(), "processor": platform.processor(),
                     "python": platform.python_version()},
         "model": model.files,
         "sizes": sizes,
+        "pipeline": "cardio.predict.analyse_heart, as the dashboard runs it; every case timed whole",
+        "stages": STAGE_NOTES,
         "timing_per_case": timing,
-        "votes_and_fusion": "pending: not built yet (two logistic regressions on a few dozen numbers)",
+        "votes_and_fusion": ("heart_fusion from cardio/fusion/late_fusion.py" if fused else
+                             "CNN vote alone with weight 1: heart_fusion and reports/heart_fusion_params.json "
+                             "are not in this branch yet. Run this again once they are."),
+        "temperature": temperature(),
+        "quality_check_on_public_data": survey,
         "agreement": agree,
         "peak_memory_mb_whole_process": peak_memory_mb(),
         "targets": {
@@ -194,9 +239,15 @@ def main() -> int:
     print(f"8-bit model {sizes['int8_bytes'] / 1024:.1f} kB, float {sizes['float_bytes'] / 1024:.1f} kB")
     for name, s in timing.items():
         stages = ", ".join(f"{k}: {s[k + '_ms']['median']}" for k in STAGES)
-        print(f"{name} ({s['recordings']} recordings, median {s['median_seconds_of_audio']:.1f} s of audio): "
+        print(f"{name} ({s['recordings']} recordings, {s['passed_quality_check']} pass the quality check, "
+              f"median {s['median_seconds_of_audio']:.1f} s of audio): "
               f"total median {s['total_ms']['median']} ms, p95 {s['total_ms']['p95']} ms")
         print(f"   median ms per stage: {stages}")
+    for name, s in survey.items():
+        share = s["share_passing"]
+        print(f"quality check, all of {name}: {share['estimate']:.1%} pass "
+              f"[{share['lower_95']:.1%}, {share['upper_95']:.1%}] of {s['recordings']} recordings")
+    print("votes and fusion:", out["votes_and_fusion"])
     print(f"peak memory (whole process): {out['peak_memory_mb_whole_process']:.0f} MB")
     print("targets:", out["targets"])
     print("wrote reports/heart_edge_budget.json")

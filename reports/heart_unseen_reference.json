@@ -1,0 +1,167 @@
+{
+  "model_status": "provisional_reference",
+  "model_file": "chiron_cardio_v1_float.keras",
+  "model_sha256": "20e7933952819cfa852a6f5207bf682e77a3a9a17bbc1a69d7c401c8a8d82f60",
+  "normalization_report_sha256": "65088926f387ce009902530598fb49566cdfe65e4520f870c17b093688937489",
+  "normalization": {
+    "mean": -8.65829086303711,
+    "std": 3.764009952545166
+  },
+  "classes": [
+    "Normal",
+    "AS",
+    "MS",
+    "MR",
+    "MVP"
+  ],
+  "method": {
+    "patient_probability": "mean over eligible windows across all recordings for each patient",
+    "referral_probability": "1 - p(Normal)",
+    "referral_threshold": 0.5,
+    "circor_label": "Present vs Absent; drop Unknown visits and patients with conflicting known labels",
+    "bmdhs_label": "any annotated disease vs Normal; exclude missing labels",
+    "bmdhs_shared_class_test": "single-label Normal, AS, MS, MR; remove MVP and renormalise",
+    "intervals": "95% percentile bootstrap over patients, 1000 resamples, seed 0"
+  },
+  "datasets": {
+    "bmdhs": {
+      "manifest_patients": 109,
+      "manifest_recordings": 872,
+      "excluded_patients": {
+        "missing_disease_labels": 1
+      },
+      "recordings_with_eligible_labels": 864,
+      "patients_without_windows": 0,
+      "recordings_scored": 864,
+      "windows_scored": 11229,
+      "refer_or_not": {
+        "patients": 108,
+        "positive_patients": 87,
+        "predicted_refer_patients": 108,
+        "metrics": {
+          "auroc": {
+            "estimate": 0.6792556102900931,
+            "lower_95": 0.5424778343708735,
+            "upper_95": 0.7977927965167547,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "macro_f1": {
+            "estimate": 0.4461538461538462,
+            "lower_95": 0.42245989304812837,
+            "upper_95": 0.46541237867629126,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "sensitivity_at_90_specificity": {
+            "estimate": 0.3333333333333333,
+            "lower_95": 0.1410845588235295,
+            "upper_95": 0.6522488755622188,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "ece": {
+            "estimate": 0.08656514537625556,
+            "lower_95": 0.04086529821691357,
+            "upper_95": 0.1640405151697122,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          }
+        }
+      },
+      "shared_classes": {
+        "patients": 51,
+        "class_support": {
+          "Normal": 21,
+          "AS": 8,
+          "MS": 11,
+          "MR": 11
+        },
+        "macro_f1": {
+          "estimate": 0.1515151515151515,
+          "lower_95": 0.07,
+          "upper_95": 0.22734090909090904,
+          "valid_resamples": 1000,
+          "resamples": 1000
+        },
+        "per_class_recall": {
+          "Normal": {
+            "estimate": 0.0,
+            "lower_95": 0.0,
+            "upper_95": 0.0,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "AS": {
+            "estimate": 0.375,
+            "lower_95": 0.0,
+            "upper_95": 0.75,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "MS": {
+            "estimate": 0.7272727272727273,
+            "lower_95": 0.4,
+            "upper_95": 1.0,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "MR": {
+            "estimate": 0.0,
+            "lower_95": 0.0,
+            "upper_95": 0.0,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          }
+        }
+      }
+    },
+    "circor": {
+      "manifest_patients": 872,
+      "manifest_recordings": 3163,
+      "excluded_patients": {
+        "unknown_murmur": 56,
+        "conflicting_murmur_labels": 4
+      },
+      "recordings_with_eligible_labels": 2976,
+      "patients_without_windows": 0,
+      "recordings_scored": 2976,
+      "windows_scored": 43982,
+      "refer_or_not": {
+        "patients": 812,
+        "positive_patients": 157,
+        "predicted_refer_patients": 808,
+        "metrics": {
+          "auroc": {
+            "estimate": 0.5349832255555015,
+            "lower_95": 0.4867157485986843,
+            "upper_95": 0.5880367537775936,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "macro_f1": {
+            "estimate": 0.1636566630237367,
+            "lower_95": 0.14327169584901542,
+            "upper_95": 0.18258757712357201,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "sensitivity_at_90_specificity": {
+            "estimate": 0.12101910828025478,
+            "lower_95": 0.059880239520958084,
+            "upper_95": 0.1741582094961943,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          },
+          "ece": {
+            "estimate": 0.6819652596336518,
+            "lower_95": 0.654782902202932,
+            "upper_95": 0.7095612951147661,
+            "valid_resamples": 1000,
+            "resamples": 1000
+          }
+        }
+      }
+    }
+  }
+}

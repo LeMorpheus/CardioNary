@@ -13,89 +13,150 @@
     "int8_bytes": 28336,
     "float_bytes": 238537
   },
+  "pipeline": "cardio.predict.analyse_heart, as the dashboard runs it; every case timed whole",
+  "stages": {
+    "load_and_resample": "read the WAV, take channel 0, convert to 8 kHz",
+    "quality_check": "at least 1.5 s of sound, and the energy test of core/ood.py",
+    "front_end": "band-pass, 3-second windows with 50% overlap, log-mel",
+    "cnn_8bit": "the shipped 8-bit model on every window, mean softmax, temperature",
+    "secondary_characteristics": "the 17 numbers of cardio.model.features",
+    "systole_or_diastole": "which phase holds the extra sound, from the measured energy",
+    "votes_and_fusion": "heart_fusion, or the CNN vote alone until it exists"
+  },
   "timing_per_case": {
     "yaseen_fold0": {
       "recordings": 197,
+      "passed_quality_check": 197,
       "median_seconds_of_audio": 2.517875,
       "median_windows": 1.0,
       "load_and_resample_ms": {
-        "median": 0.32,
-        "p95": 0.62,
+        "median": 0.31,
+        "p95": 0.58,
         "max": 0.81
       },
       "quality_check_ms": {
-        "median": 1.9,
-        "p95": 4.55,
-        "max": 6.34
+        "median": 2.0,
+        "p95": 4.94,
+        "max": 7.36
       },
       "front_end_ms": {
-        "median": 0.97,
-        "p95": 2.04,
-        "max": 3.4
+        "median": 1.08,
+        "p95": 1.91,
+        "max": 2.95
       },
       "cnn_8bit_ms": {
-        "median": 0.18,
-        "p95": 0.34,
-        "max": 0.43
+        "median": 0.34,
+        "p95": 0.65,
+        "max": 1.44
       },
       "secondary_characteristics_ms": {
-        "median": 3.75,
-        "p95": 8.02,
-        "max": 10.16
+        "median": 5.2,
+        "p95": 8.89,
+        "max": 11.78
       },
-      "systole_diastole_attribution_ms": {
-        "median": 1.22,
-        "p95": 2.85,
-        "max": 3.88
+      "systole_or_diastole_ms": {
+        "median": 0.0,
+        "p95": 0.0,
+        "max": 0.0
+      },
+      "votes_and_fusion_ms": {
+        "median": 0.11,
+        "p95": 0.21,
+        "max": 0.31
       },
       "total_ms": {
-        "median": 8.71,
-        "p95": 15.83,
-        "max": 21.16
+        "median": 9.24,
+        "p95": 15.24,
+        "max": 19.7
       }
     },
     "physionet_2022_sample": {
       "recordings": 100,
+      "passed_quality_check": 7,
       "median_seconds_of_audio": 22.184,
       "median_windows": 14.0,
       "load_and_resample_ms": {
-        "median": 3.7,
-        "p95": 6.11,
-        "max": 8.91
+        "median": 4.0,
+        "p95": 7.94,
+        "max": 10.75
       },
       "quality_check_ms": {
-        "median": 12.93,
-        "p95": 62.01,
-        "max": 102.48
+        "median": 14.36,
+        "p95": 66.4,
+        "max": 78.01
       },
       "front_end_ms": {
-        "median": 13.11,
-        "p95": 21.97,
-        "max": 28.15
+        "median": 12.78,
+        "p95": 21.07,
+        "max": 24.39
       },
       "cnn_8bit_ms": {
-        "median": 1.17,
-        "p95": 2.45,
-        "max": 3.43
+        "median": 1.33,
+        "p95": 2.67,
+        "max": 3.53
       },
       "secondary_characteristics_ms": {
-        "median": 28.96,
-        "p95": 44.86,
-        "max": 52.03
+        "median": 38.29,
+        "p95": 57.63,
+        "max": 72.99
       },
-      "systole_diastole_attribution_ms": {
-        "median": 1.48,
-        "p95": 2.55,
-        "max": 3.6
+      "systole_or_diastole_ms": {
+        "median": 0.0,
+        "p95": 0.01,
+        "max": 0.01
+      },
+      "votes_and_fusion_ms": {
+        "median": 0.12,
+        "p95": 0.23,
+        "max": 0.36
       },
       "total_ms": {
-        "median": 63.03,
-        "p95": 130.35,
-        "max": 190.66
+        "median": 76.42,
+        "p95": 141.07,
+        "max": 169.83
       }
     }
   },
-  "votes_and_fusion": "pending: not built yet (two logistic regressions on a few dozen numbers)",
+  "votes_and_fusion": "CNN vote alone with weight 1: heart_fusion and reports/heart_fusion_params.json are not in this branch yet. Run this again once they are.",
+  "temperature": null,
+  "quality_check_on_public_data": {
+    "yaseen": {
+      "recordings": 990,
+      "patients": 990,
+      "shorter_than_1_5_s": 10,
+      "share_passing": {
+        "estimate": 0.9939393939393939,
+        "lower_95": 0.9888888888888889,
+        "upper_95": 0.997979797979798,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "share_of_energy_above_1_khz": {
+        "median": 2.5e-05,
+        "p10": 1.1e-05,
+        "p90": 9.7e-05
+      },
+      "threshold": 0.0015
+    },
+    "physionet_2022": {
+      "recordings": 3163,
+      "patients": 872,
+      "shorter_than_1_5_s": 0,
+      "share_passing": {
+        "estimate": 0.08757508694277584,
+        "lower_95": 0.07570298648959223,
+        "upper_95": 0.0998461377501978,
+        "valid_resamples": 1000,
+        "resamples": 1000
+      },
+      "share_of_energy_above_1_khz": {
+        "median": 0.016275,
+        "p10": 0.0017196000000000002,
+        "p90": 0.12238740000000008
+      },
+      "threshold": 0.0015
+    }
+  },
   "agreement": {
     "yaseen_fold0_clip_agreement": 1.0,
     "physionet_2022_recording_agreement_shipped_model": 0.9649067341131837,
@@ -130,7 +191,7 @@
       "C_adapted_requantised": 0.111
     }
   },
-  "peak_memory_mb_whole_process": 444.37890625,
+  "peak_memory_mb_whole_process": 484.32421875,
   "targets": {
     "int8_under_1_MB": true,
     "case_under_1_s_at_p95": true,

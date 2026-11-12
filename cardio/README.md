@@ -41,9 +41,33 @@ python -m cardio.eval.real_world --data-dir <path to Real_World_Data> --adapt
 python -m cardio.eval.requantise --site physionet_2022
 python -m cardio.eval.requantise --site clinic --data-dir <path to Real_World_Data>
 
-# edge budget on this laptop (roadmap S4): size, time per case, memory
+# edge budget on this laptop (roadmap S4, S5): size, time per case through
+# cardio/predict.py, memory, and the share of public recordings passing the quality check
 python -m cardio.eval.edge_budget          # reports/heart_edge_budget.json
+
+# the heart result for one recording, as the dashboard shows it (public data only)
+python -m cardio.predict data/raw/circor/training_data/<recording>.wav
+
+# every result file again, in order; skips what this laptop has no code or data for
+python -m cardio.run_all --list
+python -m cardio.run_all [--clinic-dir <path to Real_World_Data>] [--final]
 ```
+
+## For the dashboard
+
+`cardio/predict.py` is the heart branch's one entry point (roadmap S5; frontend
+guide, Section 3). The dashboard calls `analyse_heart(recording, metadata)` with an
+upload or a path and a `PatientMetadata`, and gets back the contracts of
+`core/contracts.py`: a `ModelOutput` (calibrated class probabilities and the 17
+characteristics) and a `FusedOutput` (p_h, each vote and its weight). When
+`withheld` is set (`"unreadable"`, `"too_short"` or `"quality_check"`), the
+dashboard shows the reason and no heart result. `result.pcm16()` feeds
+`core.spectrogram.spectrogram_png`, and `result.close_call` names the top two
+classes when they are less than 0.05 apart.
+
+Until `heart_fusion()` and `reports/heart_fusion_params.json` exist, the CNN vote
+counts alone with weight 1, and T = 1 until `"T"` is in that file or in
+`reports/heart_calibration.json`.
 
 Every result carries a 95% bootstrap interval over patients, from
 `cardio.eval.intervals`, which wraps `cardio.eval.metrics`.
