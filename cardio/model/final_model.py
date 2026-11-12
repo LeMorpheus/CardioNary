@@ -32,23 +32,27 @@ CLASSES = ["Normal", "AS", "MS", "MR", "MVP"]
 
 
 class FinalModel:
-    def __init__(self, model_dir: Path = MODEL_DIR, report_dir: Path = REPO_ROOT / "reports"):
+    def __init__(self, model_dir: Path = MODEL_DIR, report_dir: Path = REPO_ROOT / "reports", *, load_int8=True):
         import tensorflow as tf
         from tensorflow import keras
 
         float_path = model_dir / f"{STEM}_float.keras"
         int8_path = model_dir / f"{STEM}_int8.tflite"
         report = report_dir / f"quantization_{STEM}.json"
-        for p in (float_path, int8_path, report):
+        required = (float_path, report, int8_path) if load_int8 else (float_path, report)
+        for p in required:
             if not p.exists():
                 raise FileNotFoundError(
                     f"{p} is missing; build it with: python -m core.quantize --dataset yaseen --holdout-fold 0")
         rep = json.loads(report.read_text())
         self.mu, self.sd = float(rep["norm_mean"]), float(rep["norm_std"])
-        self.float_model = keras.models.load_model(float_path)
-        self.interp = tf.lite.Interpreter(model_path=str(int8_path))
-        self.interp.allocate_tensors()
-        self.files = {"float": float_path.name, "int8": int8_path.name, "int8_bytes": int8_path.stat().st_size}
+        self.float_model = keras.models.load_model(float_path, compile=load_int8)
+        self.interp = None
+        self.files = {"float": float_path.name}
+        if load_int8:
+            self.interp = tf.lite.Interpreter(model_path=str(int8_path))
+            self.interp.allocate_tensors()
+            self.files.update(int8=int8_path.name, int8_bytes=int8_path.stat().st_size)
 
     def normalise(self, feats: np.ndarray) -> np.ndarray:
         """(n, 40, 192) log-mel windows -> normalised (n, 40, 192, 1) float32."""
@@ -56,6 +60,8 @@ class FinalModel:
 
     def predict_windows(self, feats: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         """Softmax per window from the float model and from the 8-bit model."""
+        if self.interp is None:
+            raise ValueError("Load the INT8 model to compare float and INT8 predictions")
         from core.quantize import tflite_predict
 
         x = self.normalise(feats)

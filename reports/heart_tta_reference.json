@@ -1,0 +1,4307 @@
+{
+  "model_status": "provisional_reference",
+  "model_sha256": "20e7933952819cfa852a6f5207bf682e77a3a9a17bbc1a69d7c401c8a8d82f60",
+  "normalization_report_sha256": "65088926f387ce009902530598fb49566cdfe65e4520f870c17b093688937489",
+  "classes": [
+    "Normal",
+    "AS",
+    "MS",
+    "MR",
+    "MVP"
+  ],
+  "pilot": false,
+  "planned_sites": [
+    "bmdhs",
+    "circor",
+    "white_noise",
+    "low_pass"
+  ],
+  "method": {
+    "adaptation": "one forward pass to update BN statistics, with a recording-level 95% collapse guard",
+    "split": "fixed stratified 25% holdout by patient; Yaseen uses fold 0 clip IDs",
+    "score_panel_cap": null,
+    "scoring": "window-weighted mean probability per patient; refer if 1 - p(Normal) >= 0.5",
+    "recovery": "(adapted - plain) / (clean - plain); null when the clean-to-shift gap is nonpositive",
+    "intervals": "95% patient bootstrap, 1000 resamples, seed 0; metrics averaged across draws before intervals",
+    "stress_batches": "class labels control sample composition; the adaptation model only receives windows"
+  },
+  "clean_yaseen": {
+    "score_clips": 50,
+    "metrics": {
+      "macro_f1": {
+        "estimate": 1.0,
+        "lower_95": 1.0,
+        "upper_95": 1.0,
+        "valid_resamples": 1000
+      },
+      "auroc": {
+        "estimate": 1.0,
+        "lower_95": 1.0,
+        "upper_95": 1.0,
+        "valid_resamples": 1000
+      }
+    }
+  },
+  "sites": {
+    "bmdhs": {
+      "score_patients": 27,
+      "score_positive_patients": 22,
+      "score_recordings": 216,
+      "clean_comparison": "Yaseen reference cohort",
+      "conditions": [
+        {
+          "adaptation_recordings": 8,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 7,
+              "adaptation_windows": 104,
+              "seconds_to_adapt_with_guard": 0.3288828999939142,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5454545454545454
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 104,
+              "seconds_to_adapt_with_guard": 0.6093777000060072,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6272727272727273
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 104,
+              "seconds_to_adapt_with_guard": 0.2903649000072619,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 8,
+              "adaptation_windows": 104,
+              "seconds_to_adapt_with_guard": 0.44830989999172743,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5545454545454546
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 104,
+              "seconds_to_adapt_with_guard": 0.289945099997567,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.5745454545454546,
+                "lower_95": 0.26666666666666666,
+                "upper_95": 0.8585869565217392,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.19818181818181813,
+                "lower_95": -0.447579365079365,
+                "upper_95": 0.020045454545454613,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.8719999999999997,
+                "lower_95": -3.8754999999999997,
+                "upper_95": 0.07217391304347848,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9006147909256758,
+              "lower_95": 0.7824866310160428,
+              "upper_95": 0.9921757618710135,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 16,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 14,
+              "adaptation_windows": 208,
+              "seconds_to_adapt_with_guard": 0.3483979000011459,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5636363636363636
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 15,
+              "abnormal_recordings": 14,
+              "adaptation_windows": 205,
+              "seconds_to_adapt_with_guard": 0.35600139999587554,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5454545454545454
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 13,
+              "abnormal_recordings": 13,
+              "adaptation_windows": 208,
+              "seconds_to_adapt_with_guard": 0.3547398999944562,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6090909090909091
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 13,
+              "abnormal_recordings": 11,
+              "adaptation_windows": 208,
+              "seconds_to_adapt_with_guard": 0.369795200007502,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6272727272727273
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 15,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 208,
+              "seconds_to_adapt_with_guard": 0.3686034000129439,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.5836363636363636,
+                "lower_95": 0.2718909090909091,
+                "upper_95": 0.8764195804195805,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.1890909090909091,
+                "lower_95": -0.4351932367149759,
+                "upper_95": 0.0028656126482213737,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.832,
+                "lower_95": -3.399999999999993,
+                "upper_95": 0.027357142857143066,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9168265601862254,
+              "lower_95": 0.8044067024400121,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 24,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.6660505999898305,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5636363636363636
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.46875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 27,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.41753829999652226,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5636363636363636
+              },
+              "top_class_share_before": 0.59375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 30,
+              "abnormal_recordings": 25,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.7294414000061806,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 25,
+              "abnormal_recordings": 25,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5806385999894701,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5545454545454546
+              },
+              "top_class_share_before": 0.5625,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 26,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5677621999930125,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.53125,
+              "top_class_share_after": 0.46875,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.5709090909090909,
+                "lower_95": 0.24391304347826084,
+                "upper_95": 0.8837342657342657,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.20181818181818179,
+                "lower_95": -0.45833333333333337,
+                "upper_95": 0.0007272727272729861,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.8879999999999998,
+                "lower_95": -3.3929166666666664,
+                "upper_95": 0.01583333333333461,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.924537941339725,
+              "lower_95": 0.8136136984914447,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 64,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 46,
+              "abnormal_recordings": 50,
+              "adaptation_windows": 832,
+              "seconds_to_adapt_with_guard": 1.2051406999962637,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5545454545454546
+              },
+              "top_class_share_before": 0.609375,
+              "top_class_share_after": 0.421875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 42,
+              "abnormal_recordings": 55,
+              "adaptation_windows": 832,
+              "seconds_to_adapt_with_guard": 0.9412884999910602,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5636363636363636
+              },
+              "top_class_share_before": 0.703125,
+              "top_class_share_after": 0.390625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 49,
+              "abnormal_recordings": 51,
+              "adaptation_windows": 832,
+              "seconds_to_adapt_with_guard": 1.1232492999988608,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5545454545454546
+              },
+              "top_class_share_before": 0.671875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 42,
+              "abnormal_recordings": 57,
+              "adaptation_windows": 832,
+              "seconds_to_adapt_with_guard": 0.9291144000017084,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.453125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 43,
+              "abnormal_recordings": 53,
+              "adaptation_windows": 832,
+              "seconds_to_adapt_with_guard": 0.8445770999969682,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5636363636363636
+              },
+              "top_class_share_before": 0.703125,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.5618181818181818,
+                "lower_95": 0.23307692307692307,
+                "upper_95": 0.8720727272727273,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.21090909090909093,
+                "lower_95": -0.46136363636363636,
+                "upper_95": -0.006828571428571246,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.928,
+                "lower_95": -3.460303030303031,
+                "upper_95": -0.033333333333332965,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9168265601862255,
+              "lower_95": 0.8044067024400121,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.1,
+          "draws": [
+            {
+              "adaptation_patients": 17,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5379303999943659,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5909090909090909
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 17,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5238733000005595,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.5625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 17,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5093497999914689,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6545454545454545
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 15,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.515074499999173,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6363636363636364
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 17,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5106286000082036,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5818181818181818
+              },
+              "top_class_share_before": 0.65625,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.6072727272727272,
+                "lower_95": 0.30105882352941177,
+                "upper_95": 0.8860757575757576,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.16545454545454552,
+                "lower_95": -0.4030555555555556,
+                "upper_95": 0.03086691086691089,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.7280000000000002,
+                "lower_95": -3.0285,
+                "upper_95": 0.10793190416141248,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9014037978792262,
+              "lower_95": 0.7713458146927076,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.5,
+          "draws": [
+            {
+              "adaptation_patients": 25,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 413,
+              "seconds_to_adapt_with_guard": 0.5172178000066197,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5727272727272728
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.46875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 26,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5599012000020593,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6363636363636364
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.46875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 25,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5187057000002824,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5818181818181818
+              },
+              "top_class_share_before": 0.71875,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 27,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5401312000030885,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.6
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 26,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5091452999913599,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5818181818181818
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.5945454545454545,
+                "lower_95": 0.27170807453416146,
+                "upper_95": 0.8846153846153847,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.17818181818181822,
+                "lower_95": -0.4334782608695652,
+                "upper_95": 0.0447826086956523,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.7840000000000001,
+                "lower_95": -3.4049999999999976,
+                "upper_95": 0.16203571428571437,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9014037978792262,
+              "lower_95": 0.7713458146927076,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.9,
+          "draws": [
+            {
+              "adaptation_patients": 27,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5990497000020696,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5636363636363636
+              },
+              "top_class_share_before": 0.65625,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5539719000080368,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5454545454545454
+              },
+              "top_class_share_before": 0.65625,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.6321439000021201,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5545454545454546
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 27,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5659322999999858,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5454545454545454
+              },
+              "top_class_share_before": 0.5625,
+              "top_class_share_after": 0.46875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 26,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 416,
+              "seconds_to_adapt_with_guard": 0.5564951999986079,
+              "shifted_after": {
+                "macro_f1": 0.4489795918367347,
+                "auroc": 0.5545454545454546
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.4489795918367347,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.44897959183673464,
+                "lower_95": 0.4,
+                "upper_95": 0.49056603773584906,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -5.551115123125783e-17,
+                "lower_95": -5.551115123125783e-17,
+                "upper_95": 5.551115123125783e-17,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0074245964191237e-16,
+                "lower_95": -1.0691036533427435e-16,
+                "upper_95": 1.02798428206033e-16,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7727272727272727,
+                "lower_95": 0.5398461538461539,
+                "upper_95": 0.9732806324110673,
+                "valid_resamples": 997
+              },
+              "adapted": {
+                "estimate": 0.5527272727272727,
+                "lower_95": 0.22821176470588234,
+                "upper_95": 0.8800555555555557,
+                "valid_resamples": 997
+              },
+              "gain": {
+                "estimate": -0.21999999999999997,
+                "lower_95": -0.46181818181818185,
+                "upper_95": -0.01984210526315787,
+                "valid_resamples": 997
+              },
+              "recovery": {
+                "estimate": -0.9679999999999997,
+                "lower_95": -3.3999999999999995,
+                "upper_95": -0.09846774193548385,
+                "valid_resamples": 982
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9091151790327258,
+              "lower_95": 0.7884888674638929,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        }
+      ]
+    },
+    "circor": {
+      "score_patients": 203,
+      "score_positive_patients": 39,
+      "score_recordings": 727,
+      "clean_comparison": "Yaseen reference cohort",
+      "conditions": [
+        {
+          "adaptation_recordings": 8,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 136,
+              "seconds_to_adapt_with_guard": 0.3744103999924846,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6951219512195121
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 0,
+              "adaptation_windows": 107,
+              "seconds_to_adapt_with_guard": 0.27853729999333154,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6971544715447154
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 137,
+              "seconds_to_adapt_with_guard": 0.342274799986626,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6987179487179487
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 2,
+              "adaptation_windows": 109,
+              "seconds_to_adapt_with_guard": 0.28361510000831913,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6887116948092558
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 1,
+              "adaptation_windows": 104,
+              "seconds_to_adapt_with_guard": 0.269956899996032,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6810506566604128
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.6921513445903689,
+                "lower_95": 0.5890478870805892,
+                "upper_95": 0.7881748619025393,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.16948092557848649,
+                "lower_95": 0.06035588583259399,
+                "upper_95": 0.27718097267798547,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.35506059613494906,
+                "lower_95": 0.138533951976605,
+                "upper_95": 0.5509644088454718,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6885,
+              "lower_95": 0.5209355263157894,
+              "upper_95": 0.8349688852813854,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 16,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 4,
+              "adaptation_windows": 253,
+              "seconds_to_adapt_with_guard": 0.36695000001054723,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6943402126328956
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 15,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 235,
+              "seconds_to_adapt_with_guard": 0.36000059999059886,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6919949968730457
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 1,
+              "adaptation_windows": 220,
+              "seconds_to_adapt_with_guard": 0.3488874000031501,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.7049718574108818
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 223,
+              "seconds_to_adapt_with_guard": 0.35541010000451934,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6932457786116323
+              },
+              "top_class_share_before": 0.9375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 2,
+              "adaptation_windows": 222,
+              "seconds_to_adapt_with_guard": 0.36393849999876693,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.7065353345841151
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.6982176360225141,
+                "lower_95": 0.5970068440547396,
+                "upper_95": 0.7962830779806337,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.1755472170106317,
+                "lower_95": 0.061597351387812554,
+                "upper_95": 0.28848178906205546,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.3677694071405176,
+                "lower_95": 0.14894235618085405,
+                "upper_95": 0.5673697985903543,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.7144999999999999,
+              "lower_95": 0.5464263937282231,
+              "upper_95": 0.8545089285714286,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 30,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 463,
+              "seconds_to_adapt_with_guard": 0.6476084000023548,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6990306441525954
+              },
+              "top_class_share_before": 0.71875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 8,
+              "adaptation_windows": 465,
+              "seconds_to_adapt_with_guard": 0.6399702999915462,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.7005941213258287
+              },
+              "top_class_share_before": 0.78125,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 5,
+              "adaptation_windows": 409,
+              "seconds_to_adapt_with_guard": 0.9312921999953687,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6968417761100688
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 4,
+              "adaptation_windows": 516,
+              "seconds_to_adapt_with_guard": 0.6550495999981649,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6979362101313321
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 10,
+              "adaptation_windows": 442,
+              "seconds_to_adapt_with_guard": 0.648215799999889,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6982489055659787
+              },
+              "top_class_share_before": 0.71875,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.6985303314571607,
+                "lower_95": 0.5934866118314062,
+                "upper_95": 0.7971920442748474,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.17585991244527832,
+                "lower_95": 0.060949490468123986,
+                "upper_95": 0.28930955370142714,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.36842450049132003,
+                "lower_95": 0.1432587169511919,
+                "upper_95": 0.5702194455959048,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6910000000000001,
+              "lower_95": 0.5210005323267518,
+              "upper_95": 0.8405710955710956,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 64,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 59,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 923,
+              "seconds_to_adapt_with_guard": 1.0883988999994472,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6941838649155723
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.265625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 62,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 939,
+              "seconds_to_adapt_with_guard": 0.9561801999952877,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6977798624140088
+              },
+              "top_class_share_before": 0.78125,
+              "top_class_share_after": 0.296875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 62,
+              "abnormal_recordings": 13,
+              "adaptation_windows": 972,
+              "seconds_to_adapt_with_guard": 0.9335311000031652,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.698874296435272
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 61,
+              "abnormal_recordings": 10,
+              "adaptation_windows": 1008,
+              "seconds_to_adapt_with_guard": 0.9645267000014428,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6959036898061288
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.296875,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 63,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 920,
+              "seconds_to_adapt_with_guard": 1.0893071999889798,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6943402126328956
+              },
+              "top_class_share_before": 0.78125,
+              "top_class_share_after": 0.390625,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.6962163852407756,
+                "lower_95": 0.5906447212234067,
+                "upper_95": 0.7950312405901836,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.17354596622889318,
+                "lower_95": 0.06121327647220493,
+                "upper_95": 0.28656905713985065,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.3635768096953818,
+                "lower_95": 0.14279915684263741,
+                "upper_95": 0.5668831740382717,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6845,
+              "lower_95": 0.5135065789473684,
+              "upper_95": 0.83598653539443,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.1,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 486,
+              "seconds_to_adapt_with_guard": 0.6695483999938006,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6937148217636022
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 523,
+              "seconds_to_adapt_with_guard": 0.6912675000057789,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6994996873045654
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 495,
+              "seconds_to_adapt_with_guard": 0.683540300000459,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6971544715447154
+              },
+              "top_class_share_before": 0.71875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 30,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 466,
+              "seconds_to_adapt_with_guard": 0.5477188999939244,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.7010631644777986
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 31,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 427,
+              "seconds_to_adapt_with_guard": 0.5234838999895146,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6973108192620388
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.6977485928705441,
+                "lower_95": 0.5920365569172359,
+                "upper_95": 0.7960298040046224,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.17507817385866176,
+                "lower_95": 0.060242721934795095,
+                "upper_95": 0.2883528786962012,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.36678676711431396,
+                "lower_95": 0.13848852367400732,
+                "upper_95": 0.5685093943103928,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6619999999999999,
+              "lower_95": 0.48399302325581395,
+              "upper_95": 0.8240410256410257,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.5,
+          "draws": [
+            {
+              "adaptation_patients": 31,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 483,
+              "seconds_to_adapt_with_guard": 0.5569326999975601,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.692151344590369
+              },
+              "top_class_share_before": 0.71875,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 467,
+              "seconds_to_adapt_with_guard": 0.5634737000073073,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6873045653533458
+              },
+              "top_class_share_before": 0.84375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 30,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 513,
+              "seconds_to_adapt_with_guard": 0.7403129000012996,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6944965603502189
+              },
+              "top_class_share_before": 0.71875,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 28,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 469,
+              "seconds_to_adapt_with_guard": 0.553709700005129,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6977798624140088
+              },
+              "top_class_share_before": 0.78125,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 452,
+              "seconds_to_adapt_with_guard": 0.5475373000081163,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6876172607879925
+              },
+              "top_class_share_before": 0.9375,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.691869918699187,
+                "lower_95": 0.5925170361593908,
+                "upper_95": 0.790791671051247,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.16919949968730463,
+                "lower_95": 0.05489555905574212,
+                "upper_95": 0.28036749932449734,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.3544710121192271,
+                "lower_95": 0.13160392739562404,
+                "upper_95": 0.556353801951417,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6519999999999999,
+              "lower_95": 0.47410783208020046,
+              "upper_95": 0.8131772727272726,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.9,
+          "draws": [
+            {
+              "adaptation_patients": 27,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 491,
+              "seconds_to_adapt_with_guard": 0.5819360000023153,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.676829268292683
+              },
+              "top_class_share_before": 0.8125,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 30,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 401,
+              "seconds_to_adapt_with_guard": 0.5097320000058971,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6796435272045028
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 30,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 474,
+              "seconds_to_adapt_with_guard": 0.6623678999894764,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6913696060037523
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 29,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 479,
+              "seconds_to_adapt_with_guard": 0.615454899991164,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6837085678549093
+              },
+              "top_class_share_before": 0.875,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 27,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 508,
+              "seconds_to_adapt_with_guard": 0.6039836999989348,
+              "shifted_after": {
+                "macro_f1": 0.16115702479338842,
+                "auroc": 0.6937148217636022
+              },
+              "top_class_share_before": 0.84375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.16115702479338842,
+                "lower_95": 0.12121212121212122,
+                "upper_95": 0.1976284584980237,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.5226704190118824,
+                "lower_95": 0.4185368603963325,
+                "upper_95": 0.6213660920793935,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.6850531582238899,
+                "lower_95": 0.5865535141727581,
+                "upper_95": 0.7807297900212333,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.16238273921200752,
+                "lower_95": 0.0524246473264299,
+                "upper_95": 0.2758629833610164,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.3401899770717327,
+                "lower_95": 0.11915509913274215,
+                "upper_95": 0.5334480581257962,
+                "valid_resamples": 1000
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6495,
+              "lower_95": 0.4753302845528455,
+              "upper_95": 0.8096936396936395,
+              "valid_resamples": 1000
+            }
+          }
+        }
+      ]
+    },
+    "white_noise": {
+      "score_patients": 50,
+      "score_positive_patients": 40,
+      "score_recordings": 50,
+      "clean_comparison": "matched clips",
+      "conditions": [
+        {
+          "adaptation_recordings": 8,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 7,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.25284459999238607,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.855
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.21638250000250991,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.83
+              },
+              "top_class_share_before": 0.75,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 9,
+              "seconds_to_adapt_with_guard": 0.23274410000885837,
+              "shifted_after": {
+                "macro_f1": 0.5265151515151515,
+                "auroc": 0.8275
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 8,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.21607599999697413,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.83
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.22033029999874998,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8575
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4583617069572126,
+                "lower_95": 0.4125398224722351,
+                "upper_95": 0.5057288841509012,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.2706355830156872,
+                "lower_95": -0.4061324843591667,
+                "upper_95": -0.10489606851329494,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -0.998645301327886,
+                "lower_95": -3.2919058543131245,
+                "upper_95": -0.23614177061799144,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.8400000000000001,
+                "lower_95": 0.7251381381381382,
+                "upper_95": 0.9435109848484847,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.025000000000000133,
+                "lower_95": -0.13553882113821145,
+                "upper_95": 0.20919391891891884,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.1351351351351358,
+                "lower_95": -3.9099090909090903,
+                "upper_95": 0.6726903217264663,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6845000000000001,
+              "lower_95": 0.5280680645463925,
+              "upper_95": 0.8257976351351352,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 16,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 19,
+              "seconds_to_adapt_with_guard": 0.33212920000369195,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.8325
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 13,
+              "adaptation_windows": 18,
+              "seconds_to_adapt_with_guard": 0.23200659999565687,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.835
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 13,
+              "adaptation_windows": 17,
+              "seconds_to_adapt_with_guard": 0.22207089999574237,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8275
+              },
+              "top_class_share_before": 0.4375,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 10,
+              "adaptation_windows": 16,
+              "seconds_to_adapt_with_guard": 0.23552239999116864,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.84
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 16,
+              "seconds_to_adapt_with_guard": 0.2706091000000015,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8325
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4419475655430712,
+                "lower_95": 0.40476190476190477,
+                "upper_95": 0.47144456886898095,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.2870497244298286,
+                "lower_95": -0.4371779310315849,
+                "upper_95": -0.10541951057162105,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.059213483146068,
+                "lower_95": -3.515577119509704,
+                "upper_95": -0.23623358296928096,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.8335000000000001,
+                "lower_95": 0.7128638357256779,
+                "upper_95": 0.9521679817275748,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.018500000000000183,
+                "lower_95": -0.14829343853820598,
+                "upper_95": 0.20138706140350873,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.10000000000000096,
+                "lower_95": -4.0306249999999935,
+                "upper_95": 0.6802068965517243,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.7319999999999999,
+              "lower_95": 0.5809001161440185,
+              "upper_95": 0.8595146929824562,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 26,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.24249100001179613,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.85
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 26,
+              "adaptation_windows": 34,
+              "seconds_to_adapt_with_guard": 0.23887239999021403,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8525
+              },
+              "top_class_share_before": 0.5625,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 23,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.2404623000038555,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.835
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 24,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.24287360000016633,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8625
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 27,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.23215179999533575,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.835
+              },
+              "top_class_share_before": 0.5625,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4431960049937578,
+                "lower_95": 0.40476190476190477,
+                "upper_95": 0.4725643896976483,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.28580128497914203,
+                "lower_95": -0.4361800506389419,
+                "upper_95": -0.1036818826668228,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0546067415730345,
+                "lower_95": -3.50561797752809,
+                "upper_95": -0.23336798765688943,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.8470000000000001,
+                "lower_95": 0.7343015015015014,
+                "upper_95": 0.9528783222591362,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.03200000000000014,
+                "lower_95": -0.12896856312292368,
+                "upper_95": 0.22371786420566897,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.17297297297297368,
+                "lower_95": -3.664090909090902,
+                "upper_95": 0.7083333333333323,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.6955,
+              "lower_95": 0.5309838516746412,
+              "upper_95": 0.838181078345552,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 64,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 52,
+              "adaptation_windows": 66,
+              "seconds_to_adapt_with_guard": 0.265925799991237,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8475
+              },
+              "top_class_share_before": 0.546875,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 48,
+              "adaptation_windows": 67,
+              "seconds_to_adapt_with_guard": 0.2580175000039162,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.8425
+              },
+              "top_class_share_before": 0.5625,
+              "top_class_share_after": 0.234375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 52,
+              "adaptation_windows": 67,
+              "seconds_to_adapt_with_guard": 0.26177979999920353,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.8375
+              },
+              "top_class_share_before": 0.640625,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 50,
+              "adaptation_windows": 68,
+              "seconds_to_adapt_with_guard": 0.2653845999884652,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8425
+              },
+              "top_class_share_before": 0.484375,
+              "top_class_share_after": 0.328125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 50,
+              "adaptation_windows": 66,
+              "seconds_to_adapt_with_guard": 0.2615843999956269,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.845
+              },
+              "top_class_share_before": 0.515625,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4419475655430711,
+                "lower_95": 0.40476190476190477,
+                "upper_95": 0.47144456886898095,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.28704972442982873,
+                "lower_95": -0.4371779310315849,
+                "upper_95": -0.10541951057162105,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0592134831460684,
+                "lower_95": -3.515577119509704,
+                "upper_95": -0.23623358296928096,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.843,
+                "lower_95": 0.7280337245139877,
+                "upper_95": 0.9485077380952383,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.028000000000000025,
+                "lower_95": -0.13253749999999995,
+                "upper_95": 0.2140337719298245,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.15135135135135144,
+                "lower_95": -3.579659090909086,
+                "upper_95": 0.6845806756437517,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.7155,
+              "lower_95": 0.5593285576212406,
+              "upper_95": 0.8524534996534997,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.1,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.28384830000868533,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.84
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.26730639999732375,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8475
+              },
+              "top_class_share_before": 0.625,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.2400787000078708,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.84
+              },
+              "top_class_share_before": 0.6875,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.22851740001351573,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.835
+              },
+              "top_class_share_before": 0.65625,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.22665019999840297,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.845
+              },
+              "top_class_share_before": 0.65625,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4444444444444445,
+                "lower_95": 0.40476190476190477,
+                "upper_95": 0.47368421052631576,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.28455284552845533,
+                "lower_95": -0.43489721654749747,
+                "upper_95": -0.10113155862046996,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0500000000000005,
+                "lower_95": -3.4956588355464753,
+                "upper_95": -0.23050239234449793,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.8414999999999999,
+                "lower_95": 0.7058987035816304,
+                "upper_95": 0.9613298160173162,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.026499999999999968,
+                "lower_95": -0.1496161585365853,
+                "upper_95": 0.2110239130434783,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.14324324324324303,
+                "lower_95": -3.415000000000016,
+                "upper_95": 0.7290793650793648,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.717,
+              "lower_95": 0.5606839285714286,
+              "upper_95": 0.8561609585293796,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.5,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.2259007999964524,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.845
+              },
+              "top_class_share_before": 0.53125,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.5835612999944715,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.845
+              },
+              "top_class_share_before": 0.53125,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.2417021000001114,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8475
+              },
+              "top_class_share_before": 0.46875,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.2327025999984471,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.8375
+              },
+              "top_class_share_before": 0.46875,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.29329229998984374,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.84
+              },
+              "top_class_share_before": 0.5625,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4444444444444445,
+                "lower_95": 0.40476190476190477,
+                "upper_95": 0.47368421052631576,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.28455284552845533,
+                "lower_95": -0.43489721654749747,
+                "upper_95": -0.10113155862046996,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0500000000000005,
+                "lower_95": -3.4956588355464753,
+                "upper_95": -0.23050239234449793,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.843,
+                "lower_95": 0.7189284090909092,
+                "upper_95": 0.9535957792207791,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.028000000000000025,
+                "lower_95": -0.1389352564621991,
+                "upper_95": 0.21818779904306215,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.15135135135135144,
+                "lower_95": -4.07291666666667,
+                "upper_95": 0.7047714328537165,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.7170000000000001,
+              "lower_95": 0.562027737924438,
+              "upper_95": 0.852640789473684,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.9,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 35,
+              "seconds_to_adapt_with_guard": 0.2863887999992585,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.8225
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.23635440001089592,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.84
+              },
+              "top_class_share_before": 0.53125,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 34,
+              "seconds_to_adapt_with_guard": 0.22726509999483824,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.82
+              },
+              "top_class_share_before": 0.59375,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.22795200000109617,
+              "shifted_after": {
+                "macro_f1": 0.4444444444444444,
+                "auroc": 0.85
+              },
+              "top_class_share_before": 0.46875,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.2288540000008652,
+              "shifted_after": {
+                "macro_f1": 0.43820224719101125,
+                "auroc": 0.86
+              },
+              "top_class_share_before": 0.59375,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.7289972899728998,
+                "lower_95": 0.5403472931562819,
+                "upper_95": 0.875,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.4406991260923845,
+                "lower_95": 0.40326009922041106,
+                "upper_95": 0.47032474804031354,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.2882981638805153,
+                "lower_95": -0.43721058515906663,
+                "upper_95": -0.10664887522514731,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": -1.0638202247191018,
+                "lower_95": -3.5255362614913177,
+                "upper_95": -0.23942844632038354,
+                "valid_resamples": 1000
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 0.815,
+                "lower_95": 0.6312262827611665,
+                "upper_95": 0.975015243902439,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.8385,
+                "lower_95": 0.7262393891463659,
+                "upper_95": 0.943161525974026,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.023500000000000076,
+                "lower_95": -0.13576811974789912,
+                "upper_95": 0.2141972178557543,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": 0.1270270270270274,
+                "lower_95": -3.5522272727272752,
+                "upper_95": 0.6520604395604391,
+                "valid_resamples": 998
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.4444444444444445,
+              "lower_95": 0.40476190476190477,
+              "upper_95": 0.47368421052631576,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 0.7150000000000001,
+              "lower_95": 0.5604094751910974,
+              "upper_95": 0.8430124999999999,
+              "valid_resamples": 1000
+            }
+          }
+        }
+      ]
+    },
+    "low_pass": {
+      "score_patients": 50,
+      "score_positive_patients": 40,
+      "score_recordings": 50,
+      "clean_comparison": "matched clips",
+      "conditions": [
+        {
+          "adaptation_recordings": 8,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 7,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.21496230000047944,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.21530260000145063,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 9,
+              "seconds_to_adapt_with_guard": 0.22050450000097044,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 8,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.20986440000706352,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 8,
+              "abnormal_recordings": 6,
+              "adaptation_windows": 8,
+              "seconds_to_adapt_with_guard": 0.22142439999151975,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.25,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 16,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 19,
+              "seconds_to_adapt_with_guard": 0.2249703999987105,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.3125,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 13,
+              "adaptation_windows": 18,
+              "seconds_to_adapt_with_guard": 0.21601440000813454,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.25,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 13,
+              "adaptation_windows": 17,
+              "seconds_to_adapt_with_guard": 0.22195479999936651,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.4375,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 10,
+              "adaptation_windows": 16,
+              "seconds_to_adapt_with_guard": 0.21698099999048281,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 16,
+              "abnormal_recordings": 12,
+              "adaptation_windows": 16,
+              "seconds_to_adapt_with_guard": 0.2151354999950854,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 26,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.22696830000495538,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.4375,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 26,
+              "adaptation_windows": 34,
+              "seconds_to_adapt_with_guard": 0.23359350000100676,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.25,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 23,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.23551470000529662,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.28125,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 24,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.22950020000280347,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.25,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 27,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.23592289999942295,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.25,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 64,
+          "target_abnormal_fraction": null,
+          "draws": [
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 52,
+              "adaptation_windows": 66,
+              "seconds_to_adapt_with_guard": 0.27313580000190996,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.3125,
+              "top_class_share_after": 0.265625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 48,
+              "adaptation_windows": 67,
+              "seconds_to_adapt_with_guard": 0.2681358999980148,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.28125,
+              "top_class_share_after": 0.265625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 52,
+              "adaptation_windows": 67,
+              "seconds_to_adapt_with_guard": 0.26252950000343844,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.3125,
+              "top_class_share_after": 0.265625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 50,
+              "adaptation_windows": 68,
+              "seconds_to_adapt_with_guard": 0.2512512999965111,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.28125,
+              "top_class_share_after": 0.25,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 64,
+              "abnormal_recordings": 50,
+              "adaptation_windows": 66,
+              "seconds_to_adapt_with_guard": 0.2544825000077253,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.34375,
+              "top_class_share_after": 0.28125,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.1,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.25507359999755863,
+              "shifted_after": {
+                "macro_f1": 0.8511904761904762,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.90625,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.2583491999976104,
+              "shifted_after": {
+                "macro_f1": 0.8511904761904762,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.90625,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.234061200011638,
+              "shifted_after": {
+                "macro_f1": 0.8511904761904762,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.90625,
+              "top_class_share_after": 0.40625,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.26604519999818876,
+              "shifted_after": {
+                "macro_f1": 0.8511904761904762,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.90625,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 3,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.24461979999614414,
+              "shifted_after": {
+                "macro_f1": 0.8511904761904762,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.90625,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.851190476190476,
+                "lower_95": 0.6904633620689655,
+                "upper_95": 0.9645641389085755,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.14880952380952395,
+                "lower_95": -0.30953663793103453,
+                "upper_95": -0.03543586109142449,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.714655833340677,
+              "lower_95": 0.527223080768465,
+              "upper_95": 0.8682284931173826,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.5,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.25164370000129566,
+              "shifted_after": {
+                "macro_f1": 0.9675113710201428,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.22922390000894666,
+              "shifted_after": {
+                "macro_f1": 0.9675113710201428,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.23257839999860153,
+              "shifted_after": {
+                "macro_f1": 0.9675113710201428,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 32,
+              "seconds_to_adapt_with_guard": 0.2285898999980418,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 16,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.22967309999512509,
+              "shifted_after": {
+                "macro_f1": 0.9675113710201428,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.5,
+              "top_class_share_after": 0.5,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 0.9740090968161143,
+                "lower_95": 0.9058823529411765,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": -0.02599090318388575,
+                "lower_95": -0.09411764705882353,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 0.9669566871107307,
+              "lower_95": 0.8966904436193083,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        },
+        {
+          "adaptation_recordings": 32,
+          "target_abnormal_fraction": 0.9,
+          "draws": [
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 35,
+              "seconds_to_adapt_with_guard": 0.23340740001003724,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.46875,
+              "top_class_share_after": 0.4375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.23022149999451358,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.3125,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 34,
+              "seconds_to_adapt_with_guard": 0.22682050000003073,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.375,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.23162629999569617,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.34375,
+              "top_class_share_after": 0.3125,
+              "collapse_guard_triggered": false
+            },
+            {
+              "adaptation_patients": 32,
+              "abnormal_recordings": 29,
+              "adaptation_windows": 33,
+              "seconds_to_adapt_with_guard": 0.23439920000964776,
+              "shifted_after": {
+                "macro_f1": 1.0,
+                "auroc": 1.0
+              },
+              "top_class_share_before": 0.40625,
+              "top_class_share_after": 0.34375,
+              "collapse_guard_triggered": false
+            }
+          ],
+          "shifted": {
+            "macro_f1": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            },
+            "auroc": {
+              "clean": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "plain": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "adapted": {
+                "estimate": 1.0,
+                "lower_95": 1.0,
+                "upper_95": 1.0,
+                "valid_resamples": 1000
+              },
+              "gain": {
+                "estimate": 0.0,
+                "lower_95": 0.0,
+                "upper_95": 0.0,
+                "valid_resamples": 1000
+              },
+              "recovery": {
+                "estimate": null,
+                "lower_95": null,
+                "upper_95": null,
+                "valid_resamples": 0
+              }
+            }
+          },
+          "clean_after_adaptation": {
+            "macro_f1": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            },
+            "auroc": {
+              "estimate": 1.0,
+              "lower_95": 1.0,
+              "upper_95": 1.0,
+              "valid_resamples": 1000
+            }
+          }
+        }
+      ]
+    }
+  }
+}
