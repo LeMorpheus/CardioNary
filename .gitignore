@@ -37,3 +37,5 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+/docs/team_docs/
