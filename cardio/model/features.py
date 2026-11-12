@@ -23,7 +23,14 @@ def heart_rate(x16, fs=FS, rate=100):
 
 
 def characteristics(path):
-    x = load_wav(str(path), CARDIO_CONFIG)  # mono, 8 kHz, from any input rate
+    return characteristics_from_audio(load_wav(str(path), CARDIO_CONFIG))  # mono, 8 kHz, from any input rate
+
+
+def characteristics_from_audio(x):
+    """The same 17 characteristics from 8 kHz samples in [-1, 1], with no file.
+
+    cardio/predict.py uses this so a dashboard upload is measured in memory.
+    """
     x16 = (np.clip(x, -1, 1) * 32767).astype(np.int16)
     d = audio_descriptors(x16, fs=FS)
     row = {f"band_{k}": v for k, v in d["band_power_pct"].items()}

@@ -108,12 +108,18 @@ def test_requantisation_report_is_consistent_and_clinic_part_aggregate_only():
 
 
 def test_edge_budget_report_covers_every_stage():
+    from cardio.predict import STAGES
+
     out = json.loads(_load_json("heart_edge_budget.json"))
     for timing in out["timing_per_case"].values():
-        for stage in ("load_and_resample", "quality_check", "front_end", "cnn_8bit",
-                      "secondary_characteristics", "systole_diastole_attribution", "total"):
+        for stage in (*STAGES, "total"):
             assert timing[f"{stage}_ms"]["median"] >= 0
+        assert 0 <= timing["passed_quality_check"] <= timing["recordings"]
     assert out["sizes"]["int8_bytes"] > 0
+    assert set(out["stages"]) == set(STAGES)
+    for survey in out["quality_check_on_public_data"].values():
+        assert 0 <= survey["share_passing"]["estimate"] <= 1
+    _intervals_bracket_estimates(out["quality_check_on_public_data"])
 
 
 def test_interval_helpers_on_toy_data():
